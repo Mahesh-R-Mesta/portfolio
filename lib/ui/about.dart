@@ -48,9 +48,7 @@ class AboutPage extends StatelessWidget {
                       spacing: 20,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextTile(
-                          title: "What i like to do",
-                        ),
+                        TextTile(title: "What i like to do"),
                         Row(
                           spacing: 20,
                           children: [

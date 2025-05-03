@@ -25,7 +25,6 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
     final introCompleter = Completer();
     final blastController = BlastController();
     final pageNavigator = GetIt.I.get<ViewPageController>();
@@ -96,7 +95,7 @@ class IntroPage extends StatelessWidget {
                             Clipboard.setData(ClipboardData(text: "+91 8722469640"));
                           },
                           radius: 60,
-                          child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelLarge))
+                          child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelMedium))
                     ],
                   )
                 ],
