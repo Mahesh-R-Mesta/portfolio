@@ -10,7 +10,7 @@ class IconExpress extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Icon(icon, size: 25), const SizedBox(height: 20), Text(text, style: Theme.of(context).textTheme.labelLarge)],
+      children: [Icon(icon, size: 25), const SizedBox(height: 20), Text(text, style: Theme.of(context).textTheme.labelSmall)],
     );
   }
 }

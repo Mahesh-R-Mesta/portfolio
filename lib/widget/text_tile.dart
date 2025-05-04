@@ -13,7 +13,7 @@ class TextTile extends StatelessWidget {
         if (title != null)
           Text(
             title!,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800, fontSize: 19, color: Colors.orange),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500, color: Colors.orange),
           ),
         if (description != null) ...[
           const SizedBox(height: 10),

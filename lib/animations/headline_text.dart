@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:sprung/sprung.dart';
 
 class HeadlineText extends StatefulWidget {
   final String serial;
@@ -19,7 +20,7 @@ class _HeadlineTextState extends State<HeadlineText> with SingleTickerProviderSt
   @override
   void initState() {
     controller = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
-    lineAnime = Tween(begin: 0.0, end: 50.0).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
+    lineAnime = Tween(begin: 0.0, end: 50.0).animate(CurvedAnimation(parent: controller, curve: Sprung.overDamped));
     opacityAnime = Tween(begin: 0.4, end: 1.0).animate(CurvedAnimation(parent: controller, curve: Curves.linear));
     super.initState();
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/animations/swing_board.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Projects extends StatelessWidget {
@@ -8,7 +9,18 @@ class Projects extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(serialNo: "02", title: "Projects"),
-      body: Padding(padding: const EdgeInsets.all(15), child: Column(children: [])),
+      body: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Row(
+            children: [
+              Column(children: [
+                SwingBoardAnimation(
+                    child: Column(
+                  children: [Text("")],
+                ))
+              ]),
+            ],
+          )),
     );
   }
 }

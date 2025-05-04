@@ -47,6 +47,7 @@ dependencies:
   lottie: ^3.3.1
   get_it: ^8.0.3
   draggable_scrollbar: ^0.1.0
+  sprung: ^3.0.1
 
 dev_dependencies:
   flutter_test:
@@ -91,28 +92,28 @@ flutter:
   fonts:
     - family: ShantellSans
       fonts:
-        - asset: assets/font/ShantellSans-Regular.ttf
-        - asset: assets/font/ShantellSans-Italic.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Regular.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Italic.ttf
           style: italic
-        - asset: assets/font/ShantellSans-Light.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Light.ttf
           weight: 100
-        - asset: assets/font/ShantellSans-Light.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Light.ttf
           weight: 200
-        - asset: assets/font/ShantellSans-Medium.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Medium.ttf
           weight: 400
-        - asset: assets/font/ShantellSans-Regular.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Regular.ttf
           weight: 500
-        - asset: assets/font/ShantellSans-SemiBold.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-SemiBold.ttf
           weight: 600
-        - asset: assets/font/ShantellSans-Bold.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-Bold.ttf
           weight: 700
-        - asset: assets/font/ShantellSans-ExtraBold.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-ExtraBold.ttf
           weight: 800
-        - asset: assets/font/ShantellSans-ExtraBold.ttf
+        - asset: assets/font/ShantellSans/ShantellSans-ExtraBold.ttf
           weight: 900
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+    - family: Orbitron
+      fonts:
+        - asset: assets/font/orbitron/Orbitron.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

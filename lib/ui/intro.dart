@@ -90,6 +90,8 @@ class IntroPage extends StatelessWidget {
                       ),
                       svgIcon(ImageConst.linkedIn, 20, () => openLink(MyLinks.linkedRank)),
                       svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
+                      svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub)),
+                      // svgIcon(ImageConst., 25, () => openLink(MyLinks.hackerRank)),
                       LinkButton(
                           onTap: () {
                             Clipboard.setData(ClipboardData(text: "+91 8722469640"));

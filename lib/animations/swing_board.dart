@@ -51,12 +51,3 @@ class _SwingBoardAnimationState extends State<SwingBoardAnimation> with SingleTi
         });
   }
 }
-
-
-                    // if (widget.title != null)
-                    //   Text(
-                    //     widget.title!,
-                    //     style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w800, fontSize: 19),
-                    //   ),
-                    // const SizedBox(height: 10),
-                    // Text(widget.description ?? "NA", style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500)),

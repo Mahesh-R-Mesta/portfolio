@@ -13,6 +13,9 @@ final ThemeData theme = ThemeData(
       onSecondary: Colors.black,
       onSurface: Color(0xFF1C1C1E),
     ),
+    hoverColor: Colors.transparent,
+    splashColor: Colors.transparent,
+    highlightColor: Colors.transparent,
     tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
         textStyle: TextStyle(color: Colors.black, fontSize: 13)),

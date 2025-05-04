@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         children: [
           PageView(
             controller: pageController,
+            physics: NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             children: screens,
           ),

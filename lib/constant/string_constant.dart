@@ -1,4 +1,4 @@
-typedef CompanyInfo = ({String role, String company, String startAndEnd, String details});
+typedef CompanyInfo = ({String role, String city, String company, String startAndEnd, String details});
 
 mixin StringConst {
   static const String title = "Flutter Developer &\nAI/ML Enthusiast";
@@ -15,6 +15,7 @@ mixin StringConst {
   static const CompanyInfo codeMatrix = (
     role: "Mobile App Developer",
     company: "Code Matrix",
+    city: "Bangalore",
     startAndEnd: "2022 - Present",
     details: """• Worked on the company product, developed a cross-platform app
  for mobile and Windows using a single codebase
@@ -26,6 +27,7 @@ mixin StringConst {
   static const CompanyInfo geekSynergy = (
     role: "Flutter Developer",
     company: "Geeksynergy",
+    city: "Bangalore",
     startAndEnd: "Jul 2021 - May 2022",
     details: """• Developed and deployed an application for web and mobile from a
  single codebase
@@ -37,9 +39,14 @@ mixin StringConst {
   static const CompanyInfo appBee = (
     role: "Flutter Developer",
     company: "AppBee Software Solutions",
+    city: "Sirsi",
     startAndEnd: "Jan 2021 - Jul 2021",
     details: """• Developed interactive UI screen, enhancing user experience
  • Implemented RESTful APIs for data integration
  • Troubleshot and debugged issues ensuring smooth functionality"""
   );
+}
+
+mixin Family {
+  static const String orbit = "Orbitron";
 }

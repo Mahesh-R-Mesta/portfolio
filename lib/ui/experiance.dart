@@ -1,10 +1,9 @@
-import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:myportfolio/animations/swing_board.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
 import 'package:myportfolio/constant/string_constant.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
-import 'package:myportfolio/widget/text_tile.dart';
 
 class Experience extends StatelessWidget {
   static const String name = "/experience";
@@ -20,17 +19,27 @@ class Experience extends StatelessWidget {
     List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
     Widget experienceCard(CompanyInfo company) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(company.company, style: theme.labelLarge?.copyWith(color: Colors.orange, fontWeight: FontWeight.w500)),
-            const SizedBox(height: 5),
-            Text('${company.role} • ${company.startAndEnd}', style: theme.labelSmall),
-            const SizedBox(height: 10),
-            Text(company.details, style: theme.bodyMedium),
-          ],
+      return InkWell(
+        hoverColor: Colors.blue.shade100.withAlpha(50),
+        highlightColor: Colors.orange.shade100.withAlpha(50),
+        radius: 50,
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text.rich(
+                  TextSpan(
+                      text: company.company,
+                      children: [TextSpan(text: " • (${company.city})", style: theme.labelSmall?.copyWith(fontSize: 13, fontFamily: Family.orbit))]),
+                  style: theme.labelLarge?.copyWith(color: Colors.orange, fontWeight: FontWeight.w500)),
+              const SizedBox(height: 5),
+              Text('${company.role} • ${company.startAndEnd}', style: theme.labelSmall),
+              const SizedBox(height: 10),
+              Text(company.details, style: theme.bodyMedium),
+            ],
+          ),
         ),
       );
     }
@@ -47,11 +56,9 @@ class Experience extends StatelessWidget {
                   data: Theme.of(context).copyWith(
                       scrollbarTheme: ScrollbarThemeData(
                     trackColor: WidgetStatePropertyAll(Colors.black12),
-                    thumbColor: WidgetStatePropertyAll(Colors.transparent),
+                    // thumbColor: WidgetStatePropertyAll(Colors.transparent),
                   )),
-                  child: DraggableScrollbar.rrect(
-                    backgroundColor: Colors.orangeAccent.shade100,
-                    controller: controller,
+                  child: AnimationLimiter(
                     child: ListView.builder(
                         controller: controller,
                         itemCount: experience.length,
