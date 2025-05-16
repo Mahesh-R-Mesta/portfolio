@@ -1,4 +1,6 @@
+import 'package:flutter/services.dart';
 import 'package:myportfolio/constant/links.dart';
+import 'package:myportfolio/widget/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 openLink(String link) async {
@@ -9,9 +11,11 @@ openLink(String link) async {
 }
 
 mailMe() async {
-  final Uri emailLaunchUri = Uri(
-    scheme: 'mailto',
-    path: MyLinks.email,
-  );
-  await launchUrl(emailLaunchUri);
+  // final Uri emailLaunchUri = Uri(
+  //   scheme: 'mailto',
+  //   path: MyLinks.email,
+  // );
+  toast("Copied to clipboard");
+  Clipboard.setData(ClipboardData(text: MyLinks.email));
+  // await launchUrl(emailLaunchUri);
 }

@@ -17,6 +17,7 @@ import 'package:myportfolio/services/page_controller.dart';
 import 'package:myportfolio/ui/about.dart';
 import 'package:myportfolio/ui/experiance.dart';
 import 'package:myportfolio/widget/link_button.dart';
+import 'package:myportfolio/widget/toast.dart';
 
 import '../services/launch.dart';
 
@@ -94,6 +95,7 @@ class IntroPage extends StatelessWidget {
                       // svgIcon(ImageConst., 25, () => openLink(MyLinks.hackerRank)),
                       LinkButton(
                           onTap: () {
+                            toast("Copied to clipboard");
                             Clipboard.setData(ClipboardData(text: "+91 8722469640"));
                           },
                           radius: 60,

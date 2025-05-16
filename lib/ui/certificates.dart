@@ -1,4 +1,3 @@
-import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:myportfolio/constant/image_constant.dart';
@@ -56,8 +55,9 @@ class Certificate extends StatelessWidget {
               itemCount: images.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1.41337),
               itemBuilder: (ctx, index) {
-                return AnimationConfiguration.staggeredList(
+                return AnimationConfiguration.staggeredGrid(
                   duration: Duration(seconds: 1),
+                  columnCount: 3,
                   position: index,
                   child: SlideAnimation(
                     verticalOffset: 60,

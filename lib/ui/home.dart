@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/side_mount_board.dart';
 import 'package:myportfolio/services/page_controller.dart';
 import 'package:myportfolio/ui/about.dart';
-import 'package:myportfolio/ui/certicates.dart';
+import 'package:myportfolio/ui/certificates.dart';
 import 'package:myportfolio/ui/experiance.dart';
 import 'package:myportfolio/ui/intro.dart';
 import 'package:myportfolio/ui/projects.dart';

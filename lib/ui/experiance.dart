@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:myportfolio/animations/swing_board.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
 import 'package:myportfolio/constant/string_constant.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
@@ -56,14 +55,21 @@ class Experience extends StatelessWidget {
                   data: Theme.of(context).copyWith(
                       scrollbarTheme: ScrollbarThemeData(
                     trackColor: WidgetStatePropertyAll(Colors.black12),
-                    // thumbColor: WidgetStatePropertyAll(Colors.transparent),
                   )),
                   child: AnimationLimiter(
                     child: ListView.builder(
                         controller: controller,
                         itemCount: experience.length,
                         itemBuilder: (ctx, index) {
-                          return SwingBoardAnimation(child: experienceCard(experience[index]));
+                          return AnimationConfiguration.staggeredList(
+                              duration: Duration(milliseconds: 1500),
+                              delay: Duration(milliseconds: 700),
+                              position: index,
+                              child: SlideAnimation(
+                                  verticalOffset: 100,
+                                  child: FadeInAnimation(
+                                    child: experienceCard(experience[index]),
+                                  ))); //SwingBoardAnimation(child: );
                         }),
                   ),
                 ),
