@@ -3,8 +3,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
-
+name: Deploying
 on:
   push:
     branches: [ "master" ]
@@ -13,7 +12,7 @@ on:
 
 jobs:
   build_and_deploy_web:
-    name: Build & deploy
+    name: Build & Deploy
     runs-on: ubuntu-latest
     
     steps:
@@ -37,7 +36,7 @@ jobs:
           chmod u+x "${GITHUB_WORKSPACE}/createandcopy.sh"
           bash "${GITHUB_WORKSPACE}/createandcopy.sh"
         
-      - name: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Commit the artifacts.
       
