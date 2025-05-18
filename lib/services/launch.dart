@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:myportfolio/constant/links.dart';
+import 'package:myportfolio/util/constant/links.dart';
 import 'package:myportfolio/widget/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 

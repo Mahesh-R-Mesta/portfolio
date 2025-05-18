@@ -2,7 +2,7 @@ import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myportfolio/animations/swing_board.dart';
-import 'package:myportfolio/constant/lottie_assets.dart';
+import 'package:myportfolio/util/constant/lottie_assets.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 import 'package:myportfolio/widget/icon_express.dart';
 import 'package:myportfolio/widget/text_tile.dart';

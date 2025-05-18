@@ -1,10 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:myportfolio/constant/image_constant.dart';
-import 'package:myportfolio/constant/string_constant.dart';
+import 'package:myportfolio/animations/online.dart';
+import 'package:myportfolio/util/constant/image_constant.dart';
+import 'package:myportfolio/util/constant/string_constant.dart';
 
 typedef TechStackData = ({
   double radius,
@@ -28,6 +30,9 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
   late Animation<double> secondOrbitAngle;
   late Animation<double> thirdOrbitAngle;
   late List<TechStackData> techStacks;
+  var enableSystem = ValueNotifier<bool>(true);
+
+  double radius = 50;
 
   @override
   void initState() {
@@ -36,15 +41,15 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
     secondOrbitAngle = Tween<double>(begin: 0, end: 4 * pi).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     firstOrbitAngle = Tween<double>(begin: 0, end: 8 * pi).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     techStacks = [
-      (asset: ImageConst.uiUx, radius: 25, orbitRadius: 100, name: "UI/UX", phase: pi / 4, anime: firstOrbitAngle),
-      (asset: ImageConst.swift, radius: 30, orbitRadius: 180, name: "Swift", phase: pi / 2, anime: secondOrbitAngle),
-      (asset: ImageConst.api, radius: 25, orbitRadius: 100, name: "API INTEGRATION", phase: (pi * 3) / 4, anime: firstOrbitAngle),
-      (asset: ImageConst.android, radius: 30, orbitRadius: 180, name: "ANDROID", phase: 0, anime: secondOrbitAngle),
-      (asset: ImageConst.kotlin, radius: 30, orbitRadius: 180, name: "KOTLIN", phase: pi, anime: secondOrbitAngle),
-      (asset: ImageConst.firebase, radius: 25, orbitRadius: 100, name: "Firebase", phase: pi + (pi / 4), anime: firstOrbitAngle),
-      (asset: ImageConst.java, radius: 30, orbitRadius: 180, name: "Java", phase: pi + (pi / 2), anime: secondOrbitAngle),
-      (asset: ImageConst.dart, radius: 25, orbitRadius: 100, name: "Dart", phase: pi + (pi * 3 / 4), anime: firstOrbitAngle),
-      (asset: ImageConst.python, radius: 30, orbitRadius: 280, name: "Python", phase: pi, anime: thirdOrbitAngle),
+      (asset: ImageConst.uiUx, radius: 20, orbitRadius: 100, name: "UI/UX", phase: pi / 4, anime: firstOrbitAngle),
+      (asset: ImageConst.swift, radius: 25, orbitRadius: 160, name: "Swift", phase: pi / 2, anime: secondOrbitAngle),
+      (asset: ImageConst.api, radius: 20, orbitRadius: 100, name: "API INTEGRATION", phase: (pi * 3) / 4, anime: firstOrbitAngle),
+      (asset: ImageConst.android, radius: 25, orbitRadius: 160, name: "ANDROID", phase: 0, anime: secondOrbitAngle),
+      (asset: ImageConst.kotlin, radius: 25, orbitRadius: 160, name: "KOTLIN", phase: pi, anime: secondOrbitAngle),
+      (asset: ImageConst.firebase, radius: 20, orbitRadius: 100, name: "Firebase", phase: pi + (pi / 4), anime: firstOrbitAngle),
+      (asset: ImageConst.java, radius: 25, orbitRadius: 160, name: "Java", phase: pi + (pi / 2), anime: secondOrbitAngle),
+      (asset: ImageConst.dart, radius: 20, orbitRadius: 100, name: "Dart", phase: pi + (pi * 3 / 4), anime: firstOrbitAngle),
+      (asset: ImageConst.python, radius: 25, orbitRadius: 230, name: "Python", phase: pi, anime: thirdOrbitAngle),
     ];
     _controller.repeat();
     super.initState();
@@ -90,7 +95,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                       radius: tech.radius,
                       backgroundColor: Colors.orange.shade100,
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(8),
                         child: SvgPicture.asset(tech.asset),
                       )),
                 ),
@@ -110,22 +115,24 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
             splashColor: Colors.orange.shade100.withAlpha(40),
             onHover: (hovered) {
               if (hovered) {
+                enableSystem.value = false;
                 _controller.stop();
               } else {
+                enableSystem.value = true;
                 _controller.repeat();
               }
             },
             child: CustomPaint(
-              painter: OrbitalPainter(getCenterOffset(0), [195, 360, 550]),
+              painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
               child: Stack(children: [
                 for (final tech in techStacks) orbitWidget(tech),
                 Transform.translate(
-                  offset: getCenterOffset(60),
+                  offset: getCenterOffset(radius),
                   child: Tooltip(
                     margin: EdgeInsets.only(top: 20),
                     message: "Flutter",
                     child: CircleAvatar(
-                        radius: 60,
+                        radius: radius,
                         backgroundColor: Colors.orange.shade100,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
@@ -136,9 +143,19 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 Transform(
                   transform: Matrix4.identity()..translate(130, -50),
                   alignment: Alignment.topCenter,
-                  child: Text(
-                    "MY SOLAR SYSTEM",
-                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18.sp, fontFamily: Family.orbit),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "MY SOLAR SYSTEM",
+                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18.sp, fontFamily: Family.orbit),
+                      ),
+                      ValueListenableBuilder(
+                          valueListenable: enableSystem,
+                          builder: (context, enable, _) {
+                            return Online(enable: enable);
+                          })
+                    ],
                   ),
                 )
               ]),

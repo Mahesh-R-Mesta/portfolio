@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
-import 'package:myportfolio/constant/string_constant.dart';
+import 'package:myportfolio/util/constant/anime_duration.dart';
+import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Experience extends StatelessWidget {
@@ -74,7 +76,11 @@ class Experience extends StatelessWidget {
                   ),
                 ),
               ),
-              Flexible(child: TechStackAnime())
+              Flexible(
+                  child: TechStackAnime()
+                      .animate()
+                      .fade(duration: AnimeConfig.mediumDuration)
+                      .slideX(duration: AnimeConfig.mediumDuration, begin: 0.5, end: 0))
             ],
           )),
     );

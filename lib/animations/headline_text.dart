@@ -21,7 +21,7 @@ class _HeadlineTextState extends State<HeadlineText> with SingleTickerProviderSt
   void initState() {
     controller = AnimationController(duration: const Duration(milliseconds: 200), vsync: this);
     lineAnime = Tween(begin: 0.0, end: 50.0).animate(CurvedAnimation(parent: controller, curve: Sprung.overDamped));
-    opacityAnime = Tween(begin: 0.4, end: 1.0).animate(CurvedAnimation(parent: controller, curve: Curves.linear));
+    opacityAnime = Tween(begin: 0.5, end: 1.0).animate(CurvedAnimation(parent: controller, curve: Curves.linear));
     super.initState();
   }
 

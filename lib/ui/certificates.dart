@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:myportfolio/constant/image_constant.dart';
+import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Certificate extends StatelessWidget {
@@ -21,29 +21,32 @@ class Certificate extends StatelessWidget {
 
     show(BuildContext context, String image) async {
       final size = MediaQuery.of(context).size;
-      Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-        return Center(
-          child: SizedBox(
-            width: size.width / 1.5,
-            height: size.height / 1.5,
-            child: Stack(
-              children: [
-                Hero(
-                  tag: image,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Image.asset(image, width: size.width / 1.5, height: size.height / 1.5),
-                  ),
+      Navigator.of(context).push(PageRouteBuilder(
+          fullscreenDialog: true,
+          barrierColor: Colors.black.withOpacity(0.5),
+          pageBuilder: (ctx, _, __) {
+            return Center(
+              child: SizedBox(
+                width: size.width / 1.5,
+                height: size.height / 1.5,
+                child: Stack(
+                  children: [
+                    Hero(
+                      tag: image,
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: Image.asset(image, width: size.width / 1.5, height: size.height / 1.5),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(onPressed: () => Navigator.pop(ctx), icon: Icon(Icons.close, size: 40)),
+                    )
+                  ],
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: IconButton(onPressed: () => Navigator.pop(ctx), icon: Icon(Icons.close, size: 40)),
-                )
-              ],
-            ),
-          ),
-        );
-      }));
+              ),
+            );
+          }));
     }
 
     return Scaffold(
