@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="A new Flutter project.">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="myportfolio">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>myportfolio</title>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #fff;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    
+    .terminal-window {
+      width: 360px;
+      padding: 20px;
+      background-color: #282A36 ;
+      border-radius: 4px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .terminal-line {
+      text-align: left;
+      margin-bottom: 10px;
+      color: #00FF00;
+      font-size: 16px;
+    }
+    
+    .prompt {
+      color: #FFFFFF;
+      margin-right: 5px;
+      font-weight: 600;
+    }
+    
+    .loading-text {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 18px;
+      background-color: #0000;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  
+  <script src="flutter_bootstrap.js" async></script>
+  <div id="loading-terminal" class="terminal-window">
+    <div class="terminal-line">
+      <span class="prompt">$ flutter run -d web</span>
+    </div>
+    <div class="terminal-line">
+      <span class="prompt">></span>
+      <span class="loading-text" id="loading-text"></span>
+      <span class="cursor"></span>
+    </div>
+  </div>
+  <div id="flutter-target"></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadingText = document.getElementById('loading-text');
+      const fullText = "Loading";
+      let currentText = "_";
+      let currentPosition = 0;
+      let forwards = true;
+      let animationRunning = true;
+
+      function updateText() {
+        if (!animationRunning) return;
+        if (forwards) {
+          if (currentPosition < fullText.length) {
+            currentText = fullText.substring(0, currentPosition + 1) + "_";
+            currentPosition++;
+          } else {
+            forwards = false;
+            setTimeout(updateText, 2000); // Pause when complete
+            return;
+          }
+        } else {
+          if (currentPosition > 0) {
+            currentText = fullText.substring(0, currentPosition) + "_";
+            currentPosition--;
+          } else {
+            currentText = "_";
+            forwards = true;
+          }
+        }
+        
+        loadingText.textContent = currentText;
+        
+        // Controls the typing speed
+        const typingSpeed = forwards ? 200 : 100;
+        setTimeout(updateText, typingSpeed);
+      }
+      // Start the animation
+      setTimeout(updateText, 500);
+    });
+
+    window.addEventListener('load', function() {
+      // Listen for Flutter initialization
+      window.addEventListener('flutter-first-frame', function() {
+        console.log('Flutter application rendered its first frame');
+        hideLoader();
+      });
+      
+      // Fallback: if Flutter takes too long, hide loader after 10 seconds
+      setTimeout(hideLoader, 2000);
+    });
+    
+    function hideLoader() {
+      const terminal = document.getElementById('loading-terminal');
+      if (terminal) {
+        terminal.classList.add('hidden');
+        setTimeout(() => {
+          terminal.style.display = 'none';
+        }, 500);
+      }
+    }
+
+
+  </script>
+</body>
+</html>

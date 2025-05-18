@@ -6,12 +6,14 @@
 name: Deploying
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    branches:
+      - "main"
+      - "staging"
 
 jobs:
   build_and_deploy_web:
+    permissions:
+      contents: write
     name: Build & Deploy
     runs-on: ubuntu-latest
     
