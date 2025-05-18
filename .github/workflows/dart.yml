@@ -1,0 +1,43 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Dart
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build_and_deploy_web:
+    name: Build & deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: 🌍 Enable Web
+        run: flutter config --enable-web
+
+      - name: 📦 Get packages
+        run: flutter pub get
+
+      - name: 🏭 Build Web Application
+        run: flutter build web --release
+
+      - name: Make copy 
+        run: |
+          chmod u+x "${GITHUB_WORKSPACE}/createandcopy.sh"
+          bash "${GITHUB_WORKSPACE}/createandcopy.sh"
+        
+      - name: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Commit the artifacts.
+      
