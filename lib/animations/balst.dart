@@ -23,8 +23,8 @@ class _BlastAuraAnimeState extends State<BlastAuraAnime> with SingleTickerProvid
   @override
   void initState() {
     final width = ScreenUtil().screenWidth;
-    controller = AnimationController(vsync: this, duration: Duration(seconds: 4));
-    radiusTween = Tween<double>(begin: 0, end: 600).animate(CurvedAnimation(parent: controller, curve: Curves.decelerate));
+    controller = AnimationController(vsync: this, duration: Duration(seconds: 3));
+    radiusTween = Tween<double>(begin: 0, end: 600).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
     carSpeed = Tween<double>(begin: 0, end: width).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
     // start();
     getImage().then((image) => carImage = image);

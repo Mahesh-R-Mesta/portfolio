@@ -3,12 +3,35 @@ class Project {
   final List<String> description;
   final String duration;
   final String company;
+  final List<Tech> techUsed;
+  final List<Link> links;
+  final List<String> developers;
+  final String? imageUrl;
+
   const Project({
     required this.name,
     required this.description,
     required this.duration,
     required this.company,
+    this.techUsed = const [],
+    this.links = const [],
+    this.developers = const [],
+    this.imageUrl,
   });
+
+  static const arise = Project(
+    name: "Arise: The monster invasion",
+    description: [
+      "Built task scheduler with timed notifications & reminders",
+      "Implemented window overlay screens for Android, enhancing user interaction even outside the app",
+      "Developed native alarm in kotlin and used as a flutter plugin",
+      "Used ObjectBox for on-device vector DB storage"
+    ],
+    duration: "SEPT 2024 - FEB 2025",
+    company: "Code Matrix",
+    techUsed: [Tech(name: "Flutter")],
+    imageUrl: "assets/image/arise.png",
+  );
 
   static const smriti = Project(
     name: "Smriti",
@@ -55,4 +78,16 @@ class Project {
     duration: "Nov 2021 - Nov 2022",
     company: "Geeksynergy",
   );
+}
+
+class Link {
+  String name;
+  String url;
+  Link({required this.name, required this.url});
+}
+
+class Tech {
+  final String name;
+  final String? image;
+  const Tech({required this.name, this.image});
 }

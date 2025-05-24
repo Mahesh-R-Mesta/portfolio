@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:myportfolio/animations/online.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
 import 'package:myportfolio/util/constant/anime_duration.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
@@ -30,11 +31,16 @@ class Experience extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(
-                  TextSpan(
-                      text: company.company,
-                      children: [TextSpan(text: " • (${company.city})", style: theme.labelSmall?.copyWith(fontSize: 13, fontFamily: Family.orbit))]),
-                  style: theme.labelLarge?.copyWith(color: Colors.orange, fontWeight: FontWeight.w500)),
+              Row(
+                children: [
+                  Text.rich(
+                      TextSpan(text: company.company, children: [
+                        TextSpan(text: " • (${company.city})", style: theme.labelSmall?.copyWith(fontSize: 13, fontFamily: Family.orbit))
+                      ]),
+                      style: theme.labelLarge?.copyWith(color: Colors.orange, fontWeight: FontWeight.w500)),
+                  if (company.current) Online(enable: true)
+                ],
+              ),
               const SizedBox(height: 5),
               Text('${company.role} • ${company.startAndEnd}', style: theme.labelSmall),
               const SizedBox(height: 10),

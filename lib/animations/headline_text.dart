@@ -45,6 +45,7 @@ class _HeadlineTextState extends State<HeadlineText> with SingleTickerProviderSt
         }
       },
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           AnimatedBuilder(
               animation: controller,
