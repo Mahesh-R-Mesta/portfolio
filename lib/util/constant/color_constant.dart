@@ -12,7 +12,7 @@ mixin ColorConst {
   static const Color midGary = Color(0xFF6E6E73);
   static const Color liteGray = Color(0xFFC7C7CC);
 
-  static const Color primaryBtnColor = Color(0xFF4A90E2);
+  static const Color primaryBtnColor = Colors.orangeAccent;
   static const Color primaryBtnTextColor = Color(0xFFFFFFFF);
 
   static const Color secondaryBtnColor = Color(0xFF50E3C2);

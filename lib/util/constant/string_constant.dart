@@ -1,4 +1,4 @@
-typedef CompanyInfo = ({String role, String city, String company, String startAndEnd, String details});
+typedef CompanyInfo = ({String role, String city, String company, String startAndEnd, String details, bool current});
 
 mixin StringConst {
   static const String title = "Flutter Developer &\nAI/ML Enthusiast";
@@ -17,6 +17,7 @@ mixin StringConst {
     company: "Code Matrix",
     city: "Bangalore",
     startAndEnd: "2022 - Present",
+    current: true,
     details: """• Worked on the company product, developed a cross-platform app
  for mobile and Windows using a single codebase
  • Created POCs in Android native using Kotlin and implemented iOS
@@ -28,6 +29,7 @@ mixin StringConst {
     role: "Flutter Developer",
     company: "Geeksynergy",
     city: "Bangalore",
+    current: false,
     startAndEnd: "Jul 2021 - May 2022",
     details: """• Developed and deployed an application for web and mobile from a
  single codebase
@@ -40,6 +42,7 @@ mixin StringConst {
     role: "Flutter Developer",
     company: "AppBee Software Solutions",
     city: "Sirsi",
+    current: false,
     startAndEnd: "Jan 2021 - Jul 2021",
     details: """• Developed interactive UI screen, enhancing user experience
  • Implemented RESTful APIs for data integration

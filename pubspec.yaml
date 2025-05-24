@@ -50,6 +50,8 @@ dependencies:
   sprung: ^3.0.1
   fluttertoast: ^8.2.12
   flutter_animate: ^4.5.2
+  bulleted_list: ^0.0.1+0.1a
+  confetti: ^0.8.0
 
 dev_dependencies:
   flutter_test:

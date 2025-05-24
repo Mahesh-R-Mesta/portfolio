@@ -20,6 +20,7 @@ final ThemeData theme = ThemeData(
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
         textStyle: TextStyle(color: Colors.black, fontSize: 13)),
     textTheme: TextTheme(
+        bodySmall: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w500),
         bodyMedium: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
         labelLarge: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
         labelMedium: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Colors.black54),
