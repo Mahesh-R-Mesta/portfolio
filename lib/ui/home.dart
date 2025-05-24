@@ -21,12 +21,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   // late TabController _tabController;
   final pageController = GetIt.I.get<ViewPageController>();
   final screens = [IntroPage(), AboutPage(), Experience(), Projects(), Certificate()];
-  final visibilityNotifier = ValueNotifier<bool>(false);
+  final visibilityNotifier = ValueNotifier<int>(0);
 
   @override
   void initState() {
     pageController.onChange = (page) {
-      visibilityNotifier.value = page != 0;
+      visibilityNotifier.value = page;
     };
     super.initState();
   }
@@ -55,8 +55,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               top: size.height / 7,
               child: widgetHider(
                 notifier: visibilityNotifier,
-                child: SideMountedOption(
+                builder: (ctx, page) => SideMountedOption(
                   initialHeightFactor: 0.24,
+                  fill: page == 1,
                   label: "About",
                   onTap: () => pageController.navigateTo(1),
                 ),
@@ -66,8 +67,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               top: (size.height / 7) * 2,
               child: widgetHider(
                 notifier: visibilityNotifier,
-                child: SideMountedOption(
+                builder: (ctx, page) => SideMountedOption(
                   initialHeightFactor: 0.1,
+                  fill: page == 2,
                   label: "Experience",
                   onTap: () => pageController.navigateTo(2),
                 ),
@@ -77,8 +79,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               top: (size.height / 7) * 3,
               child: widgetHider(
                 notifier: visibilityNotifier,
-                child: SideMountedOption(
+                builder: (ctx, page) => SideMountedOption(
                   initialHeightFactor: 0.15,
+                  fill: page == 3,
                   label: "Projects",
                   onTap: () => pageController.navigateTo(3),
                 ),
@@ -88,8 +91,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               top: (size.height / 7) * 4,
               child: widgetHider(
                 notifier: visibilityNotifier,
-                child: SideMountedOption(
+                builder: (ctx, page) => SideMountedOption(
                   initialHeightFactor: 0.1,
+                  fill: page == 4,
                   label: "Certificate",
                   onTap: () => pageController.navigateTo(4),
                 ),
@@ -99,12 +103,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     );
   }
 
-  Widget widgetHider({required ValueListenable<bool> notifier, required Widget child}) {
+  Widget widgetHider({required ValueListenable<int> notifier, required Widget Function(BuildContext, int) builder}) {
     return ValueListenableBuilder(
         valueListenable: notifier,
-        builder: (ctx, visible, _) => IgnorePointer(
-              ignoring: !visible,
-              child: Visibility(visible: visible, child: child),
+        builder: (ctx, page, _) => IgnorePointer(
+              ignoring: page == 0,
+              child: Visibility(visible: page != 0, child: builder(ctx, page)),
             ));
   }
 }

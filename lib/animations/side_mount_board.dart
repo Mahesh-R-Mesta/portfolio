@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/util/constant/color_constant.dart';
 
 class SideMountedOption extends StatefulWidget {
   final double initialHeightFactor;
   final String label;
   final Function() onTap;
-  const SideMountedOption({super.key, required this.initialHeightFactor, required this.label, required this.onTap});
+  final bool fill;
+  const SideMountedOption({super.key, required this.initialHeightFactor, required this.label, required this.onTap, this.fill = false});
 
   @override
   State<SideMountedOption> createState() => _SideMountedOptionState();
@@ -43,6 +45,7 @@ class _SideMountedOptionState extends State<SideMountedOption> with SingleTicker
           animation: _controller,
           builder: (context, child) {
             return Material(
+              color: widget.fill ? ColorConst.primaryBtnColor : null,
               shape: RoundedRectangleBorder(
                   side: BorderSide(color: Colors.orange, width: 2), borderRadius: BorderRadius.horizontal(left: Radius.circular(30))),
               child: Padding(
@@ -51,7 +54,11 @@ class _SideMountedOptionState extends State<SideMountedOption> with SingleTicker
                     child: Align(
                         widthFactor: widthFactor.value,
                         alignment: Alignment.centerLeft,
-                        child: Text(widget.label, style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)))),
+                        child: Text(widget.label,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineSmall
+                                ?.copyWith(fontWeight: FontWeight.w700, color: widget.fill ? Colors.white : null)))),
               ),
             );
           }),
