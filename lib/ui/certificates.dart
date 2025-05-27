@@ -33,7 +33,9 @@ class Certificate extends StatelessWidget {
                 Align(
                   alignment: Alignment.topLeft,
                   child: ConfettiWidget(
+                    emissionFrequency: 0.1,
                     blastDirection: pi / 4,
+                    maxBlastForce: 40,
                     confettiController: ConfettiController(duration: const Duration(seconds: 5))..play(),
                     blastDirectionality: BlastDirectionality.directional, // don't specify a direction, blast randomly
                     shouldLoop: true, // start again as soon as the animation is finished
@@ -44,7 +46,9 @@ class Certificate extends StatelessWidget {
                 Align(
                   alignment: Alignment.topRight,
                   child: ConfettiWidget(
+                    emissionFrequency: 0.1,
                     blastDirection: 3 * (pi / 4),
+                    maxBlastForce: 40,
                     confettiController: ConfettiController(duration: const Duration(seconds: 5))..play(),
                     blastDirectionality: BlastDirectionality.directional, // don't specify a direction, blast randomly
                     shouldLoop: true, // start again as soon as the animation is finished

@@ -1,3 +1,5 @@
+import 'package:myportfolio/util/constant/image_constant.dart';
+
 class Project {
   final String name;
   final List<String> description;
@@ -6,6 +8,7 @@ class Project {
   final List<Tech> techUsed;
   final List<Link> links;
   final List<String> developers;
+  final List<Platform> platforms;
   final String? imageUrl;
 
   const Project({
@@ -14,10 +17,23 @@ class Project {
     required this.duration,
     required this.company,
     this.techUsed = const [],
+    this.platforms = const [],
     this.links = const [],
     this.developers = const [],
     this.imageUrl,
   });
+
+  static const _android = Platform(name: "Android", image: ImageConst.android);
+  static const _iOS = Platform(name: "iOS", image: ImageConst.ios);
+  static const _web = Platform(name: "Web", image: ImageConst.web);
+  static const _windows = Platform(name: "Windows", image: ImageConst.windows);
+
+  static const _flutter = Tech(name: "Flutter", image: ImageConst.flutter);
+  static const _kotlin = Tech(name: "Kotlin", image: ImageConst.kotlin);
+  static const _swift = Tech(name: "Swift", image: ImageConst.swift);
+  static const _firebase = Tech(name: "Firebase", image: ImageConst.firebase);
+  static const _inno = Tech(name: "Inno");
+  // static const  = Platform(name: "Windows", image: ImageConst.windows);
 
   static const arise = Project(
     name: "Arise: The monster invasion",
@@ -29,8 +45,9 @@ class Project {
     ],
     duration: "SEPT 2024 - FEB 2025",
     company: "Code Matrix",
-    techUsed: [Tech(name: "Flutter")],
-    imageUrl: "assets/image/arise.png",
+    platforms: [_android],
+    techUsed: [_flutter, _firebase],
+    imageUrl: ImageConst.arise,
   );
 
   static const smriti = Project(
@@ -41,8 +58,11 @@ class Project {
       "Developed native alarm in kotlin and used as a flutter plugin",
       "Used ObjectBox for on-device vector DB storage"
     ],
+    platforms: [_android, _iOS],
+    techUsed: [_flutter, _kotlin, _swift],
     duration: "Dec 2024 - PRESENT",
     company: "Code Matrix",
+    imageUrl: ImageConst.smriti,
   );
   static const billd = Project(
     name: "BILLD",
@@ -52,8 +72,11 @@ class Project {
       "Wrote pascal script for logging out from app and C++ code for windows method channel",
       "Developed web admin application and optimized loading time 40%"
     ],
+    platforms: [_windows, _android, _web],
     duration: "Aug 2022 - PRESENT",
+    techUsed: [_flutter, _inno],
     company: "Code Matrix",
+    imageUrl: ImageConst.billd,
   );
 
   static const romysDoggyFood = Project(
@@ -64,8 +87,11 @@ class Project {
       "Implemented Location search by using Google API's for managing delivery areas",
       "Graph-QL API's integrations"
     ],
+    platforms: [_android],
     duration: "Jan 2023 - Dec 2023",
     company: "Code Matrix",
+    techUsed: [_flutter, _firebase],
+    imageUrl: ImageConst.rommy,
   );
 
   static const secondSmart = Project(
@@ -75,6 +101,7 @@ class Project {
       "Planned and developed the workflow with team",
       "Implemented app tour and multi-language localization"
     ],
+    platforms: [_android, _web],
     duration: "Nov 2021 - Nov 2022",
     company: "Geeksynergy",
   );
@@ -90,4 +117,10 @@ class Tech {
   final String name;
   final String? image;
   const Tech({required this.name, this.image});
+}
+
+class Platform {
+  final String name;
+  final String? image;
+  const Platform({required this.name, this.image});
 }

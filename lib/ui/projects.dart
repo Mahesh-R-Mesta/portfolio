@@ -6,8 +6,6 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myportfolio/model/projects.dart';
-import 'package:myportfolio/util/constant/color_constant.dart';
-import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Projects extends StatelessWidget {
@@ -53,21 +51,34 @@ class Projects extends StatelessWidget {
                 StaggeredGridTile.count(
                   crossAxisCellCount: 2,
                   mainAxisCellCount: 2,
-                  child:
-                      project.imageUrl != null ? Image.asset(project.imageUrl!) : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
+                  child: project.imageUrl != null
+                      ? Padding(
+                          padding: const EdgeInsets.all(18.0),
+                          child: Image.asset(project.imageUrl!, scale: 0.5),
+                        )
+                      : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
                 ),
                 StaggeredGridTile.count(
                     crossAxisCellCount: 4,
                     mainAxisCellCount: 2,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(project.name,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              // fontFamily: 'CupertinoSystemText'
-                            )),
+                        Text(project.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                        const SizedBox(height: 10),
+                        Flex(
+                            direction: Axis.horizontal,
+                            spacing: 8,
+                            children: project.platforms
+                                .map((platform) => Tooltip(
+                                      message: platform.name,
+                                      child: CircleAvatar(
+                                          backgroundColor: Colors.blue.withAlpha(50),
+                                          radius: 12,
+                                          child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
+                                    ))
+                                .toList())
                       ],
                     ) // Text(project.description.join("\n"), style: const TextStyle(fontSize: 10)),
                     ),
@@ -83,17 +94,9 @@ class Projects extends StatelessWidget {
                     crossAxisCellCount: 6,
                     mainAxisCellCount: 1,
                     child: Flex(
+                      spacing: 10,
                       direction: Axis.horizontal,
-                      children: [
-                        Chip(
-                            // backgroundColor: Colors.,
-                            padding: EdgeInsets.all(5),
-                            side: BorderSide.none,
-                            elevation: 2,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide.none),
-                            avatar: SvgPicture.asset(ImageConst.flutter, width: 14, height: 14),
-                            label: Text("Flutter", style: TextStyle(fontSize: 12)))
-                      ],
+                      children: project.techUsed.map((e) => chip(e.name, e.image)).toList(),
                     )),
 
                 // Text(project.description.join("\n"), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300)),
@@ -109,6 +112,17 @@ class Projects extends StatelessWidget {
           // )
           ),
     );
+  }
+
+  Widget chip(String name, String? image) {
+    return Chip(
+        // backgroundColor: Colors.,
+        padding: EdgeInsets.all(5),
+        side: BorderSide(color: Colors.orange),
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide.none),
+        avatar: image != null ? SvgPicture.asset(image, width: 14, height: 14) : null,
+        label: Text(name, style: TextStyle(fontSize: 12)));
   }
 }
 
