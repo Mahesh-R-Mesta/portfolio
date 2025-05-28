@@ -36,81 +36,98 @@ class Projects extends StatelessWidget {
   }
 
   Widget projectCard(Project project) {
-    return Card(
-      key: ValueKey(project.name),
-      child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: SizedBox(
-            width: 300.w,
-            child: StaggeredGrid.count(
-              axisDirection: AxisDirection.down,
-              crossAxisCount: 6,
-              mainAxisSpacing: 6,
-              crossAxisSpacing: 6,
-              children: [
-                StaggeredGridTile.count(
-                  crossAxisCellCount: 2,
-                  mainAxisCellCount: 2,
-                  child: project.imageUrl != null
-                      ? Padding(
-                          padding: const EdgeInsets.all(18.0),
-                          child: Image.asset(project.imageUrl!, scale: 0.5),
-                        )
-                      : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
-                ),
-                StaggeredGridTile.count(
-                    crossAxisCellCount: 4,
-                    mainAxisCellCount: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(project.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 10),
-                        Flex(
-                            direction: Axis.horizontal,
-                            spacing: 8,
-                            children: project.platforms
-                                .map((platform) => Tooltip(
-                                      message: platform.name,
-                                      child: CircleAvatar(
-                                          backgroundColor: Colors.blue.withAlpha(50),
-                                          radius: 12,
-                                          child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
-                                    ))
-                                .toList())
-                      ],
-                    ) // Text(project.description.join("\n"), style: const TextStyle(fontSize: 10)),
+    return Stack(
+      children: [
+        Card(
+          margin: EdgeInsets.only(top: 30, left: 4, right: 4),
+          key: ValueKey(project.name),
+          child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: SizedBox(
+                width: 300.w,
+                child: StaggeredGrid.count(
+                  axisDirection: AxisDirection.down,
+                  crossAxisCount: 6,
+                  mainAxisSpacing: 6,
+                  crossAxisSpacing: 6,
+                  children: [
+                    StaggeredGridTile.count(
+                      crossAxisCellCount: 2,
+                      mainAxisCellCount: 2,
+                      child: project.imageUrl != null
+                          ? Padding(
+                              padding: const EdgeInsets.all(18.0),
+                              child: Image.asset(project.imageUrl!, scale: 0.5),
+                            )
+                          : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
                     ),
-                StaggeredGridTile.count(
-                    crossAxisCellCount: 6,
-                    mainAxisCellCount: 5,
-                    child: BulletedList(
-                      listItems: project.description,
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-                      bullet: Icon(Icons.donut_small_sharp, size: 10),
-                    )),
-                StaggeredGridTile.count(
-                    crossAxisCellCount: 6,
-                    mainAxisCellCount: 1,
-                    child: Flex(
-                      spacing: 10,
-                      direction: Axis.horizontal,
-                      children: project.techUsed.map((e) => chip(e.name, e.image)).toList(),
-                    )),
+                    StaggeredGridTile.count(
+                        crossAxisCellCount: 4,
+                        mainAxisCellCount: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(project.name, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                            const SizedBox(height: 10),
+                            Flex(
+                                direction: Axis.horizontal,
+                                spacing: 8,
+                                children: project.platforms
+                                    .map((platform) => Tooltip(
+                                          message: platform.name,
+                                          child: CircleAvatar(
+                                              backgroundColor: Colors.blue.withAlpha(50),
+                                              radius: 12,
+                                              child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
+                                        ))
+                                    .toList())
+                          ],
+                        ) // Text(project.description.join("\n"), style: const TextStyle(fontSize: 10)),
+                        ),
+                    StaggeredGridTile.count(
+                        crossAxisCellCount: 6,
+                        mainAxisCellCount: 5,
+                        child: BulletedList(
+                          listItems: project.description,
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+                          bullet: Icon(Icons.donut_small_sharp, size: 10),
+                        )),
+                    StaggeredGridTile.count(
+                        crossAxisCellCount: 6,
+                        mainAxisCellCount: 1,
+                        child: Flex(
+                          spacing: 10,
+                          direction: Axis.horizontal,
+                          children: project.techUsed.map((e) => chip(e.name, e.image)).toList(),
+                        )),
 
-                // Text(project.description.join("\n"), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300)),
-              ],
-            ),
-          )
-          // Column(
-          //   children: [
-          //     Row(
-          //       children: [if (project.imageUrl != null) Image.asset(project.imageUrl!)],
-          //     )
-          //   ],
-          // )
-          ),
+                    // Text(project.description.join("\n"), style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300)),
+                  ],
+                ),
+              )),
+        ),
+        Positioned(
+            right: 50,
+            top: 15,
+            child: Card(
+                color: Colors.amberAccent.shade100,
+                shape: RoundedRectangleBorder(side: BorderSide(color: Colors.transparent), borderRadius: BorderRadius.circular(20)),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  child: Row(
+                    spacing: 10,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (project.isPersonal == true)
+                        Icon(Icons.person, size: 15, color: Colors.blue)
+                      else
+                        Icon(Icons.factory, size: 15, color: Colors.blue),
+                      Text(project.isPersonal == true ? "Personal" : project.company, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w600)),
+                    ],
+                  ),
+                ))),
+      ],
     );
   }
 

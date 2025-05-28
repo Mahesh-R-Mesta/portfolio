@@ -7,6 +7,7 @@ class Project {
   final String company;
   final List<Tech> techUsed;
   final List<Link> links;
+  final bool? isPersonal;
   final List<String> developers;
   final List<Platform> platforms;
   final String? imageUrl;
@@ -16,6 +17,7 @@ class Project {
     required this.description,
     required this.duration,
     required this.company,
+    this.isPersonal,
     this.techUsed = const [],
     this.platforms = const [],
     this.links = const [],
@@ -45,6 +47,7 @@ class Project {
     ],
     duration: "SEPT 2024 - FEB 2025",
     company: "Code Matrix",
+    isPersonal: true,
     platforms: [_android],
     techUsed: [_flutter, _firebase],
     imageUrl: ImageConst.arise,

@@ -52,6 +52,7 @@ dependencies:
   flutter_animate: ^4.5.2
   bulleted_list: ^0.0.1+0.1a
   confetti: ^0.8.0
+  animations: ^2.0.11
 
 dev_dependencies:
   flutter_test:
