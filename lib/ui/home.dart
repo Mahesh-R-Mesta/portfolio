@@ -20,8 +20,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   // late TabController _tabController;
   final pageController = GetIt.I.get<ViewPageController>();
-  final screens = [IntroPage(), AboutPage(), Experience(), Projects(), Certificate()];
+  // final screens = [IntroPage(), AboutPage(), Experience(), Projects(), Certificate()];
   final visibilityNotifier = ValueNotifier<int>(0);
+  final controller = ScrollController();
 
   @override
   void initState() {
@@ -37,11 +38,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       body: Stack(
         children: [
-          PageView(
-            controller: pageController,
-            physics: NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            children: screens,
+          ListView(
+            controller: controller,
+            // physics: NeverScrollableScrollPhysics(),
+            children: [
+              IntroPage(),
+              AboutPage(controller: controller),
+              Experience(controller: controller),
+              Projects(controller: controller),
+              Certificate()
+            ].map((screen) => screen).toList(),
           ),
           Align(
               alignment: Alignment.topRight,

@@ -6,15 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myportfolio/animations/balst.dart';
-import 'package:myportfolio/animations/headline_text.dart';
 import 'package:myportfolio/util/constant/anime_duration.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/util/constant/links.dart';
 import 'package:myportfolio/util/constant/lottie_assets.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/services/page_controller.dart';
-import 'package:myportfolio/ui/about.dart';
-import 'package:myportfolio/ui/experiance.dart';
 import 'package:myportfolio/widget/link_button.dart';
 import 'package:myportfolio/widget/toast.dart';
 
@@ -27,7 +24,7 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     // final introCompleter = Completer();
     final blastController = BlastController();
-    final pageNavigator = GetIt.I.get<ViewPageController>();
+    // final pageNavigator = GetIt.I.get<ViewPageController>();
 
     return BlastAuraAnime(
       controller: blastController,
@@ -40,6 +37,7 @@ class IntroPage extends StatelessWidget {
             Expanded(
               child: Column(
                 spacing: 10,
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -84,15 +82,15 @@ class IntroPage extends StatelessWidget {
                   //       );
                   //     }),
                   const SizedBox(height: 20),
-                  ...[
-                    HeadlineText(key: Key(AboutPage.tag), serial: "01", title: "About", onTap: () async => pageNavigator.navigateTo(1)),
-                    HeadlineText(key: Key(Experience.tag), serial: "02", title: "Experience", onTap: () async => pageNavigator.navigateTo(2)),
-                    HeadlineText(key: Key("pro"), serial: "03", title: "Projects", onTap: () async => pageNavigator.navigateTo(3)),
-                    HeadlineText(key: Key("cert"), serial: "04", title: "Certificates", onTap: () async => pageNavigator.navigateTo(4))
-                  ]
-                      .animate(delay: AnimeConfig.delayDuration * 2)
-                      .fade(duration: AnimeConfig.mediumDuration)
-                      .slideX(duration: AnimeConfig.mediumDuration),
+                  // ...[
+                  //   HeadlineText(key: Key(AboutPage.tag), serial: "01", title: "About", onTap: () async => pageNavigator.navigateTo(1)),
+                  //   HeadlineText(key: Key(Experience.tag), serial: "02", title: "Experience", onTap: () async => pageNavigator.navigateTo(2)),
+                  //   HeadlineText(key: Key("pro"), serial: "03", title: "Projects", onTap: () async => pageNavigator.navigateTo(3)),
+                  //   HeadlineText(key: Key("cert"), serial: "04", title: "Certificates", onTap: () async => pageNavigator.navigateTo(4))
+                  // ]
+                  //     .animate(delay: AnimeConfig.delayDuration * 2)
+                  //     .fade(duration: AnimeConfig.mediumDuration)
+                  //     .slideX(duration: AnimeConfig.mediumDuration),
                   const SizedBox(height: 30),
                   Row(
                     spacing: 30,
@@ -121,7 +119,7 @@ class IntroPage extends StatelessWidget {
                 ],
               ),
             ),
-            Flexible(child: Lottie.asset(LottieAnime.desk, height: 500))
+            Flexible(child: Lottie.asset(LottieAnime.desk, height: 400, repeat: false))
                 .animate()
                 .fade(duration: AnimeConfig.mediumDuration)
                 .slideX(begin: 0.5, end: 0, duration: AnimeConfig.mediumDuration)

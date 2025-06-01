@@ -14,22 +14,22 @@ class RouteService {
             return HomePage();
           });
         }
-      case AboutPage.name:
-        {
-          return PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 500),
-              pageBuilder: (ctx, animation1, animation2) {
-                return AboutPage();
-              });
-        }
-      case Experience.name:
-        {
-          return PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 500),
-              pageBuilder: (ctx, animation1, animation2) {
-                return Experience();
-              });
-        }
+      // case AboutPage.name:
+      //   {
+      //     return PageRouteBuilder(
+      //         transitionDuration: const Duration(milliseconds: 500),
+      //         pageBuilder: (ctx, animation1, animation2) {
+      //           return AboutPage();
+      //         });
+      //   }
+      // case Experience.name:
+      //   {
+      //     return PageRouteBuilder(
+      //         transitionDuration: const Duration(milliseconds: 500),
+      //         pageBuilder: (ctx, animation1, animation2) {
+      //           return Experience();
+      //         });
+      //   }
     }
     return null;
   }

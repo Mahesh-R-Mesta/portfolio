@@ -1,16 +1,18 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myportfolio/animations/swing_board.dart';
+import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/lottie_assets.dart';
-import 'package:myportfolio/widget/custom_app_bar.dart';
 import 'package:myportfolio/widget/icon_express.dart';
 import 'package:myportfolio/widget/text_tile.dart';
 
 class AboutPage extends StatelessWidget {
   static const String name = "/about";
   static const String tag = "about";
-  const AboutPage({super.key});
+  final ScrollController controller;
+  const AboutPage({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +21,48 @@ class AboutPage extends StatelessWidget {
  dynamic and feature-rich applications. Eager to continuously upskill, I’ve
  successfully resolved complex implementation challenges by learning and
  applying native programming languages within Flutter""";
-    return PopScope(
-      onPopInvokedWithResult: (did, res) {},
-      child: Scaffold(
-        appBar: CustomAppBar(serialNo: "01", title: "About"),
-        body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Row(
-            children: [
-              Column(
-                spacing: 30,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // DefaultTextStyle(
-                  //   style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600),
-                  //   child: AnimatedTextKit(onFinished: () {}, totalRepeatCount: 1, pause: Duration(seconds: 1), animatedTexts: [
-                  //     TyperAnimatedText(about),
-                  //   ]),
-                  // ),
-                  SwingBoardAnimation(
+    return SizedBox(
+      height: ScreenUtil().screenHeight,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Column(
+              spacing: 30,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                AnimatedBuilder(
+                    animation: controller,
+                    builder: (context, child) {
+                      final value = AnimationHelper.scrollPortion(controller, 50, 300);
+                      return Transform.translate(
+                        key: ValueKey(value),
+                        offset: Offset(-800 + value * 800, 0),
+                        child: FadeTransition(
+                          opacity: AnimationHelper.square(value),
+                          child: child,
+                        ),
+                      );
+                    },
                     child: TextTile(
                       title: "About me 😀",
                       description: about,
-                    ),
-                  ),
-                  SwingBoardAnimation(
+                    )),
+                AnimatedBuilder(
+                    animation: controller,
+                    builder: (context, child) {
+                      final value = AnimationHelper.scrollPortion(controller, 80, 390);
+                      return Transform.translate(
+                        key: ValueKey(value),
+                        offset: Offset(-800 + value * 800, 0),
+                        child: FadeTransition(
+                          opacity: AnimationHelper.square(value),
+                          child: child,
+                        ),
+                      );
+                    },
                     child: Column(
                       spacing: 20,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,13 +86,20 @@ class AboutPage extends StatelessWidget {
                           ],
                         )
                       ],
-                    ),
-                  ),
-                ],
-              ),
-              Lottie.asset(LottieAnime.monkey)
-            ],
-          ),
+                    )),
+              ],
+            ),
+            AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  final value = AnimationHelper.scrollPortion(controller, 30, 450);
+                  return Transform.translate(
+                      key: ValueKey(key),
+                      offset: Offset(500 - value * 500, 0),
+                      child: FadeTransition(opacity: AnimationHelper.square(value), child: child));
+                },
+                child: Lottie.asset(LottieAnime.monkey, width: 450))
+          ],
         ),
       ),
     );

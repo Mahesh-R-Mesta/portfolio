@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class BlastAuraAnime extends StatefulWidget {
@@ -26,8 +24,7 @@ class _BlastAuraAnimeState extends State<BlastAuraAnime> with SingleTickerProvid
     controller = AnimationController(vsync: this, duration: Duration(seconds: 3));
     radiusTween = Tween<double>(begin: 0, end: 600).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
     carSpeed = Tween<double>(begin: 0, end: width).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
-    // start();
-    getImage().then((image) => carImage = image);
+
     super.initState();
     widget.controller
       ..onStart = (value) {
@@ -38,20 +35,11 @@ class _BlastAuraAnimeState extends State<BlastAuraAnime> with SingleTickerProvid
       };
   }
 
-  Future<ui.Image> getImage() async {
-    final completer = Completer<ui.Image>();
-    final bytes = await rootBundle.load("assets/image/car.png");
-    ui.decodeImageFromList(bytes.buffer.asUint8List(), (image) {
-      completer.complete(image);
-    });
-    return completer.future;
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
-
-  // start() async {
-  //   widget.completer.future.then((_) {
-  //     controller.forward();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -72,16 +60,18 @@ class WavePainter extends CustomPainter {
   final double carDistance;
   final ui.Image? carImage;
   WavePainter({required this.radius, required this.carImage, required this.carDistance});
+
   @override
   void paint(Canvas canvas, Size size) {
+    final center = Offset(0, 0);
     var paint = Paint()
-      ..color = Colors.orangeAccent
+      ..shader = ui.Gradient.radial(center, radius, [Colors.orangeAccent, Color(0xffF7F9FC)])
       ..style = PaintingStyle.fill;
 
     // canvas.drawCircle(
     //     Offset(0, size.height / 2), radius + radius != 0 ? 100 : 0, paint..maskFilter = MaskFilter.blur(BlurStyle.normal, (5 * 0.577) + 0.5));
 
-    canvas.drawCircle(Offset(0, size.height / 2), radius, paint);
+    canvas.drawCircle(center, radius, paint);
 
     // if (carImage != null) canvas.drawImage(carImage!, Offset(carDistance, size.height / 2), Paint());
   }
