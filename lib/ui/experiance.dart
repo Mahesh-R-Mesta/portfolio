@@ -43,7 +43,7 @@ class Experience extends StatelessWidget {
                   return AnimatedBuilder(
                       animation: controller,
                       builder: (context, child) {
-                        final value = AnimationHelper.scrollPortion(controller, 720 + (index * 120), 200);
+                        final value = AnimationHelper.scrollPortion(controller, 700 + (index * 150), 200);
                         return FadeTransition(
                             key: ValueKey(experience),
                             opacity: AnimationHelper.exponent(value),
@@ -57,14 +57,10 @@ class Experience extends StatelessWidget {
                 child: AnimatedBuilder(
                     animation: controller,
                     builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, 720, 200);
+                      final value = AnimationHelper.scrollPortion(controller, 700, 200);
                       return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
                     },
-                    child: TechStackAnime())
-                // .animate()
-                // .fade(duration: AnimeConfig.mediumDuration)
-                // .slideX(duration: AnimeConfig.mediumDuration, begin: 0.5, end: 0)
-                )
+                    child: TechStackAnime()))
           ],
         ),
       ),

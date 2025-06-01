@@ -2,6 +2,7 @@ import 'package:myportfolio/util/constant/image_constant.dart';
 
 class Project {
   final String name;
+  final String shortDescription;
   final List<String> description;
   final String duration;
   final String company;
@@ -14,6 +15,7 @@ class Project {
 
   const Project({
     required this.name,
+    required this.shortDescription,
     required this.description,
     required this.duration,
     required this.company,
@@ -39,6 +41,7 @@ class Project {
 
   static const arise = Project(
     name: "Arise: The monster invasion",
+    shortDescription: "2D Platform game developed using flutter",
     description: [
       "Built task scheduler with timed notifications & reminders",
       "Implemented window overlay screens for Android, enhancing user interaction even outside the app",
@@ -55,6 +58,7 @@ class Project {
 
   static const smriti = Project(
     name: "Smriti",
+    shortDescription: "Task & Reminder management app",
     description: [
       "Built task scheduler with timed notifications & reminders",
       "Implemented window overlay screens for Android, enhancing user interaction even outside the app",
@@ -69,6 +73,7 @@ class Project {
   );
   static const billd = Project(
     name: "BILLD",
+    shortDescription: "Billing software solution for hotels and canteens",
     description: [
       "Developed Billing application for windows & android on a single codebase",
       "Implemented socket, ofine support, database encryption, pos receipt printer",
@@ -84,6 +89,7 @@ class Project {
 
   static const romysDoggyFood = Project(
     name: "Romy's Doggy Food",
+    shortDescription: "Online food order app for Dog & cats",
     description: [
       "Developed an admin-focused mobile application to manage pet food delivery operations efficiently",
       "Integrated Google Maps for delivery route planning, and optimized route generation to multiple drop-points",
@@ -99,6 +105,7 @@ class Project {
 
   static const secondSmart = Project(
     name: "2ndSmart",
+    shortDescription: "Managing the process of refurbishing electronics accessories",
     description: [
       "Developed a mobile application to manage the refurbishment process of electronic accessories",
       "Planned and developed the workflow with team",
