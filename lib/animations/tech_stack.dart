@@ -109,55 +109,58 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                   textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700, fontFamily: Family.orbit),
                 ),
           ),
-          child: InkWell(
-            onTap: () {},
-            splashColor: Colors.orange.shade100.withAlpha(40),
-            onHover: (hovered) {
-              if (hovered) {
-                enableSystem.value = false;
-                _controller.stop();
-              } else {
-                enableSystem.value = true;
-                _controller.repeat();
-              }
-            },
-            child: CustomPaint(
-              painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
-              child: Stack(children: [
-                for (final tech in techStacks) orbitWidget(tech),
-                Transform.translate(
-                  offset: getCenterOffset(radius),
-                  child: Tooltip(
-                    margin: EdgeInsets.only(top: 20),
-                    message: "Flutter",
-                    child: CircleAvatar(
-                        radius: radius,
-                        backgroundColor: Colors.orange.shade100,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
-                          child: SvgPicture.asset(ImageConst.flutter),
-                        )),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(radius),
+            child: InkWell(
+              onTap: () {},
+              splashColor: Colors.orange.shade100.withAlpha(40),
+              onHover: (hovered) {
+                if (hovered) {
+                  enableSystem.value = false;
+                  _controller.stop();
+                } else {
+                  enableSystem.value = true;
+                  _controller.repeat();
+                }
+              },
+              child: CustomPaint(
+                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
+                child: Stack(children: [
+                  for (final tech in techStacks) orbitWidget(tech),
+                  Transform.translate(
+                    offset: getCenterOffset(radius),
+                    child: Tooltip(
+                      margin: EdgeInsets.only(top: 20),
+                      message: "Flutter",
+                      child: CircleAvatar(
+                          radius: radius,
+                          backgroundColor: Colors.orange.shade100,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
+                            child: SvgPicture.asset(ImageConst.flutter),
+                          )),
+                    ),
                   ),
-                ),
-                Transform(
-                  transform: Matrix4.identity()..translate(130, 0),
-                  alignment: Alignment.topCenter,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        "MY SOLAR SYSTEM",
-                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15.sp, fontFamily: Family.orbit),
-                      ),
-                      ValueListenableBuilder(
-                          valueListenable: enableSystem,
-                          builder: (context, enable, _) {
-                            return Online(enable: enable);
-                          })
-                    ],
-                  ),
-                )
-              ]),
+                  Transform(
+                    transform: Matrix4.identity()..translate(130, 0),
+                    alignment: Alignment.topCenter,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "MY SOLAR SYSTEM",
+                          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15.sp, fontFamily: Family.orbit),
+                        ),
+                        ValueListenableBuilder(
+                            valueListenable: enableSystem,
+                            builder: (context, enable, _) {
+                              return Online(enable: enable);
+                            })
+                      ],
+                    ),
+                  )
+                ]),
+              ),
             ),
           ),
         ),
@@ -172,7 +175,6 @@ class OrbitalPainter extends CustomPainter {
   OrbitalPainter(this.center, this.radius);
   @override
   void paint(Canvas canvas, Size size) {
-    // canvas.drawCircle(Offset(size.width, size.height / 2), size.width, Paint()..color = Colors.orange.shade100.withAlpha(50));
     var paint = Paint()
       ..color = Colors.black12
       ..style = PaintingStyle.stroke;

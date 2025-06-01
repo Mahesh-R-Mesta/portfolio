@@ -2,8 +2,8 @@ import 'package:animations/animations.dart';
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myportfolio/model/projects.dart';
+import 'package:myportfolio/ui/project/project_detail.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
@@ -27,7 +27,14 @@ class Projects extends StatelessWidget {
                   return FadeTransition(
                       opacity: AlwaysStoppedAnimation(value), child: Transform.translate(offset: Offset(300 - (value * 300), 0), child: child!));
                 },
-                child: CustomAppBar(serialNo: "", title: "Projects")),
+                child: Column(
+                  spacing: 5,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomAppBar(serialNo: "", title: "Projects"),
+                    Text("Here are my few recent projects...", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+                  ],
+                )),
             ...List.generate(
                 projects.length,
                 (index) => AnimatedBuilder(
@@ -43,23 +50,15 @@ class Projects extends StatelessWidget {
                       child: OpenContainer(
                           openElevation: 0,
                           closedElevation: 0,
-                          // openColor: Theme.of(context).scaffoldBackgroundColor,
-                          // closedColor: Theme.of(context).scaffoldBackgroundColor,
+                          openColor: Theme.of(context).scaffoldBackgroundColor,
+                          closedColor: Theme.of(context).scaffoldBackgroundColor,
                           openBuilder: (ctx, closeContainer) {
-                            return InkWell(
-                                onTap: () {
-                                  closeContainer();
-                                },
-                                child: SizedBox.fromSize(size: MediaQuery.of(context).size));
+                            return ProjectDetail(project: projects[index], popCall: () => closeContainer.call());
                           },
                           closedShape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(40)),
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
-                          closedBuilder: (ctx, open) => InkWell(
-                              onTap: () {
-                                open();
-                              },
-                              child: cardWidget(projects[index]))),
+                          closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: cardWidget(projects[index]))),
                     ))),
           ])),
     );
@@ -70,7 +69,7 @@ class Projects extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: (width / 2) - 20,
+        width: (width / 1.5),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Padding(
@@ -78,45 +77,39 @@ class Projects extends StatelessWidget {
             child: Stack(
               children: [
                 Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SizedBox(
-                    height: 100,
-                    child: AspectRatio(
-                      aspectRatio: 11 / 9,
-                      child: Opacity(
-                        opacity: 0.1,
-                        child: project.imageUrl != null
-                            ? Padding(padding: const EdgeInsets.all(18.0), child: Image.asset(project.imageUrl!))
-                            : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
-                      ),
-                    ),
+                  alignment: Alignment.center,
+                  heightFactor: 0.4,
+                  child: Opacity(
+                    opacity: 0.1,
+                    child: project.imageUrl != null
+                        ? Image.asset(project.imageUrl!, width: 200, height: 200)
+                        : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
                   ),
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  spacing: 20,
+                  spacing: 15,
                   children: [
-                    // project.imageUrl != null
-                    //     ? Padding(padding: const EdgeInsets.all(18.0), child: Image.asset(project.imageUrl!, width: 60, height: 60))
-                    //     : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
                     Column(
+                      spacing: 15,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(project.name, style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
-                        const SizedBox(height: 20),
-                        Flex(
-                            spacing: 10,
-                            direction: Axis.horizontal,
-                            children: project.platforms
-                                .map((platform) => Tooltip(
-                                      message: platform.name,
-                                      child: CircleAvatar(
-                                          backgroundColor: Colors.blue.withAlpha(50),
-                                          radius: 12,
-                                          child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
-                                    ))
-                                .toList())
+                        Text(project.shortDescription, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200)),
+                        // const SizedBox(height: 20),
+                        // Flex(
+                        //     spacing: 10,
+                        //     direction: Axis.horizontal,
+                        //     children: project.platforms
+                        //         .map((platform) => Tooltip(
+                        //               message: platform.name,
+                        //               child: CircleAvatar(
+                        //                   backgroundColor: Colors.blue.withAlpha(50),
+                        //                   radius: 12,
+                        //                   child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
+                        //             ))
+                        //         .toList())
                       ],
                     )
                   ],
@@ -129,16 +122,16 @@ class Projects extends StatelessWidget {
     );
   }
 
-  Widget chip(String name, String? image) {
-    return Chip(
-        // backgroundColor: Colors.,
-        padding: EdgeInsets.all(5),
-        side: BorderSide(color: Colors.orange),
-        elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide.none),
-        avatar: image != null ? SvgPicture.asset(image, width: 14, height: 14) : null,
-        label: Text(name, style: TextStyle(fontSize: 12)));
-  }
+  // Widget chip(String name, String? image) {
+  //   return Chip(
+  //       // backgroundColor: Colors.,
+  //       padding: EdgeInsets.all(5),
+  //       side: BorderSide(color: Colors.orange),
+  //       elevation: 2,
+  //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide.none),
+  //       avatar: image != null ? SvgPicture.asset(image, width: 14, height: 14) : null,
+  //       label: Text(name, style: TextStyle(fontSize: 12)));
+  // }
 }
 
             // AnimationLimiter(

@@ -5,6 +5,7 @@ import 'package:myportfolio/util/constant/color_constant.dart';
 final ThemeData theme = ThemeData(
     fontFamily: 'ShantellSans',
     scaffoldBackgroundColor: Color(0xffF7F9FC),
+    appBarTheme: AppBarTheme(backgroundColor: Color(0xffF7F9FC), toolbarHeight: 50),
     colorScheme: ColorScheme.light(
       primary: Color(0xFF4A90E2),
       secondary: Color(0xFF50E3C2),
