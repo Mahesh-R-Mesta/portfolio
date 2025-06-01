@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
@@ -79,38 +80,44 @@ class Certificate extends StatelessWidget {
           }));
     }
 
-    return Scaffold(
-      appBar: CustomAppBar(serialNo: "02", title: "Certificates"),
-      body: Padding(
-          padding: const EdgeInsets.all(15),
-          child: AnimationLimiter(
-            child: GridView.builder(
-              itemCount: images.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1.41337),
-              itemBuilder: (ctx, index) {
-                return AnimationConfiguration.staggeredGrid(
-                  duration: Duration(seconds: 1),
-                  columnCount: 3,
-                  position: index,
-                  child: SlideAnimation(
-                    verticalOffset: 60,
-                    child: FadeInAnimation(
-                      child: InkWell(
-                        onTap: () => show(context, images[index]),
-                        child: Hero(
-                          tag: images[index],
-                          child: Card(
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
-                              child: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: Image.asset(images[index]),
-                              )),
+    return SizedBox(
+      height: ScreenUtil().screenHeight * 1.2,
+      child: Scaffold(
+          appBar: CustomAppBar(serialNo: "02", title: "Certificates"),
+          body: Padding(
+            padding: const EdgeInsets.all(15),
+            child: AnimationLimiter(
+              child: GridView.builder(
+                itemCount: images.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1.41337),
+                itemBuilder: (ctx, index) {
+                  return AnimationConfiguration.staggeredGrid(
+                    duration: Duration(seconds: 1),
+                    columnCount: 3,
+                    delay: Duration(seconds: 1),
+                    position: index,
+                    child: SlideAnimation(
+                      verticalOffset: 60,
+                      child: FadeInAnimation(
+                        child: InkWell(
+                          onTap: () => show(context, images[index]),
+                          child: Hero(
+                            tag: images[index],
+                            child: Card(
+                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child: Image.asset(images[index]),
+                                )),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           )),
     );

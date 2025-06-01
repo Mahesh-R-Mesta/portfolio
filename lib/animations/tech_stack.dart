@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myportfolio/animations/online.dart';
@@ -141,14 +140,14 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                   ),
                 ),
                 Transform(
-                  transform: Matrix4.identity()..translate(130, -50),
+                  transform: Matrix4.identity()..translate(130, 0),
                   alignment: Alignment.topCenter,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         "MY SOLAR SYSTEM",
-                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18.sp, fontFamily: Family.orbit),
+                        style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15.sp, fontFamily: Family.orbit),
                       ),
                       ValueListenableBuilder(
                           valueListenable: enableSystem,
@@ -173,7 +172,7 @@ class OrbitalPainter extends CustomPainter {
   OrbitalPainter(this.center, this.radius);
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawCircle(Offset(size.width, size.height / 2), size.width, Paint()..color = Colors.orange.shade100.withAlpha(50));
+    // canvas.drawCircle(Offset(size.width, size.height / 2), size.width, Paint()..color = Colors.orange.shade100.withAlpha(50));
     var paint = Paint()
       ..color = Colors.black12
       ..style = PaintingStyle.stroke;

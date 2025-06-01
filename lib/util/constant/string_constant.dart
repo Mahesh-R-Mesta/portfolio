@@ -1,7 +1,7 @@
 typedef CompanyInfo = ({String role, String city, String company, String startAndEnd, String details, bool current});
 
 mixin StringConst {
-  static const String title = "Flutter Developer &\nAI/ML Enthusiast";
+  static const String title = "Flutter Developer &\nML Enthusiast";
   static const String inShortAbout = """Hi I'm Mahesh Mesta
       - A Flutter developer with 4+ year of experience
       - Currently working in Code-matrix

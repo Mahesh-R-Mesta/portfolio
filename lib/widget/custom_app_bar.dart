@@ -9,13 +9,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(10),
       child: Row(children: [
         Container(color: Colors.black, width: 50, height: 3),
         const SizedBox(width: 5),
         Text(serialNo, style: theme.bodyMedium),
         const SizedBox(width: 10),
-        Text(title, style: theme.titleLarge?.copyWith(fontSize: 32)),
+        Text(title, style: theme.titleLarge?.copyWith(fontSize: 25)),
       ]),
     );
   }
