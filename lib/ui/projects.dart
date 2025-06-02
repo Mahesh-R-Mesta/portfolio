@@ -14,10 +14,9 @@ class Projects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenUtil = ScreenUtil();
     List<Project> projects = [Project.arise, Project.billd, Project.smriti, Project.romysDoggyFood];
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: screenUtil.screenHeight, maxHeight: screenUtil.screenHeight * 1.4),
+    return SizedBox(
+      width: context.device(1.4, 1) * context.screenHeight,
       child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 10, children: [
@@ -66,11 +65,11 @@ class Projects extends StatelessWidget {
   }
 
   Widget cardWidget(BuildContext context, Project project) {
-    final width = context.screenWidth;
+    final width = context.screenWidth * context.device(0.6, 1);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: (width / 1.3),
+        width: width,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Padding(
@@ -94,19 +93,6 @@ class Projects extends StatelessWidget {
                   children: [
                     Text(project.name, style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
                     Text(project.shortDescription, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200)),
-                    // const SizedBox(height: 20),
-                    // Flex(
-                    //     spacing: 10,
-                    //     direction: Axis.horizontal,
-                    //     children: project.platforms
-                    //         .map((platform) => Tooltip(
-                    //               message: platform.name,
-                    //               child: CircleAvatar(
-                    //                   backgroundColor: Colors.blue.withAlpha(50),
-                    //                   radius: 12,
-                    //                   child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
-                    //             ))
-                    //         .toList())
                   ],
                 ),
               ],

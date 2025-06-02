@@ -82,7 +82,7 @@ class Certificate extends StatelessWidget {
     }
 
     return SizedBox(
-      height: ScreenUtil().screenHeight * 1.2,
+      height: images.length * context.device(150, 300),
       child: Scaffold(
           appBar: CustomAppBar(serialNo: "02", title: "Certificates"),
           body: Padding(
