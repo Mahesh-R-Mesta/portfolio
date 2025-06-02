@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myportfolio/model/projects.dart';
 import 'package:myportfolio/ui/project/project_detail.dart';
 import 'package:myportfolio/util/animation_helper.dart';
+import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Projects extends StatelessWidget {
@@ -23,7 +24,7 @@ class Projects extends StatelessWidget {
             AnimatedBuilder(
                 animation: controller,
                 builder: (ctx, child) {
-                  final value = AnimationHelper.scrollPortion(controller, 1120, 200);
+                  final value = AnimationHelper.scrollPortion(controller, context.device(1120, 2500), 200);
                   return FadeTransition(
                       opacity: AlwaysStoppedAnimation(value), child: Transform.translate(offset: Offset(300 - (value * 300), 0), child: child!));
                 },
@@ -40,7 +41,7 @@ class Projects extends StatelessWidget {
                 (index) => AnimatedBuilder(
                     animation: controller,
                     builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, 1300 + (index * 120), 200);
+                      final value = AnimationHelper.scrollPortion(controller, context.device(1400, 2500) + (index * context.device(120, 200)), 200);
                       return FadeTransition(
                           opacity: AlwaysStoppedAnimation(value), child: Transform.translate(offset: Offset(300 - (value * 300), 0), child: child));
                     },
@@ -58,18 +59,18 @@ class Projects extends StatelessWidget {
                           closedShape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
-                          closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: cardWidget(projects[index]))),
+                          closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: cardWidget(context, projects[index]))),
                     ))),
           ])),
     );
   }
 
-  Widget cardWidget(Project project) {
-    final width = ScreenUtil().screenWidth;
+  Widget cardWidget(BuildContext context, Project project) {
+    final width = context.screenWidth;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        width: (width / 1.5),
+        width: (width / 1.3),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Padding(
@@ -86,32 +87,26 @@ class Projects extends StatelessWidget {
                         : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
                   ),
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Column(
                   spacing: 15,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Column(
-                      spacing: 15,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(project.name, style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
-                        Text(project.shortDescription, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200)),
-                        // const SizedBox(height: 20),
-                        // Flex(
-                        //     spacing: 10,
-                        //     direction: Axis.horizontal,
-                        //     children: project.platforms
-                        //         .map((platform) => Tooltip(
-                        //               message: platform.name,
-                        //               child: CircleAvatar(
-                        //                   backgroundColor: Colors.blue.withAlpha(50),
-                        //                   radius: 12,
-                        //                   child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
-                        //             ))
-                        //         .toList())
-                      ],
-                    )
+                    Text(project.name, style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
+                    Text(project.shortDescription, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200)),
+                    // const SizedBox(height: 20),
+                    // Flex(
+                    //     spacing: 10,
+                    //     direction: Axis.horizontal,
+                    //     children: project.platforms
+                    //         .map((platform) => Tooltip(
+                    //               message: platform.name,
+                    //               child: CircleAvatar(
+                    //                   backgroundColor: Colors.blue.withAlpha(50),
+                    //                   radius: 12,
+                    //                   child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
+                    //             ))
+                    //         .toList())
                   ],
                 ),
               ],

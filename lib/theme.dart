@@ -21,11 +21,11 @@ final ThemeData theme = ThemeData(
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
         textStyle: TextStyle(color: Colors.black, fontSize: 13)),
     textTheme: TextTheme(
-        bodySmall: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.w500),
-        bodyMedium: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w500),
-        labelLarge: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w500),
-        labelMedium: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w500, color: Colors.black54),
-        labelSmall: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black54),
-        titleLarge: TextStyle(color: const Color(0xFF1C1C1E), fontSize: 30.sp, fontWeight: FontWeight.w700),
-        titleMedium: TextStyle(color: const Color(0xFF1C1C1E), fontSize: 14.sp)),
+        bodySmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+        bodyMedium: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        labelLarge: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+        labelMedium: TextStyle(fontSize: 17, fontWeight: FontWeight.w500, color: Colors.black54),
+        labelSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black54),
+        titleLarge: TextStyle(color: const Color(0xFF1C1C1E), fontSize: 30, fontWeight: FontWeight.w700),
+        titleMedium: TextStyle(color: const Color(0xFF1C1C1E), fontSize: 14)),
     iconTheme: IconThemeData(color: ColorConst.darkGary));

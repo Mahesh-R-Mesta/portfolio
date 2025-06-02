@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:myportfolio/animations/swing_board.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/lottie_assets.dart';
+import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/icon_express.dart';
 import 'package:myportfolio/widget/text_tile.dart';
 
@@ -22,10 +23,11 @@ class AboutPage extends StatelessWidget {
  successfully resolved complex implementation challenges by learning and
  applying native programming languages within Flutter""";
     return SizedBox(
-      height: ScreenUtil().screenHeight,
+      height: context.screenHeight,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Row(
+        child: Flex(
+          direction: context.flexAxis(),
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Column(
@@ -92,7 +94,7 @@ class AboutPage extends StatelessWidget {
             AnimatedBuilder(
                 animation: controller,
                 builder: (context, child) {
-                  final value = AnimationHelper.scrollPortion(controller, 30, 450);
+                  final value = AnimationHelper.scrollPortion(controller, context.device(30, 350), 450);
                   return Transform.translate(
                       key: ValueKey(key),
                       offset: Offset(500 - value * 500, 0),

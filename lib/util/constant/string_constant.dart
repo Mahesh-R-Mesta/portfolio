@@ -3,9 +3,9 @@ typedef CompanyInfo = ({String role, String city, String company, String startAn
 mixin StringConst {
   static const String title = "Flutter Developer &\nML Enthusiast";
   static const String inShortAbout = """Hi I'm Mahesh Mesta
-      - A Flutter developer with 4+ year of experience
-      - Currently working in Code-matrix
-      - A Constant Learner and Reader""";
+  - A Flutter developer with 4+ year of experience
+  - Currently working in Code-matrix
+  - A Constant Learner and Reader""";
 
   static const String about = """ Experienced Flutter developer with 4+ years of expertise in building
  dynamic and feature-rich applications. Eager to continuously upskill, I’ve
@@ -19,10 +19,10 @@ mixin StringConst {
     startAndEnd: "2022 - Present",
     current: true,
     details: """• Worked on the company product, developed a cross-platform app
- for mobile and Windows using a single codebase
- • Created POCs in Android native using Kotlin and implemented iOS
- feature
- • Developed custom plugins for project needs."""
+for mobile and Windows using a single codebase
+• Created POCs in Android native using Kotlin and implemented iOS
+feature
+• Developed custom plugins for project needs."""
   );
 
   static const CompanyInfo geekSynergy = (
@@ -32,10 +32,10 @@ mixin StringConst {
     current: false,
     startAndEnd: "Jul 2021 - May 2022",
     details: """• Developed and deployed an application for web and mobile from a
- single codebase
- • Guided flutter internship students and helped theme to resolve
- issue's
- • Implemented app localization to support multiple languages"""
+single codebase
+• Guided flutter internship students and helped theme to resolve
+issue's
+• Implemented app localization to support multiple languages"""
   );
 
   static const CompanyInfo appBee = (
@@ -45,8 +45,8 @@ mixin StringConst {
     current: false,
     startAndEnd: "Jan 2021 - Jul 2021",
     details: """• Developed interactive UI screen, enhancing user experience
- • Implemented RESTful APIs for data integration
- • Troubleshot and debugged issues ensuring smooth functionality"""
+• Implemented RESTful APIs for data integration
+• Troubleshot and debugged issues ensuring smooth functionality"""
   );
 }
 

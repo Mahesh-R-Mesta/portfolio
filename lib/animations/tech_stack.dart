@@ -149,7 +149,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                       children: [
                         Text(
                           "MY SOLAR SYSTEM",
-                          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15.sp, fontFamily: Family.orbit),
+                          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, fontFamily: Family.orbit),
                         ),
                         ValueListenableBuilder(
                             valueListenable: enableSystem,

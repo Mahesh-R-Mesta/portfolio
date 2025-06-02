@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myportfolio/animations/online.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
+import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Experience extends StatelessWidget {
@@ -14,25 +14,25 @@ class Experience extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).textTheme;
+    // final theme = Theme.of(context).textTheme;
     // final controller = ScrollController();
 
     List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
     return SizedBox(
-      height: ScreenUtil().screenHeight * 1.2,
+      height: context.screenHeight * (context.isPortrait ? 1.7 : 1.2),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Flex(
           crossAxisAlignment: CrossAxisAlignment.center,
-          direction: Axis.horizontal,
+          direction: context.flexAxis(),
           children: [
             Expanded(
               child: Column(spacing: 6, children: [
                 AnimatedBuilder(
                     animation: controller,
                     builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, 720, 200);
+                      final value = AnimationHelper.scrollPortion(controller, context.device(720, 1000), 200);
                       return FadeTransition(
                           key: ValueKey(experience),
                           opacity: AnimationHelper.square(value),
@@ -43,7 +43,7 @@ class Experience extends StatelessWidget {
                   return AnimatedBuilder(
                       animation: controller,
                       builder: (context, child) {
-                        final value = AnimationHelper.scrollPortion(controller, 700 + (index * 150), 200);
+                        final value = AnimationHelper.scrollPortion(controller, context.device(720, 1000) + (index * context.device(150, 200)), 200);
                         return FadeTransition(
                             key: ValueKey(experience),
                             opacity: AnimationHelper.exponent(value),
@@ -57,7 +57,7 @@ class Experience extends StatelessWidget {
                 child: AnimatedBuilder(
                     animation: controller,
                     builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, 700, 200);
+                      final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 200);
                       return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
                     },
                     child: TechStackAnime()))
