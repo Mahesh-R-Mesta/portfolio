@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TextTile extends StatelessWidget {
   final String? title;
@@ -13,7 +14,7 @@ class TextTile extends StatelessWidget {
         if (title != null)
           Text(
             title!,
-            style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500, color: Colors.orange),
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w500, color: Colors.orange, fontSize: 20),
           ),
         if (description != null) ...[
           const SizedBox(height: 10),

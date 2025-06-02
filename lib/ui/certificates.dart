@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
+import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Certificate extends StatelessWidget {
@@ -91,7 +92,7 @@ class Certificate extends StatelessWidget {
                 itemCount: images.length,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 1.41337),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: context.isPortrait ? 1 : 3, childAspectRatio: 1.41337),
                 itemBuilder: (ctx, index) {
                   return AnimationConfiguration.staggeredGrid(
                     duration: Duration(seconds: 1),
