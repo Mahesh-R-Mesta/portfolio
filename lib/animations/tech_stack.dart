@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myportfolio/animations/online.dart';
+import 'package:myportfolio/util/constant/color_constant.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
+import 'package:myportfolio/util/extension/context.dart';
 
 typedef TechStackData = ({
   double radius,
@@ -62,110 +64,133 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, layout) {
-      final size = layout.biggest;
+    return SizedBox(
+      height: context.screenHeight * context.device(1, 0.7),
+      width: context.screenWidth * context.device(0.45, 1),
+      child: LayoutBuilder(builder: (context, layout) {
+        final size = layout.biggest;
 
-      Offset getCenterOffset(double radius) {
-        return Offset(size.width / 2 - radius, (size.height / 2) - radius);
-      }
+        Offset getCenterOffset(double radius) => Offset((size.width / 2) - radius, (size.height / 2) - radius);
 
-      Offset getOrbitOffset({required double radius, required double orbit, required Animation<double> animation, required double phase}) {
-        final centerOffset = getCenterOffset(radius);
-        final xPos = orbit * sin(animation.value + phase);
-        final yPos = orbit * cos(animation.value + phase);
-        return Offset(xPos + centerOffset.dx, yPos + centerOffset.dy);
-      }
+        Offset getOrbitOffset({required double radius, required double orbit, required Animation<double> animation, required double phase}) {
+          final centerOffset = getCenterOffset(radius);
+          final xPos = orbit * sin(animation.value + phase);
+          final yPos = orbit * cos(animation.value + phase);
+          return Offset(xPos + centerOffset.dx, yPos + centerOffset.dy);
+        }
 
-      Widget orbitWidget(TechStackData tech) {
-        return AnimatedBuilder(
-            animation: _controller,
-            builder: (context, _) {
-              return Transform.translate(
-                offset: getOrbitOffset(
-                  radius: tech.radius,
-                  orbit: tech.orbitRadius,
-                  animation: tech.anime!,
-                  phase: tech.phase,
-                ),
-                child: Tooltip(
-                  message: tech.name,
-                  margin: EdgeInsets.only(bottom: 15),
-                  child: CircleAvatar(
-                      radius: tech.radius,
-                      backgroundColor: Colors.orange.shade100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: SvgPicture.asset(tech.asset),
-                      )),
-                ),
-              );
-            });
-      }
-
-      return SizedBox.expand(
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            tooltipTheme: Theme.of(context).tooltipTheme.copyWith(
-                  textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700, fontFamily: Family.orbit),
-                ),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(radius),
-            child: InkWell(
-              onTap: () {},
-              splashColor: Colors.orange.shade100.withAlpha(40),
-              onHover: (hovered) {
-                if (hovered) {
-                  enableSystem.value = false;
-                  _controller.stop();
-                } else {
-                  enableSystem.value = true;
-                  _controller.repeat();
-                }
-              },
-              child: CustomPaint(
-                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
-                child: Stack(children: [
-                  for (final tech in techStacks) orbitWidget(tech),
-                  Transform.translate(
-                    offset: getCenterOffset(radius),
-                    child: Tooltip(
-                      margin: EdgeInsets.only(top: 20),
-                      message: "Flutter",
-                      child: CircleAvatar(
-                          radius: radius,
-                          backgroundColor: Colors.orange.shade100,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
-                            child: SvgPicture.asset(ImageConst.flutter),
-                          )),
-                    ),
+        Widget orbitWidget(TechStackData tech) {
+          return AnimatedBuilder(
+              animation: _controller,
+              builder: (context, _) {
+                return Transform.translate(
+                  offset: getOrbitOffset(
+                    radius: tech.radius,
+                    orbit: tech.orbitRadius,
+                    animation: tech.anime!,
+                    phase: tech.phase,
                   ),
-                  Transform(
-                    transform: Matrix4.identity()..translate(130, 0),
-                    alignment: Alignment.topCenter,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "MY SOLAR SYSTEM",
-                          style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, fontFamily: Family.orbit),
-                        ),
-                        ValueListenableBuilder(
-                            valueListenable: enableSystem,
-                            builder: (context, enable, _) {
-                              return Online(enable: enable);
-                            })
-                      ],
+                  child: Tooltip(
+                    message: tech.name,
+                    margin: EdgeInsets.only(bottom: 15),
+                    child: CircleAvatar(
+                        radius: tech.radius,
+                        backgroundColor: Colors.orange.shade100,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: SvgPicture.asset(tech.asset),
+                        )),
+                  ),
+                );
+              });
+        }
+
+        return SizedBox.expand(
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              tooltipTheme: Theme.of(context)
+                  .tooltipTheme
+                  .copyWith(textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700) //, fontFamily: Family.orbit),
+                      ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(radius),
+              child: InkWell(
+                onTap: () {
+                  if (!context.isPortrait) return;
+                  if (enableSystem.value) {
+                    enableSystem.value = false;
+                    _controller.stop();
+                  } else {
+                    enableSystem.value = true;
+                    _controller.repeat();
+                  }
+                },
+                splashColor: Colors.orange.shade100.withAlpha(40),
+                onHover: (hovered) {
+                  if (hovered) {
+                    enableSystem.value = false;
+                    _controller.stop();
+                  } else {
+                    enableSystem.value = true;
+                    _controller.repeat();
+                  }
+                },
+                child: CustomPaint(
+                  painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
+                  child: Stack(children: [
+                    for (final tech in techStacks) orbitWidget(tech),
+                    Transform.translate(
+                      offset: getCenterOffset(radius),
+                      child: Tooltip(
+                        margin: EdgeInsets.only(top: 20),
+                        message: "Flutter",
+                        child: CircleAvatar(
+                            radius: radius,
+                            backgroundColor: Colors.orange.shade100,
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
+                              child: SvgPicture.asset(ImageConst.flutter),
+                            )),
+                      ),
                     ),
-                  )
-                ]),
+                    Positioned(
+                      // transform: Matrix4.identity()..translate(130, 0),
+                      // alignment: Alignment.topCenter,
+                      top: 10,
+                      left: 10,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "MY TECH SOLAR SYSTEM",
+                                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, fontFamily: Family.orbit),
+                              ),
+                              ValueListenableBuilder(
+                                  valueListenable: enableSystem,
+                                  builder: (context, enable, _) {
+                                    return Online(enable: enable);
+                                  })
+                            ],
+                          ),
+                          Text(
+                            "My work revolve around these...",
+                            style: TextStyle(fontSize: 10, color: ColorConst.hintText),
+                          )
+                        ],
+                      ),
+                    )
+                  ]),
+                ),
               ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      }),
+    );
   }
 }
 

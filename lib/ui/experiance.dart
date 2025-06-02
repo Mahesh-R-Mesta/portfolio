@@ -20,7 +20,7 @@ class Experience extends StatelessWidget {
     List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
     return SizedBox(
-      height: context.screenHeight * (context.isPortrait ? 1.7 : 1.2),
+      height: context.screenHeight * context.device(1.2, 1.7),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Flex(
