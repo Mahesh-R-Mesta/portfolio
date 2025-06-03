@@ -17,13 +17,13 @@ class Projects extends StatelessWidget {
     final controller = GetIt.I.get<ScrollController>();
     List<Project> projects = [Project.arise, Project.billd, Project.smriti, Project.romysDoggyFood];
     return SizedBox(
-      height: context.device(1, 0.75) * context.screenHeight,
+      height: context.device(1.05, 0.75) * context.screenHeight,
       child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 10, children: [
             CustomSlideFadeAnimation(
               controller: controller,
-              position: context.device(1260, 2500),
+              position: context.device(1260, 2100),
               range: 200,
               child: Column(
                 spacing: 5,
@@ -38,7 +38,7 @@ class Projects extends StatelessWidget {
                 projects.length,
                 (index) => CustomSlideFadeAnimation(
                       controller: controller,
-                      position: context.device(1400, 2500) + (index * context.device(120, 200)),
+                      position: context.device(1400, 2200) + (index * context.device(120, 200)),
                       range: 200,
                       child: Material(
                         color: Color(0xffF7F9FC),
@@ -50,7 +50,7 @@ class Projects extends StatelessWidget {
                     )),
             CustomSlideFadeAnimation(
               controller: controller,
-              position: context.device(1850, 3250),
+              position: context.device(1850, 3000),
               range: 200,
               child: ContainerNavigation(
                   openBuilder: (ctx, close) => MoreProjects(close: close),

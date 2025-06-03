@@ -2,6 +2,7 @@ import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:myportfolio/animations/build_with_flutter.dart';
 import 'package:myportfolio/ui/about.dart';
 import 'package:myportfolio/ui/certificates.dart';
 import 'package:myportfolio/ui/experience.dart';
@@ -49,6 +50,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     controller.animateTo(0, duration: Duration(milliseconds: (controller.offset * 0.6).toInt()), curve: Curves.decelerate),
                 icon: Icon(Atlas.house),
               )),
+          Positioned(top: 10, right: 80, child: BuildWithFlutter())
           // Positioned(
           //     right: -2,
           //     top: size.height / 7,

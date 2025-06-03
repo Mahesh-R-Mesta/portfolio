@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myportfolio/model/projects.dart';
 import 'package:myportfolio/services/launch.dart';
+import 'package:myportfolio/util/extension/context.dart';
 
 class ProjectDetail extends StatelessWidget {
   final Project project;
@@ -29,10 +30,16 @@ class ProjectDetail extends StatelessWidget {
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  Flex(
+                    direction: context.flexAxis(),
                     spacing: 10,
+                    verticalDirection: VerticalDirection.down,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(project.name, style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w600)),
+                      ConstrainedBox(
+                          constraints: BoxConstraints(maxWidth: context.isPortrait ? context.screenWidth * 0.5 : double.infinity),
+                          child: Text(project.name, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600))),
                       if (project.isPersonal == true)
                         Material(
                           color: Colors.blue,

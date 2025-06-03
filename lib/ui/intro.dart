@@ -85,7 +85,14 @@ class IntroPage extends StatelessWidget {
                         children: [
                           Tooltip(
                             message: MyLinks.email,
-                            child: svgIcon(ImageConst.gmail, 20, () => mailMe()),
+                            child: svgIcon(ImageConst.gmail, 20, () {
+                              if (isMobile()) {
+                                mailMe();
+                              } else {
+                                toast("Copied to clipboard");
+                                Clipboard.setData(ClipboardData(text: MyLinks.email));
+                              }
+                            }),
                           ),
                           Tooltip(message: "Connect with me", child: svgIcon(ImageConst.linkedIn, 20, () => openLink(MyLinks.linkedRank))),
                           Tooltip(
@@ -101,10 +108,13 @@ class IntroPage extends StatelessWidget {
                           Tooltip(
                             message: "Call me",
                             child: LinkButton(
-                                onTap: () {
-                                  toast("Copied to clipboard");
-                                  Clipboard.setData(ClipboardData(text: "+91 8722469640"));
-                                  openLink("tel:${MyLinks.phoneNumb}");
+                                onTap: () async {
+                                  if (isMobile()) {
+                                    await openLink("tel:${MyLinks.phoneNumb}");
+                                  } else {
+                                    Clipboard.setData(ClipboardData(text: "+91 8722469640"));
+                                    toast("Copied to clipboard");
+                                  }
                                 },
                                 radius: 60,
                                 child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelSmall)),

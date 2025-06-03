@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/online.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
+import 'package:myportfolio/services/launch.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
@@ -20,7 +21,7 @@ class Experience extends StatelessWidget {
     List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
     return SizedBox(
-      height: context.screenHeight * context.device(1.2, 1.7),
+      height: context.screenHeight * context.device(1.2, 1.6),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Flex(
@@ -47,14 +48,19 @@ class Experience extends StatelessWidget {
                 })
               ]),
             ),
-            Flexible(
-                child: AnimatedBuilder(
-                    animation: controller,
-                    builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
-                      return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
-                    },
-                    child: TechStackAnime()))
+            // Flexible(
+            //     fit: isMobile() ? FlexFit.loose : FlexFit.loose,
+            //     child:
+            Builder(builder: (context) {
+              return AnimatedBuilder(
+                  animation: controller,
+                  builder: (context, child) {
+                    final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
+                    return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
+                  },
+                  child: TechStackAnime());
+            })
+            // )
           ],
         ),
       ),
