@@ -65,7 +65,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenHeight * context.device(1, 0.63),
+      height: context.screenHeight * context.device(1.1, 0.7),
       width: context.screenWidth * context.device(0.45, 1),
       child: LayoutBuilder(builder: (context, layout) {
         final size = layout.biggest;
@@ -79,10 +79,14 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
           return Offset(xPos + centerOffset.dx, yPos + centerOffset.dy);
         }
 
+        List<GlobalKey<TooltipState>> toolTipKeys = [];
+
         Widget orbitWidget(TechStackData tech) {
           return AnimatedBuilder(
               animation: _controller,
               builder: (context, _) {
+                final key = GlobalKey<TooltipState>();
+                toolTipKeys.add(key);
                 return Transform.translate(
                   offset: getOrbitOffset(
                     radius: tech.radius,
@@ -91,6 +95,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                     phase: tech.phase,
                   ),
                   child: Tooltip(
+                    key: key,
                     message: tech.name,
                     margin: EdgeInsets.only(bottom: 15),
                     child: CircleAvatar(
@@ -119,6 +124,9 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 if (enableSystem.value) {
                   enableSystem.value = false;
                   _controller.stop();
+                  for (var key in toolTipKeys) {
+                    key.currentState?.ensureTooltipVisible();
+                  }
                 } else {
                   enableSystem.value = true;
                   _controller.repeat();
@@ -153,8 +161,6 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                     ),
                   ),
                   Positioned(
-                    // transform: Matrix4.identity()..translate(130, 0),
-                    // alignment: Alignment.topCenter,
                     top: 10,
                     left: 10,
                     child: Column(

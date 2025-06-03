@@ -6,6 +6,7 @@ import 'package:myportfolio/animations/build_with_flutter.dart';
 import 'package:myportfolio/ui/about.dart';
 import 'package:myportfolio/ui/certificates.dart';
 import 'package:myportfolio/ui/experience.dart';
+import 'package:myportfolio/ui/footer.dart';
 import 'package:myportfolio/ui/intro.dart';
 import 'package:myportfolio/ui/project/projects_page.dart';
 
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               Experience(),
               Projects(),
               Certificate(),
+              Footer(),
             ],
           ),
           Align(

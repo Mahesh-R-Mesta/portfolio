@@ -31,9 +31,9 @@ class CustomSlideFadeAnimation extends StatelessWidget {
           } else if (direction == AxisDirection.right) {
             offset = Offset(-translate + (value * translate), 0);
           } else if (direction == AxisDirection.down) {
-            offset = Offset(0, translate - (value * translate));
-          } else if (direction == AxisDirection.up) {
             offset = Offset(0, -translate + (value * translate));
+          } else if (direction == AxisDirection.up) {
+            offset = Offset(0, translate - (value * translate));
           }
           return FadeTransition(
               opacity: fadeCurve?.call(value) ?? AlwaysStoppedAnimation(value), child: Transform.translate(offset: offset, child: child!));
