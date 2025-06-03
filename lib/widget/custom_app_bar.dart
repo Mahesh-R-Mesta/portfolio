@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String serialNo;
+  final String? serialNo;
   final String title;
-  const CustomAppBar({super.key, required this.serialNo, required this.title});
+  const CustomAppBar({super.key, this.serialNo, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(children: [
         Container(color: Colors.black, width: 50, height: 3),
         const SizedBox(width: 5),
-        Text(serialNo, style: theme.bodyMedium),
+        if (serialNo != null) Text(serialNo!, style: theme.bodyMedium),
         const SizedBox(width: 10),
         Text(title, style: theme.titleLarge?.copyWith(fontSize: 25)),
       ]),

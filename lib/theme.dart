@@ -19,7 +19,7 @@ final ThemeData theme = ThemeData(
     highlightColor: Colors.transparent,
     tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-        textStyle: TextStyle(color: Colors.black, fontSize: 13)),
+        textStyle: TextStyle(color: Colors.black, fontSize: 10)),
     textTheme: TextTheme(
         bodySmall: TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
         bodyMedium: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),

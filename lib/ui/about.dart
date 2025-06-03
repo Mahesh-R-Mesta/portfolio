@@ -1,10 +1,11 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
 import 'package:lottie/lottie.dart';
-import 'package:myportfolio/animations/swing_board.dart';
+import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/lottie_assets.dart';
+import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/icon_express.dart';
 import 'package:myportfolio/widget/text_tile.dart';
@@ -12,16 +13,11 @@ import 'package:myportfolio/widget/text_tile.dart';
 class AboutPage extends StatelessWidget {
   static const String name = "/about";
   static const String tag = "about";
-  final ScrollController controller;
-  const AboutPage({super.key, required this.controller});
+  const AboutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context).textTheme;
-    final about = """ Experienced Flutter developer with 4+ years of expertise in building
- dynamic and feature-rich applications. Eager to continuously upskill, I’ve
- successfully resolved complex implementation challenges by learning and
- applying native programming languages within Flutter""";
+    final controller = GetIt.I.get<ScrollController>();
     return SizedBox(
       height: context.screenHeight,
       child: Padding(
@@ -35,71 +31,58 @@ class AboutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                AnimatedBuilder(
-                    animation: controller,
-                    builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, 50, 300);
-                      return Transform.translate(
-                        key: ValueKey(value),
-                        offset: Offset(-800 + value * 800, 0),
-                        child: FadeTransition(
-                          opacity: AnimationHelper.square(value),
-                          child: child,
-                        ),
-                      );
-                    },
-                    child: TextTile(
-                      title: "About me 😀",
-                      description: about,
-                    )),
-                AnimatedBuilder(
-                    animation: controller,
-                    builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, 80, 390);
-                      return Transform.translate(
-                        key: ValueKey(value),
-                        offset: Offset(-800 + value * 800, 0),
-                        child: FadeTransition(
-                          opacity: AnimationHelper.square(value),
-                          child: child,
-                        ),
-                      );
-                    },
-                    child: Column(
-                      spacing: 20,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextTile(title: "What i like to do"),
-                        Row(
-                          spacing: 20,
-                          children: [
-                            IconExpress(
-                              icon: Atlas.seated_pose,
-                              text: "Mediation",
-                            ),
-                            IconExpress(
-                              icon: Atlas.book,
-                              text: "Reading Book",
-                            ),
-                            IconExpress(
-                              icon: Atlas.gamepad_bold,
-                              text: "Playing game",
-                            )
-                          ],
-                        )
-                      ],
-                    )),
+                CustomSlideFadeAnimation(
+                  controller: controller,
+                  position: 50,
+                  range: 300,
+                  translate: 800,
+                  direction: AxisDirection.right,
+                  fadeCurve: AnimationHelper.square,
+                  child: TextTile(
+                    title: "About me 😀",
+                    description: StringConst.about,
+                  ),
+                ),
+                CustomSlideFadeAnimation(
+                  controller: controller,
+                  position: 80,
+                  range: 390,
+                  translate: 800,
+                  direction: AxisDirection.right,
+                  fadeCurve: AnimationHelper.square,
+                  child: Column(
+                    spacing: 20,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextTile(title: "What i like to do"),
+                      Row(
+                        spacing: 20,
+                        children: [
+                          IconExpress(
+                            icon: Atlas.seated_pose,
+                            text: "Mediation",
+                          ),
+                          IconExpress(
+                            icon: Atlas.book,
+                            text: "Reading Book",
+                          ),
+                          IconExpress(
+                            icon: Atlas.gamepad_bold,
+                            text: "Playing game",
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ],
             ),
-            AnimatedBuilder(
-                animation: controller,
-                builder: (context, child) {
-                  final value = AnimationHelper.scrollPortion(controller, context.device(30, 350), 450);
-                  return Transform.translate(
-                      key: ValueKey(key),
-                      offset: Offset(500 - value * 500, 0),
-                      child: FadeTransition(opacity: AnimationHelper.square(value), child: child));
-                },
+            CustomSlideFadeAnimation(
+                controller: controller,
+                position: context.device(30, 350),
+                range: 450,
+                translate: 500,
+                fadeCurve: AnimationHelper.square,
                 child: Lottie.asset(LottieAnime.monkey, width: 450))
           ],
         ),

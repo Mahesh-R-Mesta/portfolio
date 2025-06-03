@@ -11,11 +11,9 @@ openLink(String link) async {
 }
 
 mailMe() async {
-  // final Uri emailLaunchUri = Uri(
-  //   scheme: 'mailto',
-  //   path: MyLinks.email,
-  // );
+  // final Uri emailLaunchUri = Uri.parse("mailto:${MyLinks.email}?subject=Hi&body=Hello");
+  // if (await canLaunchUrl(emailLaunchUri)) await launchUrl(emailLaunchUri);
   toast("Copied to clipboard");
+
   Clipboard.setData(ClipboardData(text: MyLinks.email));
-  // await launchUrl(emailLaunchUri);
 }

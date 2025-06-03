@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myportfolio/model/projects.dart';
+import 'package:myportfolio/services/launch.dart';
 
 class ProjectDetail extends StatelessWidget {
   final Project project;
@@ -28,29 +29,44 @@ class ProjectDetail extends StatelessWidget {
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(project.name, style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w600)),
-                  Flex(
-                      spacing: 10,
-                      direction: Axis.horizontal,
-                      children: project.platforms
-                          .map((platform) => Tooltip(
-                                message: platform.name,
-                                child: Material(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.orange)),
-                                  child: Row(
-                                    spacing: 5,
-                                    children: [
-                                      CircleAvatar(
-                                          backgroundColor: Colors.blue.withAlpha(50),
-                                          radius: 12,
-                                          child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
-                                      Text(platform.name, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500)),
-                                      const SizedBox(width: 5)
-                                    ],
-                                  ),
-                                ),
-                              ))
-                          .toList()),
+                  Row(
+                    spacing: 10,
+                    children: [
+                      Text(project.name, style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w600)),
+                      if (project.isPersonal == true)
+                        Material(
+                          color: Colors.blue,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(5.0),
+                            child: Text("Personal", style: TextStyle(fontSize: 12, color: Colors.white)),
+                          ),
+                        ),
+                    ],
+                  ),
+                  Flex(spacing: 12, direction: Axis.horizontal, children: project.links.map((link) => linkButton(link)).toList())
+                  // Flex(
+                  //     spacing: 10,
+                  //     direction: Axis.horizontal,
+                  //     children: project.platforms
+                  //         .map((platform) => Tooltip(
+                  //               message: platform.name,
+                  //               child: Material(
+                  //                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30), side: BorderSide(color: Colors.orange)),
+                  //                 child: Row(
+                  //                   spacing: 5,
+                  //                   children: [
+                  //                     CircleAvatar(
+                  //                         backgroundColor: Colors.blue.withAlpha(50),
+                  //                         radius: 12,
+                  //                         child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
+                  //                     Text(platform.name, style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500)),
+                  //                     const SizedBox(width: 5)
+                  //                   ],
+                  //                 ),
+                  //               ),
+                  //             ))
+                  //         .toList()),
                 ],
               ),
             ]),
@@ -77,5 +93,22 @@ class ProjectDetail extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide.none),
         avatar: image != null ? SvgPicture.asset(image, width: 14, height: 14) : null,
         label: Text(name, style: TextStyle(fontSize: 12)));
+  }
+
+  Widget linkButton(Link link) {
+    return InkWell(
+      onTap: () => openLink(link.url),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 6,
+        children: [
+          if (link.image != null) SvgPicture.asset(link.image!, width: 15, height: 15),
+          Text(
+            link.name,
+            style: TextStyle(fontSize: 15, decoration: TextDecoration.underline),
+          )
+        ],
+      ),
+    );
   }
 }

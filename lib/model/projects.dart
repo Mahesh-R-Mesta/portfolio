@@ -33,26 +33,41 @@ class Project {
   static const _windows = Platform(name: "Windows", image: ImageConst.windows);
 
   static const _flutter = Tech(name: "Flutter", image: ImageConst.flutter);
+  static const _dart = Tech(name: "Dart", image: ImageConst.dart);
   static const _kotlin = Tech(name: "Kotlin", image: ImageConst.kotlin);
   static const _swift = Tech(name: "Swift", image: ImageConst.swift);
   static const _firebase = Tech(name: "Firebase", image: ImageConst.firebase);
   static const _inno = Tech(name: "Inno");
+  static const _c = Tech(name: "C++");
+  static const _map = Tech(name: "Google map");
   // static const  = Platform(name: "Windows", image: ImageConst.windows);
 
   static const arise = Project(
     name: "Arise: The monster invasion",
     shortDescription: "2D Platform game developed using flutter",
     description: [
-      "Built task scheduler with timed notifications & reminders",
-      "Implemented window overlay screens for Android, enhancing user interaction even outside the app",
-      "Developed native alarm in kotlin and used as a flutter plugin",
-      "Used ObjectBox for on-device vector DB storage"
+      "Developed 2D pixel platform game in flutter using Flame 🔥",
+      "Planned & Designed game environment with Tile map editor software",
+      "Integrated Firebase realtime database for player leaderboard",
+      "Tested and Successfully published the game on Google Play store"
     ],
     duration: "SEPT 2024 - FEB 2025",
     company: "Code Matrix",
     isPersonal: true,
+    links: [
+      Link(
+        image: ImageConst.playStore,
+        name: "Play store",
+        url: "https://play.google.com/store/apps/details?id=com.geekcode.arise_game",
+      ),
+      Link(
+        image: ImageConst.github,
+        name: "Github",
+        url: "https://github.com/Mahesh-R-Mesta/arise-game",
+      )
+    ],
     platforms: [_android],
-    techUsed: [_flutter, _firebase],
+    techUsed: [_flutter, _dart, _firebase],
     imageUrl: ImageConst.arise,
   );
 
@@ -66,7 +81,7 @@ class Project {
       "Used ObjectBox for on-device vector DB storage"
     ],
     platforms: [_android, _iOS],
-    techUsed: [_flutter, _kotlin, _swift],
+    techUsed: [_flutter, _dart, _kotlin, _swift],
     duration: "Dec 2024 - PRESENT",
     company: "Code Matrix",
     imageUrl: ImageConst.smriti,
@@ -82,7 +97,7 @@ class Project {
     ],
     platforms: [_windows, _android, _web],
     duration: "Aug 2022 - PRESENT",
-    techUsed: [_flutter, _inno],
+    techUsed: [_flutter, _dart, _c, _inno],
     company: "Code Matrix",
     imageUrl: ImageConst.billd,
   );
@@ -96,31 +111,68 @@ class Project {
       "Implemented Location search by using Google API's for managing delivery areas",
       "Graph-QL API's integrations"
     ],
+    links: [
+      Link(
+        image: ImageConst.web,
+        name: "Link",
+        url: "https://romys.in/",
+      )
+    ],
     platforms: [_android],
     duration: "Jan 2023 - Dec 2023",
     company: "Code Matrix",
-    techUsed: [_flutter, _firebase],
+    techUsed: [_flutter, _dart, _firebase, _map],
     imageUrl: ImageConst.rommy,
+  );
+
+  static const pro_pilot = Project(
+    name: "2ndSmart",
+    shortDescription: "Managing the process of refurbishing electronics accessories",
+    description: [
+      "Developed a mobile app to manage the refurbishment process of electronic accessories",
+      "Planned and developed the workflow with team",
+      "Implemented app tour and multi-language localization"
+    ],
+    links: [
+      Link(
+        image: ImageConst.web,
+        name: "Link",
+        url: "https://romys.in/",
+      )
+    ],
+    platforms: [_android, _web],
+    techUsed: [_flutter, _dart, _firebase],
+    duration: "Nov 2021 - Nov 2022",
+    company: "Geeksynergy",
   );
 
   static const secondSmart = Project(
     name: "2ndSmart",
     shortDescription: "Managing the process of refurbishing electronics accessories",
     description: [
-      "Developed a mobile application to manage the refurbishment process of electronic accessories",
+      "Developed a mobile app to manage the refurbishment process of electronic accessories",
       "Planned and developed the workflow with team",
       "Implemented app tour and multi-language localization"
     ],
+    links: [
+      Link(
+        image: ImageConst.web,
+        name: "Link",
+        url: "https://romys.in/",
+      )
+    ],
     platforms: [_android, _web],
+    techUsed: [_flutter, _dart, _firebase],
     duration: "Nov 2021 - Nov 2022",
     company: "Geeksynergy",
   );
 }
 
 class Link {
-  String name;
-  String url;
-  Link({required this.name, required this.url});
+  final String? image;
+  final String name;
+  final String url;
+  const Link({this.image, required this.name, required this.url});
 }
 
 class Tech {

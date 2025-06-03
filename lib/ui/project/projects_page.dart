@@ -1,107 +1,80 @@
-import 'package:animations/animations.dart';
-import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/model/projects.dart';
+import 'package:myportfolio/ui/project/more_project.dart';
 import 'package:myportfolio/ui/project/project_detail.dart';
-import 'package:myportfolio/util/animation_helper.dart';
+import 'package:myportfolio/ui/project/widget/container_navigation.dart';
+import 'package:myportfolio/ui/project/widget/project_card.dart';
 import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Projects extends StatelessWidget {
-  final ScrollController controller;
-  const Projects({super.key, required this.controller});
+  const Projects({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = GetIt.I.get<ScrollController>();
     List<Project> projects = [Project.arise, Project.billd, Project.smriti, Project.romysDoggyFood];
     return SizedBox(
-      width: context.device(1.4, 1) * context.screenHeight,
+      height: context.device(1, 0.75) * context.screenHeight,
       child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 10, children: [
-            AnimatedBuilder(
-                animation: controller,
-                builder: (ctx, child) {
-                  final value = AnimationHelper.scrollPortion(controller, context.device(1120, 2500), 200);
-                  return FadeTransition(
-                      opacity: AlwaysStoppedAnimation(value), child: Transform.translate(offset: Offset(300 - (value * 300), 0), child: child!));
-                },
-                child: Column(
-                  spacing: 5,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomAppBar(serialNo: "", title: "Projects"),
-                    Text("Here are my few recent projects...", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
-                  ],
-                )),
+            CustomSlideFadeAnimation(
+              controller: controller,
+              position: context.device(1260, 2500),
+              range: 200,
+              child: Column(
+                spacing: 5,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomAppBar(serialNo: "", title: "Projects"),
+                  Text("Here are my few recent projects...", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+                ],
+              ),
+            ),
             ...List.generate(
                 projects.length,
-                (index) => AnimatedBuilder(
-                    animation: controller,
-                    builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, context.device(1400, 2500) + (index * context.device(120, 200)), 200);
-                      return FadeTransition(
-                          opacity: AlwaysStoppedAnimation(value), child: Transform.translate(offset: Offset(300 - (value * 300), 0), child: child));
-                    },
-                    child: Material(
-                      color: Color(0xffF7F9FC),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
-                      child: OpenContainer(
-                          openElevation: 0,
-                          closedElevation: 0,
-                          openColor: Theme.of(context).scaffoldBackgroundColor,
-                          closedColor: Theme.of(context).scaffoldBackgroundColor,
-                          openBuilder: (ctx, closeContainer) {
-                            return ProjectDetail(project: projects[index], popCall: () => closeContainer.call());
-                          },
-                          closedShape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                (index) => CustomSlideFadeAnimation(
+                      controller: controller,
+                      position: context.device(1400, 2500) + (index * context.device(120, 200)),
+                      range: 200,
+                      child: Material(
+                        color: Color(0xffF7F9FC),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
+                        child: ContainerNavigation(
+                            openBuilder: (ctx, closeContainer) => ProjectDetail(project: projects[index], popCall: () => closeContainer.call()),
+                            closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: ProjectCard(project: projects[index]))),
+                      ),
+                    )),
+            CustomSlideFadeAnimation(
+              controller: controller,
+              position: context.device(1850, 3250),
+              range: 200,
+              child: ContainerNavigation(
+                  openBuilder: (ctx, close) => MoreProjects(close: close),
+                  closedBuilder: (context, open) {
+                    return InkWell(
+                      onTap: open,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Material(
+                          color: Color(0xffF7F9FC),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                            child: Text("See more..."),
                           ),
-                          closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: cardWidget(context, projects[index]))),
-                    ))),
+                        ),
+                      ),
+                    );
+                  }),
+            )
           ])),
     );
   }
-
-  Widget cardWidget(BuildContext context, Project project) {
-    final width = context.screenWidth * context.device(0.6, 1);
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: width,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  heightFactor: 0.4,
-                  child: Opacity(
-                    opacity: 0.1,
-                    child: project.imageUrl != null
-                        ? Image.asset(project.imageUrl!, width: 200, height: 200)
-                        : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
-                  ),
-                ),
-                Column(
-                  spacing: 15,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(project.name, style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600)),
-                    Text(project.shortDescription, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200)),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+}
 
   // Widget chip(String name, String? image) {
   //   return Chip(
@@ -113,7 +86,6 @@ class Projects extends StatelessWidget {
   //       avatar: image != null ? SvgPicture.asset(image, width: 14, height: 14) : null,
   //       label: Text(name, style: TextStyle(fontSize: 12)));
   // }
-}
 
             // AnimationLimiter(
             //   child: CustomScrollView(

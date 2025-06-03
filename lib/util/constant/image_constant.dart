@@ -16,6 +16,8 @@ class ImageConst {
   static const String uiUx = "assets/svg/ui_ux.svg";
   static const String ios = "assets/svg/ios.svg";
   static const String web = "assets/svg/web.svg";
+  static const String medium = "assets/svg/medium.svg";
+  static const String playStore = "assets/svg/playstore.svg";
   static const String windows = "assets/svg/windows.svg";
 
   static const String codeMatrixCert = "assets/image/codematrix.jpg";

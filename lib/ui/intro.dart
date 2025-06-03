@@ -23,10 +23,7 @@ class IntroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final introCompleter = Completer();
     final blastController = BlastController();
-    // final pageNavigator = GetIt.I.get<ViewPageController>();
-
     return SizedBox(
       height: context.screenHeight,
       child: BlastAuraAnime(
@@ -83,24 +80,35 @@ class IntroPage extends StatelessWidget {
                       //     .slideX(duration: AnimeConfig.mediumDuration),
                       const SizedBox(height: 30),
                       Row(
-                        spacing: 30,
+                        spacing: 25,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Tooltip(
                             message: MyLinks.email,
                             child: svgIcon(ImageConst.gmail, 20, () => mailMe()),
                           ),
-                          svgIcon(ImageConst.linkedIn, 20, () => openLink(MyLinks.linkedRank)),
-                          svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
-                          svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub)),
+                          Tooltip(message: "Connect with me", child: svgIcon(ImageConst.linkedIn, 20, () => openLink(MyLinks.linkedRank))),
+                          Tooltip(
+                            message: "Obtained 5 stars in problem solving",
+                            child: svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
+                          ),
+                          Tooltip(
+                            message: "See my published articles",
+                            child: svgIcon(ImageConst.medium, 25, () => openLink(MyLinks.medium)),
+                          ),
+                          Tooltip(message: "Personal github", child: svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub))),
                           // svgIcon(ImageConst., 25, () => openLink(MyLinks.hackerRank)),
-                          LinkButton(
-                              onTap: () {
-                                toast("Copied to clipboard");
-                                Clipboard.setData(ClipboardData(text: "+91 8722469640"));
-                              },
-                              radius: 60,
-                              child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelMedium))
+                          Tooltip(
+                            message: "Call me",
+                            child: LinkButton(
+                                onTap: () {
+                                  toast("Copied to clipboard");
+                                  Clipboard.setData(ClipboardData(text: "+91 8722469640"));
+                                  openLink("tel:${MyLinks.phoneNumb}");
+                                },
+                                radius: 60,
+                                child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelSmall)),
+                          )
                         ],
                       )
                           .animate(delay: AnimeConfig.delayDuration * 3, onComplete: (_) => blastController.onStart?.call(0))

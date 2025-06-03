@@ -177,7 +177,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                             ],
                           ),
                           Text(
-                            "My work revolve around these...",
+                            "My daily work revolve around these...",
                             style: TextStyle(fontSize: 10, color: ColorConst.hintText),
                           )
                         ],
