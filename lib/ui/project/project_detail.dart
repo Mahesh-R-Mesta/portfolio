@@ -16,11 +16,11 @@ class ProjectDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(leading: IconButton(onPressed: popCall, icon: Icon(Icons.arrow_back))),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 13,
+          spacing: 10,
           children: [
             Row(spacing: 10, children: [
               project.imageUrl != null
@@ -77,13 +77,37 @@ class ProjectDetail extends StatelessWidget {
                 ],
               ),
             ]),
-            Text("Project details: ", style: TextStyle(fontSize: 15)),
+            Text("Available Platform: ", style: TextStyle(fontSize: 15)),
+            Flex(
+                spacing: 10,
+                direction: Axis.horizontal,
+                children: project.platforms
+                    .map((platform) => Tooltip(
+                          message: platform.name,
+                          child: Material(
+                            color: Colors.grey.shade50,
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                            child: Row(
+                              spacing: 5,
+                              children: [
+                                CircleAvatar(
+                                    backgroundColor: Colors.blue.withAlpha(50),
+                                    radius: 12,
+                                    child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
+                                Text(platform.name, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500)),
+                                const SizedBox(width: 5)
+                              ],
+                            ),
+                          ),
+                        ))
+                    .toList()),
+            Text("Project Details: ", style: TextStyle(fontSize: 15)),
             BulletedList(
               listItems: project.description,
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w300),
               bullet: Icon(Icons.donut_small_sharp, size: 12),
             ),
-            Text("Technology used: ", style: TextStyle(fontSize: 15)),
+            Text("Technology Used: ", style: TextStyle(fontSize: 15)),
             Flex(spacing: 10, direction: Axis.horizontal, children: project.techUsed.map((e) => chip(e.name, e.image)).toList())
           ],
         ),

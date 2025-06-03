@@ -3,7 +3,6 @@ import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/online.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
-import 'package:myportfolio/services/launch.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
@@ -21,7 +20,7 @@ class Experience extends StatelessWidget {
     List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
     return SizedBox(
-      height: context.screenHeight * context.device(1.2, 1.6),
+      height: context.screenHeight * context.device(1.2, 1.65),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Flex(
@@ -43,6 +42,7 @@ class Experience extends StatelessWidget {
                       position: context.device(720, 1000) + (index * context.device(150, 200)),
                       range: 230,
                       translate: 300,
+                      direction: AxisDirection.up,
                       fadeCurve: AnimationHelper.exponent,
                       child: ExperienceCard(company: experience[index]));
                 })

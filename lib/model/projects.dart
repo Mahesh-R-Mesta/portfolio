@@ -40,6 +40,7 @@ class Project {
   static const _inno = Tech(name: "Inno");
   static const _c = Tech(name: "C++");
   static const _map = Tech(name: "Google map");
+  static const _gemini = Tech(name: "Gemini");
   // static const  = Platform(name: "Windows", image: ImageConst.windows);
 
   static const arise = Project(
@@ -126,24 +127,21 @@ class Project {
   );
 
   static const pro_pilot = Project(
-    name: "2ndSmart",
-    shortDescription: "Managing the process of refurbishing electronics accessories",
-    description: [
-      "Developed a mobile app to manage the refurbishment process of electronic accessories",
-      "Planned and developed the workflow with team",
-      "Implemented app tour and multi-language localization"
-    ],
+    name: "Pro-Pilot",
+    shortDescription: "A Dart CLI tool to generate boilerplate code for Flutter/React project",
+    description: ["Generates code and create files and folder inside project", "Integrated Gemini API"],
     links: [
       Link(
-        image: ImageConst.web,
-        name: "Link",
-        url: "https://romys.in/",
+        image: ImageConst.medium,
+        name: "Medium",
+        url: "https://medium.com/@maheshmesta/how-i-built-a-dart-cli-tool-that-generates-flutter-react-boilerplate-with-ai-9d75ad105cf3",
       )
     ],
-    platforms: [_android, _web],
-    techUsed: [_flutter, _dart, _firebase],
-    duration: "Nov 2021 - Nov 2022",
-    company: "Geeksynergy",
+    platforms: [_windows],
+    techUsed: [_dart, _gemini],
+    duration: "",
+    company: "",
+    isPersonal: true,
   );
 
   static const secondSmart = Project(
