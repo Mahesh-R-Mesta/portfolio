@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/online.dart';
+import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
@@ -9,13 +11,11 @@ import 'package:myportfolio/widget/custom_app_bar.dart';
 class Experience extends StatelessWidget {
   static const String name = "/experience";
   static const String tag = "exp";
-  final ScrollController controller;
-  const Experience({super.key, required this.controller});
+  const Experience({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final theme = Theme.of(context).textTheme;
-    // final controller = ScrollController();
+    final controller = GetIt.I.get<ScrollController>();
 
     List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
@@ -29,26 +29,20 @@ class Experience extends StatelessWidget {
           children: [
             Expanded(
               child: Column(spacing: 6, children: [
-                AnimatedBuilder(
-                    animation: controller,
-                    builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, context.device(720, 1000), 200);
-                      return FadeTransition(
-                          key: ValueKey(experience),
-                          opacity: AnimationHelper.square(value),
-                          child: Transform.translate(offset: Offset(0, 300 - value * 300), child: child));
-                    },
-                    child: CustomAppBar(serialNo: "", title: "Experience")),
+                CustomSlideFadeAnimation(
+                    controller: controller,
+                    position: context.device(720, 1000),
+                    range: 230,
+                    translate: 300,
+                    fadeCurve: AnimationHelper.square,
+                    child: CustomAppBar(title: "Experience")),
                 ...List.generate(experience.length, (index) {
-                  return AnimatedBuilder(
-                      animation: controller,
-                      builder: (context, child) {
-                        final value = AnimationHelper.scrollPortion(controller, context.device(720, 1000) + (index * context.device(150, 200)), 200);
-                        return FadeTransition(
-                            key: ValueKey(experience),
-                            opacity: AnimationHelper.exponent(value),
-                            child: Transform.translate(offset: Offset(0, 300 - value * 300), child: child));
-                      },
+                  return CustomSlideFadeAnimation(
+                      controller: controller,
+                      position: context.device(720, 1000) + (index * context.device(150, 200)),
+                      range: 230,
+                      translate: 300,
+                      fadeCurve: AnimationHelper.exponent,
                       child: ExperienceCard(company: experience[index]));
                 })
               ]),
@@ -57,7 +51,7 @@ class Experience extends StatelessWidget {
                 child: AnimatedBuilder(
                     animation: controller,
                     builder: (context, child) {
-                      final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 200);
+                      final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
                       return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
                     },
                     child: TechStackAnime()))

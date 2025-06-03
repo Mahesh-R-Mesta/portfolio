@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/ui/about.dart';
-import 'package:myportfolio/ui/experiance.dart';
+import 'package:myportfolio/ui/experience.dart';
 import 'package:myportfolio/ui/home.dart';
 
 class RouteService {

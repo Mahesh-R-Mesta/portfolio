@@ -95,9 +95,9 @@ class Certificate extends StatelessWidget {
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: context.isPortrait ? 1 : 3, childAspectRatio: 1.41337),
                 itemBuilder: (ctx, index) {
                   return AnimationConfiguration.staggeredGrid(
-                    duration: Duration(seconds: 1),
+                    duration: Duration(milliseconds: 500),
                     columnCount: 3,
-                    delay: Duration(seconds: 1),
+                    delay: Duration(milliseconds: 500),
                     position: index,
                     child: SlideAnimation(
                       verticalOffset: 60,
