@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:myportfolio/util/constant/links.dart';
 import 'package:myportfolio/widget/toast.dart';
@@ -11,9 +12,10 @@ openLink(String link) async {
 }
 
 mailMe() async {
-  // final Uri emailLaunchUri = Uri.parse("mailto:${MyLinks.email}?subject=Hi&body=Hello");
-  // if (await canLaunchUrl(emailLaunchUri)) await launchUrl(emailLaunchUri);
-  toast("Copied to clipboard");
+  final Uri emailLaunchUri = Uri.parse("mailto:${MyLinks.email}");
+  if (await canLaunchUrl(emailLaunchUri)) await launchUrl(emailLaunchUri);
+}
 
-  Clipboard.setData(ClipboardData(text: MyLinks.email));
+bool isMobile() {
+  return [TargetPlatform.iOS, TargetPlatform.android].contains(defaultTargetPlatform) && kIsWeb;
 }

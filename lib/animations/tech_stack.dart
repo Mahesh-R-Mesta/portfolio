@@ -65,7 +65,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.screenHeight * context.device(1, 0.7),
+      height: context.screenHeight * context.device(1, 0.63),
       width: context.screenWidth * context.device(0.45, 1),
       child: LayoutBuilder(builder: (context, layout) {
         final size = layout.biggest;
@@ -105,86 +105,83 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
               });
         }
 
-        return SizedBox.expand(
-          child: Theme(
-            data: Theme.of(context).copyWith(
-              tooltipTheme: Theme.of(context)
-                  .tooltipTheme
-                  .copyWith(textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700) //, fontFamily: Family.orbit),
-                      ),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(radius),
-              child: InkWell(
-                onTap: () {
-                  if (!context.isPortrait) return;
-                  if (enableSystem.value) {
-                    enableSystem.value = false;
-                    _controller.stop();
-                  } else {
-                    enableSystem.value = true;
-                    _controller.repeat();
-                  }
-                },
-                splashColor: Colors.orange.shade100.withAlpha(40),
-                onHover: (hovered) {
-                  if (hovered) {
-                    enableSystem.value = false;
-                    _controller.stop();
-                  } else {
-                    enableSystem.value = true;
-                    _controller.repeat();
-                  }
-                },
-                child: CustomPaint(
-                  painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
-                  child: Stack(children: [
-                    for (final tech in techStacks) orbitWidget(tech),
-                    Transform.translate(
-                      offset: getCenterOffset(radius),
-                      child: Tooltip(
-                        margin: EdgeInsets.only(top: 20),
-                        message: "Flutter",
-                        child: CircleAvatar(
-                            radius: radius,
-                            backgroundColor: Colors.orange.shade100,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
-                              child: SvgPicture.asset(ImageConst.flutter),
-                            )),
-                      ),
+        return Theme(
+          data: Theme.of(context).copyWith(
+            tooltipTheme:
+                Theme.of(context).tooltipTheme.copyWith(textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700) //, fontFamily: Family.orbit),
                     ),
-                    Positioned(
-                      // transform: Matrix4.identity()..translate(130, 0),
-                      // alignment: Alignment.topCenter,
-                      top: 10,
-                      left: 10,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                "MY TECH SOLAR SYSTEM",
-                                style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, fontFamily: Family.orbit),
-                              ),
-                              ValueListenableBuilder(
-                                  valueListenable: enableSystem,
-                                  builder: (context, enable, _) {
-                                    return Online(enable: enable);
-                                  })
-                            ],
-                          ),
-                          Text(
-                            "My daily work revolve around these...",
-                            style: TextStyle(fontSize: 10, color: ColorConst.hintText),
-                          )
-                        ],
-                      ),
-                    )
-                  ]),
-                ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(radius),
+            child: InkWell(
+              onTap: () {
+                if (!context.isPortrait) return;
+                if (enableSystem.value) {
+                  enableSystem.value = false;
+                  _controller.stop();
+                } else {
+                  enableSystem.value = true;
+                  _controller.repeat();
+                }
+              },
+              splashColor: Colors.orange.shade100.withAlpha(40),
+              onHover: (hovered) {
+                if (hovered) {
+                  enableSystem.value = false;
+                  _controller.stop();
+                } else {
+                  enableSystem.value = true;
+                  _controller.repeat();
+                }
+              },
+              child: CustomPaint(
+                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
+                child: Stack(children: [
+                  for (final tech in techStacks) orbitWidget(tech),
+                  Transform.translate(
+                    offset: getCenterOffset(radius),
+                    child: Tooltip(
+                      margin: EdgeInsets.only(top: 20),
+                      message: "Flutter",
+                      child: CircleAvatar(
+                          radius: radius,
+                          backgroundColor: Colors.orange.shade100,
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 20, bottom: 20, left: 15, right: 20),
+                            child: SvgPicture.asset(ImageConst.flutter),
+                          )),
+                    ),
+                  ),
+                  Positioned(
+                    // transform: Matrix4.identity()..translate(130, 0),
+                    // alignment: Alignment.topCenter,
+                    top: 10,
+                    left: 10,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              "MY TECH SOLAR SYSTEM",
+                              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15, fontFamily: Family.orbit),
+                            ),
+                            ValueListenableBuilder(
+                                valueListenable: enableSystem,
+                                builder: (context, enable, _) {
+                                  return Online(enable: enable);
+                                })
+                          ],
+                        ),
+                        Text(
+                          "My daily work revolve around these...",
+                          style: TextStyle(fontSize: 10, color: ColorConst.hintText),
+                        )
+                      ],
+                    ),
+                  )
+                ]),
               ),
             ),
           ),
