@@ -127,7 +127,7 @@ class Project {
   );
 
   static const pro_pilot = Project(
-    name: "Pro-Pilot",
+    name: "Pro-Pilot CLI",
     shortDescription: "A Dart CLI tool to generate boilerplate code for Flutter/React project",
     description: ["Generates code and create files and folder inside project", "Integrated Gemini API"],
     links: [
@@ -135,6 +135,11 @@ class Project {
         image: ImageConst.medium,
         name: "Medium",
         url: "https://medium.com/@maheshmesta/how-i-built-a-dart-cli-tool-that-generates-flutter-react-boilerplate-with-ai-9d75ad105cf3",
+      ),
+      Link(
+        image: ImageConst.github,
+        name: "Github",
+        url: "https://github.com/Mahesh-R-Mesta/pro_pilot_cli",
       )
     ],
     platforms: [_windows],

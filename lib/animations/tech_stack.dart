@@ -79,7 +79,19 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
           return Offset(xPos + centerOffset.dx, yPos + centerOffset.dy);
         }
 
-        List<GlobalKey<TooltipState>> toolTipKeys = [];
+        final flutterKey = GlobalKey<TooltipState>();
+
+        List<GlobalKey<TooltipState>> toolTipKeys = [flutterKey];
+
+        void tooltipVisibility({required bool show}) {
+          for (var key in toolTipKeys) {
+            if (show) {
+              key.currentState?.ensureTooltipVisible();
+            } else {
+              Tooltip.dismissAllToolTips();
+            }
+          }
+        }
 
         Widget orbitWidget(TechStackData tech) {
           return AnimatedBuilder(
@@ -97,6 +109,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                   child: Tooltip(
                     key: key,
                     message: tech.name,
+                    triggerMode: TooltipTriggerMode.manual,
                     margin: EdgeInsets.only(bottom: 15),
                     child: CircleAvatar(
                         radius: tech.radius,
@@ -124,9 +137,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 if (enableSystem.value) {
                   enableSystem.value = false;
                   _controller.stop();
-                  for (var key in toolTipKeys) {
-                    key.currentState?.ensureTooltipVisible();
-                  }
+                  tooltipVisibility(show: true);
                 } else {
                   enableSystem.value = true;
                   _controller.repeat();
@@ -137,6 +148,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 if (hovered) {
                   enableSystem.value = false;
                   _controller.stop();
+                  tooltipVisibility(show: true);
                 } else {
                   enableSystem.value = true;
                   _controller.repeat();
@@ -149,6 +161,8 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                   Transform.translate(
                     offset: getCenterOffset(radius),
                     child: Tooltip(
+                      key: flutterKey,
+                      triggerMode: TooltipTriggerMode.manual,
                       margin: EdgeInsets.only(top: 20),
                       message: "Flutter",
                       child: CircleAvatar(
