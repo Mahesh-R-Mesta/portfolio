@@ -5,34 +5,30 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
+import 'package:myportfolio/util/extension/context.dart';
 
-class BuildWithFlutter extends StatefulWidget {
+class BuildWithFlutter extends StatelessWidget {
   const BuildWithFlutter({super.key});
 
   @override
-  State<BuildWithFlutter> createState() => _BuildWithFlutterState();
-}
-
-class _BuildWithFlutterState extends State<BuildWithFlutter> with SingleTickerProviderStateMixin {
-  final controller = GetIt.I.get<ScrollController>();
-
-  double rotate() {
-    final value = AnimationHelper.scrollPortion(controller, 0, 200);
-    return value * 2 * pi;
-  }
-
-  double width() {
-    final value = AnimationHelper.scrollPortion(controller, 0, 200);
-    return 1 - value;
-  }
-
-  translateY() {
-    final value = AnimationHelper.scrollPortion(controller, 400, 300);
-    return -200 + ((1 - value) * 200);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final controller = GetIt.I.get<ScrollController>();
+
+    double rotate() {
+      final value = AnimationHelper.scrollPortion(controller, 0, context.device(200, 400));
+      return value * 2 * pi;
+    }
+
+    double width() {
+      final value = AnimationHelper.scrollPortion(controller, 0, context.device(200, 400));
+      return 1 - value;
+    }
+
+    translateY() {
+      final value = AnimationHelper.scrollPortion(controller, context.device(400, 500), context.device(300, 500));
+      return -200 + ((1 - value) * 200);
+    }
+
     return AnimatedBuilder(
         animation: controller,
         builder: (context, child) {
