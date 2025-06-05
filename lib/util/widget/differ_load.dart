@@ -10,7 +10,6 @@ class DifferLoad extends StatelessWidget {
     return FutureBuilder(
         future: future,
         builder: (ctx, snapshot) {
-          // print(builder.call(ctx));
           if (snapshot.connectionState == ConnectionState.done) return builder.call(ctx);
           return Center(child: CircularProgressIndicator(color: Colors.amber));
         });

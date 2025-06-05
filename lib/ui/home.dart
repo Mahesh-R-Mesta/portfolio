@@ -24,11 +24,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   final visibilityNotifier = ValueNotifier<int>(0);
   final controller = GetIt.I.get<ScrollController>();
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
   List<Widget> pages = [
     IntroPage(key: ValueKey("intro")),
     AboutPage(key: ValueKey("about")),
