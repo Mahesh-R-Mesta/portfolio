@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/model/projects.dart';
-import 'package:myportfolio/ui/project/more_project.dart';
+import 'package:myportfolio/ui/project/more_project.dart' deferred as more_projects;
 import 'package:myportfolio/ui/project/project_detail.dart';
 import 'package:myportfolio/ui/project/widget/container_navigation.dart';
 import 'package:myportfolio/ui/project/widget/project_card.dart';
@@ -53,7 +53,12 @@ class Projects extends StatelessWidget {
               position: context.device(1850, 3000),
               range: 200,
               child: ContainerNavigation(
-                  openBuilder: (ctx, close) => MoreProjects(close: close),
+                  openBuilder: (ctx, close) => FutureBuilder(
+                      future: more_projects.loadLibrary(),
+                      builder: (ctx, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) return more_projects.MoreProjects(close: close);
+                        return Center(child: CircularProgressIndicator());
+                      }),
                   closedBuilder: (context, open) {
                     return InkWell(
                       onTap: open,

@@ -1,7 +1,6 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:bulleted_list/bulleted_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myportfolio/model/projects.dart';
 import 'package:myportfolio/services/launch.dart';

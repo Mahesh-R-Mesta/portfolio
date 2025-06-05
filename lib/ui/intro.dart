@@ -80,8 +80,9 @@ class IntroPage extends StatelessWidget {
                       //     .slideX(duration: AnimeConfig.mediumDuration),
                       const SizedBox(height: 30),
                       Row(
-                        spacing: 25,
+                        spacing: 26,
                         crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: context.isPortrait ? MainAxisAlignment.center : MainAxisAlignment.start,
                         children: [
                           Tooltip(
                             message: MyLinks.email,
@@ -96,7 +97,7 @@ class IntroPage extends StatelessWidget {
                           ),
                           Tooltip(message: "Connect with me", child: svgIcon(ImageConst.linkedIn, 20, () => openLink(MyLinks.linkedRank))),
                           Tooltip(
-                            message: "Obtained 5 stars in problem solving",
+                            message: "Obtained 5 ⭐ stars in problem solving",
                             child: svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
                           ),
                           Tooltip(
@@ -104,21 +105,36 @@ class IntroPage extends StatelessWidget {
                             child: svgIcon(ImageConst.medium, 25, () => openLink(MyLinks.medium)),
                           ),
                           Tooltip(message: "Personal github", child: svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub))),
-                          // svgIcon(ImageConst., 25, () => openLink(MyLinks.hackerRank)),
+                          // Tooltip(message: "Only 72 problem solved..", child: svgIcon(ImageConst.leetcode, 25, () => openLink(MyLinks.leetCode))),
                           Tooltip(
-                            message: "Call me",
-                            child: LinkButton(
-                                onTap: () async {
+                              message: "Call me",
+                              child: svgIcon(
+                                ImageConst.phone,
+                                25,
+                                () async {
                                   if (isMobile()) {
                                     await openLink("tel:${MyLinks.phoneNumb}");
                                   } else {
                                     Clipboard.setData(ClipboardData(text: "+91 8722469640"));
-                                    toast("Copied to clipboard");
+                                    toast("Copied phone number");
                                   }
                                 },
-                                radius: 60,
-                                child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelSmall)),
-                          )
+                              )),
+                          // svgIcon(ImageConst., 25, () => openLink(MyLinks.hackerRank)),
+                          // Tooltip(
+                          //   message: "Call me",
+                          //   child: LinkButton(
+                          //       onTap: () async {
+                          //         if (isMobile()) {
+                          //           await openLink("tel:${MyLinks.phoneNumb}");
+                          //         } else {
+                          //           Clipboard.setData(ClipboardData(text: "+91 8722469640"));
+                          //           toast("Copied to clipboard");
+                          //         }
+                          //       },
+                          //       radius: 60,
+                          //       child: Text("+91 8722469640", style: Theme.of(context).textTheme.labelSmall)),
+                          // )
                         ],
                       )
                           .animate(delay: AnimeConfig.delayDuration * 3, onComplete: (_) => blastController.onStart?.call(0))

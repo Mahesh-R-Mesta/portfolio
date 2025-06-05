@@ -1,4 +1,4 @@
-typedef CompanyInfo = ({String role, String city, String company, String startAndEnd, String details, bool current});
+typedef CompanyInfo = ({String role, String city, String company, String startAndEnd, List<String> details, bool current});
 
 mixin StringConst {
   static const String title = "Flutter Developer &\nML Enthusiast";
@@ -18,11 +18,11 @@ mixin StringConst {
     city: "Bangalore",
     startAndEnd: "2022 - Present",
     current: true,
-    details: """• Worked on the company product, developed a cross-platform app
-for mobile and Windows using a single codebase
-• Created POCs in Android native using Kotlin and implemented iOS
-feature
-• Developed custom plugins for project needs."""
+    details: [
+      "• Worked on the company product, developed a cross-platform app for mobile and Windows using a single codebase",
+      "• Created POCs in Android native using Kotlin and implemented iOS feature",
+      "• Developed custom plugins for project needs."
+    ],
   );
 
   static const CompanyInfo geekSynergy = (
@@ -31,11 +31,11 @@ feature
     city: "Bangalore",
     current: false,
     startAndEnd: "Jul 2021 - May 2022",
-    details: """• Developed and deployed an application for web and mobile from a
-single codebase
-• Guided flutter internship students and helped theme to resolve
-issue's
-• Implemented app localization to support multiple languages"""
+    details: [
+      "• Developed and deployed an application for web and mobile from a single codebase",
+      "• Guided flutter internship students and helped theme to resolve issue's",
+      "• Implemented app localization to support multiple languages"
+    ]
   );
 
   static const CompanyInfo appBee = (
@@ -44,9 +44,11 @@ issue's
     city: "Sirsi",
     current: false,
     startAndEnd: "Jan 2021 - Jul 2021",
-    details: """• Developed interactive UI screen, enhancing user experience
-• Implemented RESTful APIs for data integration
-• Troubleshot and debugged issues ensuring smooth functionality"""
+    details: [
+      "• Developed interactive UI screen, enhancing user experience",
+      "• Implemented RESTful APIs for data integration",
+      "• Troubleshot and debugged issues ensuring smooth functionality"
+    ]
   );
 }
 
