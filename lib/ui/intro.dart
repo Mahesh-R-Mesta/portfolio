@@ -43,12 +43,12 @@ class IntroPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(StringConst.title, style: Theme.of(context).textTheme.titleLarge!)
-                          .animate()
+                          .animate(delay: AnimeConfig.delayDuration)
                           .fade(duration: AnimeConfig.mediumDuration, begin: 0, end: 1)
                           .slideY(begin: -0.5, end: 0, duration: AnimeConfig.mediumDuration),
                       const SizedBox(height: 10),
                       Text(StringConst.inShortAbout, style: Theme.of(context).textTheme.titleMedium!)
-                          .animate(delay: AnimeConfig.delayDuration)
+                          .animate(delay: AnimeConfig.delayDuration * 2)
                           .fade(duration: AnimeConfig.mediumDuration, begin: 0, end: 1)
                           .slideX(begin: -0.5, end: 0, duration: AnimeConfig.mediumDuration),
                       // FutureBuilder(
@@ -143,7 +143,7 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
               Flexible(child: Lottie.asset(LottieAnime.desk, height: 400, repeat: false))
-                  .animate()
+                  .animate(delay: AnimeConfig.delayDuration)
                   .fade(duration: AnimeConfig.mediumDuration)
                   .slideX(begin: 0.5, end: 0, duration: AnimeConfig.mediumDuration)
             ],

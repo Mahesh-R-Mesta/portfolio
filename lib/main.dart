@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:myportfolio/route.dart';
 import 'package:myportfolio/services/locator.dart';
 import 'package:myportfolio/theme.dart';
-import 'package:myportfolio/ui/splash_screen.dart';
 import 'package:myportfolio/util/scroll_behaviour.dart';
 
 void main() {
@@ -18,7 +17,8 @@ void main() {
       debugShowCheckedModeBanner: false,
       theme: theme,
       scrollBehavior: CustomScrollBehavior(),
-      home: LoadingScreen(),
+      onGenerateRoute: RouteService.generateRoute,
+      initialRoute: RouteService.INITIAL,
     ),
   ));
 }
