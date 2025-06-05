@@ -3,10 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/model/projects.dart';
 import 'package:myportfolio/ui/project/more_project.dart' deferred as more_projects;
-import 'package:myportfolio/ui/project/project_detail.dart';
+import 'package:myportfolio/ui/project/project_detail.dart' deferred as project_detail;
 import 'package:myportfolio/ui/project/widget/container_navigation.dart';
 import 'package:myportfolio/ui/project/widget/project_card.dart';
 import 'package:myportfolio/util/extension/context.dart';
+import 'package:myportfolio/util/widget/differ_load.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Projects extends StatelessWidget {
@@ -44,7 +45,9 @@ class Projects extends StatelessWidget {
                         color: Color(0xffF7F9FC),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
                         child: ContainerNavigation(
-                            openBuilder: (ctx, closeContainer) => ProjectDetail(project: projects[index], popCall: () => closeContainer.call()),
+                            openBuilder: (ctx, closeContainer) => DifferLoad(
+                                future: project_detail.loadLibrary(),
+                                builder: (ctx) => project_detail.ProjectDetail(project: projects[index], popCall: () => closeContainer.call())),
                             closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: ProjectCard(project: projects[index]))),
                       ),
                     )),

@@ -1,11 +1,9 @@
-import 'dart:math';
-
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:myportfolio/ui/certificate/cerificate_view.dart' deferred as certificate;
 import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
+import 'package:myportfolio/util/widget/differ_load.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Certificate extends StatelessWidget {
@@ -25,59 +23,15 @@ class Certificate extends StatelessWidget {
     ];
 
     show(BuildContext context, String image) async {
-      final size = MediaQuery.of(context).size;
       Navigator.of(context).push(PageRouteBuilder(
           fullscreenDialog: true,
           barrierColor: Colors.black.withOpacity(0.5),
           pageBuilder: (ctx, _, __) {
-            return Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: ConfettiWidget(
-                    emissionFrequency: 0.1,
-                    blastDirection: pi / 4,
-                    maxBlastForce: 40,
-                    confettiController: ConfettiController(duration: const Duration(seconds: 5))..play(),
-                    blastDirectionality: BlastDirectionality.directional, // don't specify a direction, blast randomly
-                    shouldLoop: true, // start again as soon as the animation is finished
-                    colors: const [Colors.green, Colors.blue, Colors.pink, Colors.orange, Colors.purple], // manually specify the colors to be used
-                    // createParticlePath: drawStar, // define a custom shape/path.
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: ConfettiWidget(
-                    emissionFrequency: 0.1,
-                    blastDirection: 3 * (pi / 4),
-                    maxBlastForce: 40,
-                    confettiController: ConfettiController(duration: const Duration(seconds: 5))..play(),
-                    blastDirectionality: BlastDirectionality.directional, // don't specify a direction, blast randomly
-                    shouldLoop: true, // start again as soon as the animation is finished
-                    colors: const [Colors.green, Colors.blue, Colors.pink, Colors.orange, Colors.purple], // manually specify the colors to be used
-                    // createParticlePath: drawStar, // define a custom shape/path.
-                  ),
-                ),
-                Positioned(
-                  top: 20,
-                  right: 20,
-                  child: IconButton(onPressed: () => Navigator.pop(ctx), icon: Icon(Icons.close, size: 40)),
-                ),
-                Center(
-                  child: SizedBox(
-                    width: size.width / 1.5,
-                    height: size.height / 1.5,
-                    child: Hero(
-                      tag: image,
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Image.asset(image, width: size.width / 1.5, height: size.height / 1.5),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            );
+            return DifferLoad(
+                future: certificate.loadLibrary(),
+                builder: (context) {
+                  return certificate.CertificateView(image: image);
+                });
           }));
     }
 

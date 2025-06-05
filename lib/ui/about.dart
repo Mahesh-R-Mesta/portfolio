@@ -1,12 +1,13 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:lottie/lottie.dart';
+import 'package:lottie/lottie.dart' deferred as lottie;
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/lottie_assets.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
+import 'package:myportfolio/util/widget/differ_load.dart';
 import 'package:myportfolio/widget/icon_express.dart';
 import 'package:myportfolio/widget/text_tile.dart';
 
@@ -20,6 +21,7 @@ class AboutPage extends StatelessWidget {
     final controller = GetIt.I.get<ScrollController>();
     return SizedBox(
       height: context.screenHeight,
+      width: context.screenWidth,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Flex(
@@ -83,7 +85,7 @@ class AboutPage extends StatelessWidget {
                 range: 450,
                 translate: 500,
                 fadeCurve: AnimationHelper.square,
-                child: Lottie.asset(LottieAnime.monkey, width: 450))
+                child: DifferLoad(future: lottie.loadLibrary(), builder: (ctx) => lottie.Lottie.asset(LottieAnime.monkey, width: 450)))
           ],
         ),
       ),

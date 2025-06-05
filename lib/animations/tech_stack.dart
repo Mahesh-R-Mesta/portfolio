@@ -44,12 +44,13 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
     firstOrbitAngle = Tween<double>(begin: 0, end: 8 * pi).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     techStacks = [
       (asset: ImageConst.uiUx, radius: 20, orbitRadius: 100, name: "UI/UX principles", phase: pi / 4, anime: firstOrbitAngle),
-      (asset: ImageConst.swift, radius: 25, orbitRadius: 160, name: "Swift", phase: pi / 2, anime: secondOrbitAngle),
+      (asset: ImageConst.swift, radius: 25, orbitRadius: 160, name: "Swift", phase: 3 * ((2 * pi) / 5), anime: secondOrbitAngle),
       (asset: ImageConst.api, radius: 20, orbitRadius: 100, name: "API Integration", phase: (pi * 3) / 4, anime: firstOrbitAngle),
       (asset: ImageConst.android, radius: 25, orbitRadius: 160, name: "Android", phase: 0, anime: secondOrbitAngle),
-      (asset: ImageConst.kotlin, radius: 25, orbitRadius: 160, name: "Kotlin", phase: pi, anime: secondOrbitAngle),
+      (asset: ImageConst.kotlin, radius: 25, orbitRadius: 160, name: "Kotlin", phase: (2 * pi) / 5, anime: secondOrbitAngle),
+      (asset: ImageConst.github, radius: 25, orbitRadius: 160, name: "Git & Actions", phase: 2 * ((2 * pi) / 5), anime: secondOrbitAngle),
       (asset: ImageConst.firebase, radius: 20, orbitRadius: 100, name: "Firebase", phase: pi + (pi / 4), anime: firstOrbitAngle),
-      (asset: ImageConst.java, radius: 25, orbitRadius: 160, name: "Java", phase: pi + (pi / 2), anime: secondOrbitAngle),
+      (asset: ImageConst.java, radius: 25, orbitRadius: 160, name: "Java", phase: 4 * ((2 * pi) / 5), anime: secondOrbitAngle),
       (asset: ImageConst.dart, radius: 20, orbitRadius: 100, name: "Dart", phase: pi + (pi * 3 / 4), anime: firstOrbitAngle),
       (asset: ImageConst.python, radius: 25, orbitRadius: 230, name: "Python", phase: pi, anime: thirdOrbitAngle),
     ];
