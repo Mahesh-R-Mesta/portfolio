@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/services/launch.dart';
 
 class LinkButton extends StatefulWidget {
   final Widget child;
@@ -34,7 +35,15 @@ class _LinkButtonState extends State<LinkButton> with SingleTickerProviderStateM
           _controller.reverse();
         }
       },
-      onTap: widget.onTap,
+      onTap: isMobile()
+          ? () {
+              _controller.forward().then((_) {
+                _controller.reverse().then((_) {
+                  widget.onTap();
+                });
+              });
+            }
+          : widget.onTap,
       child: AnimatedBuilder(
           animation: _controller,
           builder: (context, _) {

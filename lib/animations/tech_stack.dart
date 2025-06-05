@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:myportfolio/animations/online.dart';
+import 'package:myportfolio/services/launch.dart';
 import 'package:myportfolio/util/constant/color_constant.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
@@ -42,11 +43,11 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
     secondOrbitAngle = Tween<double>(begin: 0, end: 4 * pi).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     firstOrbitAngle = Tween<double>(begin: 0, end: 8 * pi).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
     techStacks = [
-      (asset: ImageConst.uiUx, radius: 20, orbitRadius: 100, name: "UI/UX", phase: pi / 4, anime: firstOrbitAngle),
+      (asset: ImageConst.uiUx, radius: 20, orbitRadius: 100, name: "UI/UX principles", phase: pi / 4, anime: firstOrbitAngle),
       (asset: ImageConst.swift, radius: 25, orbitRadius: 160, name: "Swift", phase: pi / 2, anime: secondOrbitAngle),
-      (asset: ImageConst.api, radius: 20, orbitRadius: 100, name: "API INTEGRATION", phase: (pi * 3) / 4, anime: firstOrbitAngle),
-      (asset: ImageConst.android, radius: 25, orbitRadius: 160, name: "ANDROID", phase: 0, anime: secondOrbitAngle),
-      (asset: ImageConst.kotlin, radius: 25, orbitRadius: 160, name: "KOTLIN", phase: pi, anime: secondOrbitAngle),
+      (asset: ImageConst.api, radius: 20, orbitRadius: 100, name: "API Integration", phase: (pi * 3) / 4, anime: firstOrbitAngle),
+      (asset: ImageConst.android, radius: 25, orbitRadius: 160, name: "Android", phase: 0, anime: secondOrbitAngle),
+      (asset: ImageConst.kotlin, radius: 25, orbitRadius: 160, name: "Kotlin", phase: pi, anime: secondOrbitAngle),
       (asset: ImageConst.firebase, radius: 20, orbitRadius: 100, name: "Firebase", phase: pi + (pi / 4), anime: firstOrbitAngle),
       (asset: ImageConst.java, radius: 25, orbitRadius: 160, name: "Java", phase: pi + (pi / 2), anime: secondOrbitAngle),
       (asset: ImageConst.dart, radius: 20, orbitRadius: 100, name: "Dart", phase: pi + (pi * 3 / 4), anime: firstOrbitAngle),
@@ -148,7 +149,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 if (hovered) {
                   enableSystem.value = false;
                   _controller.stop();
-                  tooltipVisibility(show: true);
+                  // tooltipVisibility(show: true);
                 } else {
                   enableSystem.value = true;
                   _controller.repeat();
@@ -195,7 +196,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                           ],
                         ),
                         Text(
-                          "My daily work revolve around these...",
+                          "My daily work revolve around these... ${isMobile() ? "(Tap to See)" : "(Hover to see)"}",
                           style: TextStyle(fontSize: 10, color: ColorConst.hintText),
                         )
                       ],

@@ -15,17 +15,17 @@ class BuildWithFlutter extends StatelessWidget {
     final controller = GetIt.I.get<ScrollController>();
 
     double rotate() {
-      final value = AnimationHelper.scrollPortion(controller, 0, context.device(200, 400));
+      final value = AnimationHelper.scrollPortion(controller, 0, context.device(200, 500));
       return value * 2 * pi;
     }
 
     double width() {
-      final value = AnimationHelper.scrollPortion(controller, 0, context.device(200, 400));
+      final value = AnimationHelper.scrollPortion(controller, 0, context.device(200, 500));
       return 1 - value;
     }
 
     translateY() {
-      final value = AnimationHelper.scrollPortion(controller, context.device(400, 500), context.device(300, 500));
+      final value = AnimationHelper.scrollPortion(controller, context.device(400, 500), context.device(300, 600));
       return -200 + ((1 - value) * 200);
     }
 

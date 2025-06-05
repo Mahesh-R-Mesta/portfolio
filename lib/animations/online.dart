@@ -29,6 +29,12 @@ class _OnlineState extends State<Online> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SizedBox.square(
       dimension: 50,

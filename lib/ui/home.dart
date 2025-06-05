@@ -27,30 +27,35 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.initState();
   }
 
+  List<Widget> pages = [
+    IntroPage(key: ValueKey("intro")),
+    AboutPage(key: ValueKey("about")),
+    Experience(key: ValueKey("exp")),
+    Projects(key: ValueKey("project")),
+    Certificate(key: ValueKey("certificate")),
+    Footer(key: ValueKey("footer"))
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
-          ListView(
+          ListView.builder(
+            itemCount: pages.length,
             controller: controller,
-            children: [
-              IntroPage(),
-              AboutPage(),
-              Experience(),
-              Projects(),
-              Certificate(),
-              Footer(),
-            ],
+            itemBuilder: (ctx, index) => pages[index],
           ),
           Align(
               alignment: Alignment.topRight,
-              child: IconButton(
-                padding: EdgeInsets.all(20),
-                onPressed: () =>
-                    controller.animateTo(0, duration: Duration(milliseconds: (controller.offset * 0.6).toInt()), curve: Curves.decelerate),
-                icon: Icon(Atlas.house),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  padding: EdgeInsets.all(20),
+                  onPressed: () =>
+                      controller.animateTo(0, duration: Duration(milliseconds: (controller.offset * 0.6).toInt()), curve: Curves.decelerate),
+                  icon: Icon(Atlas.house),
+                ),
               )),
           Positioned(top: 10, right: 80, child: BuildWithFlutter())
           // Positioned(

@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/online.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/animations/tech_stack.dart';
+import 'package:myportfolio/services/launch.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
@@ -93,7 +94,7 @@ class ExperienceCard extends StatelessWidget {
           const SizedBox(height: 5),
           Text('${company.role} • ${company.startAndEnd}', style: theme.labelSmall),
           const SizedBox(height: 10),
-          Text(company.details, style: theme.bodyMedium),
+          for (final detail in company.details) Text(detail, style: theme.bodyMedium),
         ],
       ),
     );
