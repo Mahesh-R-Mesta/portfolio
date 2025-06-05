@@ -142,24 +142,33 @@
 
     window.addEventListener('load', function() {
       // Listen for Flutter initialization
-      window.addEventListener('flutter-first-frame', function() {
-        console.log('Flutter application rendered its first frame');
-        hideLoader();
+      _flutter.loader.load({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+              const loader = document.getElementById("loading-terminal");
+              loader.remove();
+              appRunner.runApp();
+          });
+        }
       });
+
       
       // Fallback: if Flutter takes too long, hide loader after 10 seconds
-      setTimeout(hideLoader, 2000);
+      // setTimeout(hideLoader, 2000);
     });
     
-    function hideLoader() {
-      const terminal = document.getElementById('loading-terminal');
-      if (terminal) {
-        terminal.classList.add('hidden');
-        setTimeout(() => {
-          terminal.style.display = 'none';
-        }, 500);
-      }
-    }
+    // function hideLoader() {
+    //   const terminal = document.getElementById('loading-terminal');
+    //   if (terminal) {
+    //     terminal.classList.add('hidden');
+    //     setTimeout(() => {
+    //       terminal.style.display = 'none';
+    //     }, 500);
+    //   }
+    // }
 
 
   </script>
