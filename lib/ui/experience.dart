@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/online.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
-import 'package:myportfolio/animations/tech_stack.dart';
-import 'package:myportfolio/services/launch.dart';
+import 'package:myportfolio/animations/tech_stack.dart' deferred as tech_stack;
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/string_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
+import 'package:myportfolio/util/widget/differ_load.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
 
 class Experience extends StatelessWidget {
@@ -59,7 +59,10 @@ class Experience extends StatelessWidget {
                     final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
                     return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
                   },
-                  child: TechStackAnime());
+                  child: DifferLoad(
+                    future: tech_stack.loadLibrary(),
+                    builder: (ctx) => tech_stack.TechStackAnime(),
+                  ));
             })
             // )
           ],

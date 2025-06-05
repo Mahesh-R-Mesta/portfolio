@@ -1,14 +1,16 @@
 import 'package:atlas_icons/atlas_icons.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/build_with_flutter.dart';
 import 'package:myportfolio/ui/about.dart';
-import 'package:myportfolio/ui/certificates.dart';
+import 'package:myportfolio/ui/certificate/certificates.dart';
 import 'package:myportfolio/ui/experience.dart';
 import 'package:myportfolio/ui/footer.dart';
 import 'package:myportfolio/ui/intro.dart';
 import 'package:myportfolio/ui/project/projects_page.dart';
+import 'package:myportfolio/util/constant/anime_duration.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -42,10 +44,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: Stack(
         children: [
           ListView.builder(
-            itemCount: pages.length,
-            controller: controller,
-            itemBuilder: (ctx, index) => pages[index],
-          ),
+              itemCount: pages.length,
+              controller: controller,
+              itemBuilder: (ctx, index) {
+                debugPrint(pages[index].toString());
+                return pages[index];
+              }),
           Align(
               alignment: Alignment.topRight,
               child: Padding(
@@ -58,6 +62,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 ),
               )),
           Positioned(top: 10, right: 80, child: BuildWithFlutter())
+              .animate(delay: AnimeConfig.delayDuration)
+              .slideY(begin: -5, duration: Duration(milliseconds: 500))
           // Positioned(
           //     right: -2,
           //     top: size.height / 7,
