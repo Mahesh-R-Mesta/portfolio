@@ -149,6 +149,8 @@
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
               const loader = document.getElementById("loading-terminal");
+              loader.classList.add('hidden');
+              loader.style.display = 'none';
               loader.remove();
               appRunner.runApp();
           });
