@@ -99,7 +99,7 @@ class IntroPage extends StatelessWidget {
                             child: svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
                           ),
                           Tooltip(
-                            message: "See my published articles",
+                            message: "Read my published articles",
                             child: svgIcon(ImageConst.medium, 25, () => openLink(MyLinks.medium)),
                           ),
                           Tooltip(message: "Personal github", child: svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub))),
@@ -114,7 +114,7 @@ class IntroPage extends StatelessWidget {
                                     await openLink("tel:${MyLinks.phoneNumb}");
                                   } else {
                                     Clipboard.setData(ClipboardData(text: "+91 8722469640"));
-                                    toast("Copied phone number");
+                                    toast("Copied phone number +91 8722469640");
                                   }
                                 },
                               )),

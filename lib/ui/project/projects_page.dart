@@ -39,7 +39,7 @@ class Projects extends StatelessWidget {
                 projects.length,
                 (index) => CustomSlideFadeAnimation(
                       controller: controller,
-                      position: context.device(1400, 2200) + (index * context.device(120, 200)),
+                      position: context.device(1400, 2200) + (index * context.device(120, 150)),
                       range: 200,
                       child: Material(
                         color: Color(0xffF7F9FC),
@@ -53,7 +53,7 @@ class Projects extends StatelessWidget {
                     )),
             CustomSlideFadeAnimation(
               controller: controller,
-              position: context.device(1850, 3000),
+              position: context.device(1850, 2900),
               range: 200,
               child: ContainerNavigation(
                   openBuilder: (ctx, close) => FutureBuilder(
