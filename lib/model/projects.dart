@@ -128,7 +128,7 @@ class Project {
 
   static const pro_pilot = Project(
     name: "Pro-Pilot CLI",
-    shortDescription: "A Dart CLI tool to generate boilerplate code for Flutter/React project",
+    shortDescription: "A Dart CLI tool to generate boilerplate code for Flutter/React project using AI",
     description: ["Generates code and create files and folder inside project", "Integrated Gemini API"],
     links: [
       Link(
