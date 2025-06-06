@@ -115,8 +115,8 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 toolTipKeys.add(key);
                 return Transform.translate(
                   offset: getOrbitOffset(
-                    radius: tech.radius * context.device(1, 0.9),
-                    orbit: tech.orbitRadius * context.device(1, 0.9),
+                    radius: tech.radius * context.device(1, 0.87),
+                    orbit: tech.orbitRadius * context.device(1, 0.87),
                     animation: tech.anime!,
                     phase: tech.phase,
                   ),
@@ -155,7 +155,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 }
               },
               child: CustomPaint(
-                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460].map((e) => e * context.device(1, 0.9)).toList()),
+                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460].map((e) => e * context.device(1, 0.87)).toList()),
                 child: Stack(children: [
                   for (final tech in techStacks) orbitWidget(tech),
                   Transform.translate(

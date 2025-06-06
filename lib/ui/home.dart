@@ -9,7 +9,7 @@ import 'package:myportfolio/ui/certificate/certificates.dart' deferred as certif
 import 'package:myportfolio/ui/experience.dart';
 import 'package:myportfolio/ui/footer.dart' deferred as footer;
 import 'package:myportfolio/ui/intro.dart';
-import 'package:myportfolio/ui/project/projects_page.dart' deferred as project;
+import 'package:myportfolio/ui/project/projects_page.dart';
 import 'package:myportfolio/util/constant/anime_duration.dart';
 import 'package:myportfolio/util/widget/differ_load.dart';
 
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     IntroPage(key: ValueKey("intro")),
     AboutPage(key: ValueKey("about")),
     Experience(key: ValueKey("exp")),
-    DifferLoad(future: project.loadLibrary(), builder: (ctx) => project.Projects(key: ValueKey("project"))),
+    Projects(key: ValueKey("project")),
     DifferLoad(future: certificate.loadLibrary(), builder: (ctx) => certificate.Certificate(key: ValueKey("certificate"))),
     DifferLoad(future: footer.loadLibrary(), builder: (ctx) => footer.Footer(key: ValueKey("footer")))
   ];

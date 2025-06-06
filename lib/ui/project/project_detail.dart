@@ -23,9 +23,12 @@ class ProjectDetail extends StatelessWidget {
             Row(spacing: 10, children: [
               Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child: project.imageUrl != null
-                      ? Hero(tag: project.imageUrl!, child: Image.asset(project.imageUrl!, width: 100, height: 100))
-                      : Icon(Atlas.project_presentation, size: 50, color: Colors.black54)),
+                  child: Hero(
+                    tag: project.name,
+                    child: project.imageUrl != null
+                        ? Image.asset(project.imageUrl!, width: 100, height: 100)
+                        : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
+                  )),
               Column(
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +42,7 @@ class ProjectDetail extends StatelessWidget {
                     children: [
                       ConstrainedBox(
                           constraints: BoxConstraints(maxWidth: context.isPortrait ? context.screenWidth * 0.5 : double.infinity),
-                          child: Text(project.name, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600))),
+                          child: Material(child: Text(project.name, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600)))),
                       if (project.isPersonal == true)
                         Material(
                           color: Colors.blue,

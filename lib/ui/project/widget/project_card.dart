@@ -21,9 +21,12 @@ class ProjectCard extends StatelessWidget {
               heightFactor: 0.42,
               child: Opacity(
                 opacity: 0.1,
-                child: project.imageUrl != null
-                    ? Hero(tag: project.imageUrl!, child: Image.asset(project.imageUrl!, width: 200, height: 200))
-                    : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
+                child: Hero(
+                  tag: project.name,
+                  child: project.imageUrl != null
+                      ? Image.asset(project.imageUrl!, width: 200, height: 200)
+                      : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
+                ),
               ),
             ),
             Padding(
