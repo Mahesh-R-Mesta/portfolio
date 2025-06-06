@@ -33,16 +33,19 @@ class AboutPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                CustomSlideFadeAnimation(
-                  controller: controller,
-                  position: 50,
-                  range: 300,
-                  translate: 800,
-                  direction: AxisDirection.right,
-                  fadeCurve: AnimationHelper.square,
-                  child: TextTile(
-                    title: "About me 😀",
-                    description: StringConst.about,
+                SizedBox(
+                  width: context.screenWidth * context.device(0.5, 1),
+                  child: CustomSlideFadeAnimation(
+                    controller: controller,
+                    position: 50,
+                    range: 300,
+                    translate: 800,
+                    direction: AxisDirection.right,
+                    fadeCurve: AnimationHelper.square,
+                    child: TextTile(
+                      title: "About me 😀",
+                      description: StringConst.about,
+                    ),
                   ),
                 ),
                 CustomSlideFadeAnimation(
