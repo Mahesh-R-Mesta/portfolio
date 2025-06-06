@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -9,9 +9,8 @@ class Footer extends StatelessWidget {
     return Material(
       color: Colors.blueGrey.shade500,
       child: SizedBox(
-        // height: 250,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 30),
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             spacing: 15,
             mainAxisSize: MainAxisSize.min,
@@ -25,7 +24,7 @@ class Footer extends StatelessWidget {
                 children: [
                   const SizedBox(width: 15),
                   Icon(Icons.phone, color: Colors.white, size: 20),
-                  Text("+91 8722469640", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200, color: Colors.white)),
+                  Text("Phone: +91 8722469640", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200, color: Colors.white)),
                 ],
               ),
               Row(
@@ -34,7 +33,7 @@ class Footer extends StatelessWidget {
                 children: [
                   const SizedBox(width: 15),
                   Icon(Icons.email, color: Colors.white, size: 20),
-                  Text("maheshmesta98@gmail.com", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200, color: Colors.white)),
+                  Text("Email: maheshmesta98@gmail.com", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w200, color: Colors.white)),
                 ],
               )
             ],

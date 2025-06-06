@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/model/projects.dart';
-import 'package:myportfolio/ui/project/project_detail.dart';
-import 'package:myportfolio/ui/project/widget/container_navigation.dart';
+import 'package:myportfolio/route.dart';
 import 'package:myportfolio/ui/project/widget/project_card.dart';
 
 class MoreProjects extends StatelessWidget {
@@ -24,10 +23,9 @@ class MoreProjects extends StatelessWidget {
                 (index) => Material(
                       color: Color(0xffF7F9FC),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
-                      child: ContainerNavigation(
-                          openBuilder: (ctx, closeContainer) =>
-                              ProjectDetail(project: remainingProjects[index], popCall: () => closeContainer.call()),
-                          closedBuilder: (ctx, open) => InkWell(onTap: () => open(), child: ProjectCard(project: remainingProjects[index]))),
+                      child: InkWell(
+                          onTap: () => Navigator.of(context).pushNamed(RouteService.projectDetail, arguments: remainingProjects[index]),
+                          child: ProjectCard(project: remainingProjects[index])),
                     )),
           ],
         ),

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart' deferred as confetti;
 import 'package:flutter/material.dart';
+import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/util/widget/differ_load.dart';
 
 class CertificateView extends StatelessWidget {
@@ -50,7 +51,7 @@ class CertificateView extends StatelessWidget {
         ),
         Center(
           child: SizedBox(
-              width: size.width / 1.5,
+              width: context.isPortrait ? size.width : size.width / 1.5,
               height: size.height / 1.5,
               child: Hero(
                   tag: image,

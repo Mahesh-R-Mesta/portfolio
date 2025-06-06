@@ -52,18 +52,16 @@ class Experience extends StatelessWidget {
             // Flexible(
             //     fit: isMobile() ? FlexFit.loose : FlexFit.loose,
             //     child:
-            Builder(builder: (context) {
-              return AnimatedBuilder(
-                  animation: controller,
-                  builder: (context, child) {
-                    final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
-                    return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
-                  },
-                  child: DifferLoad(
-                    future: tech_stack.loadLibrary(),
-                    builder: (ctx) => tech_stack.TechStackAnime(),
-                  ));
-            })
+            AnimatedBuilder(
+                animation: controller,
+                builder: (context, child) {
+                  final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
+                  return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
+                },
+                child: DifferLoad(
+                  future: tech_stack.loadLibrary(),
+                  builder: (ctx) => tech_stack.TechStackAnime(),
+                ))
             // )
           ],
         ),
