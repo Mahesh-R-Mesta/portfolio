@@ -95,40 +95,39 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
         }
 
         Widget orbitWidget(TechStackData tech) {
+          final key = GlobalKey<TooltipState>();
           return AnimatedBuilder(
               animation: _controller,
-              builder: (context, _) {
-                final key = GlobalKey<TooltipState>();
+              child: Tooltip(
+                key: key,
+                message: tech.name,
+                triggerMode: TooltipTriggerMode.manual,
+                margin: EdgeInsets.only(bottom: 15),
+                child: CircleAvatar(
+                    radius: tech.radius,
+                    backgroundColor: Colors.orange.shade100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: SvgPicture.asset(tech.asset),
+                    )),
+              ),
+              builder: (context, child) {
                 toolTipKeys.add(key);
                 return Transform.translate(
                   offset: getOrbitOffset(
-                    radius: tech.radius,
-                    orbit: tech.orbitRadius,
+                    radius: tech.radius * context.device(1, 0.9),
+                    orbit: tech.orbitRadius * context.device(1, 0.9),
                     animation: tech.anime!,
                     phase: tech.phase,
                   ),
-                  child: Tooltip(
-                    key: key,
-                    message: tech.name,
-                    triggerMode: TooltipTriggerMode.manual,
-                    margin: EdgeInsets.only(bottom: 15),
-                    child: CircleAvatar(
-                        radius: tech.radius,
-                        backgroundColor: Colors.orange.shade100,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: SvgPicture.asset(tech.asset),
-                        )),
-                  ),
+                  child: child,
                 );
               });
         }
 
         return Theme(
           data: Theme.of(context).copyWith(
-            tooltipTheme:
-                Theme.of(context).tooltipTheme.copyWith(textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700) //, fontFamily: Family.orbit),
-                    ),
+            tooltipTheme: Theme.of(context).tooltipTheme.copyWith(textStyle: TextStyle(fontSize: 10, fontWeight: FontWeight.w700)),
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(radius),
@@ -156,7 +155,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                 }
               },
               child: CustomPaint(
-                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460]),
+                painter: OrbitalPainter(getCenterOffset(0), [195, 320, 460].map((e) => e * context.device(1, 0.9)).toList()),
                 child: Stack(children: [
                   for (final tech in techStacks) orbitWidget(tech),
                   Transform.translate(
@@ -201,7 +200,14 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                         )
                       ],
                     ),
-                  )
+                  ),
+                  Positioned(
+                      bottom: 10,
+                      left: 15,
+                      child: Text(
+                        "• SATE-MANAGEMENT: BLoC, Provider, GetX",
+                        style: TextStyle(fontSize: 12, color: ColorConst.hintText),
+                      ))
                 ]),
               ),
             ),

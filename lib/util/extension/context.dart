@@ -24,7 +24,7 @@ extension Responsive on BuildContext {
   double device(double landscape, double portrait) {
     if (MediaQuery.of(this).orientation == Orientation.landscape) {
       return landscape;
-    } else if (MediaQuery.of(this).orientation == Orientation.portrait) {
+    } else if (MediaQuery.of(this).orientation == Orientation.portrait && screenWidth < 600) {
       return portrait;
     }
     return portrait;
