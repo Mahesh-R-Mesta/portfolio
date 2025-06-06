@@ -4,14 +4,13 @@ import 'package:myportfolio/route.dart';
 import 'package:myportfolio/ui/project/widget/project_card.dart';
 
 class MoreProjects extends StatelessWidget {
-  final Function() close;
-  const MoreProjects({super.key, required this.close});
+  const MoreProjects({super.key});
 
   @override
   Widget build(BuildContext context) {
     final remainingProjects = [Project.secondSmart, Project.pro_pilot];
     return Scaffold(
-      appBar: AppBar(leading: IconButton(onPressed: close, icon: Icon(Icons.arrow_back))),
+      appBar: AppBar(leading: IconButton(onPressed: () => Navigator.of(context).pop(), icon: Icon(Icons.arrow_back))),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

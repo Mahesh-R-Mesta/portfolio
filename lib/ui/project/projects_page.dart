@@ -3,9 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
 import 'package:myportfolio/model/projects.dart';
 import 'package:myportfolio/route.dart';
-import 'package:myportfolio/ui/project/more_project.dart' deferred as more_projects;
 
-import 'package:myportfolio/ui/project/widget/container_navigation.dart';
 import 'package:myportfolio/ui/project/widget/project_card.dart';
 import 'package:myportfolio/util/extension/context.dart';
 import 'package:myportfolio/widget/custom_app_bar.dart';
@@ -53,29 +51,22 @@ class Projects extends StatelessWidget {
               controller: controller,
               position: context.device(1850, 2900),
               range: 200,
-              child: ContainerNavigation(
-                  openBuilder: (ctx, close) => FutureBuilder(
-                      future: more_projects.loadLibrary(),
-                      builder: (ctx, snapshot) {
-                        if (snapshot.connectionState == ConnectionState.done) return more_projects.MoreProjects(close: close);
-                        return Center(child: CircularProgressIndicator());
-                      }),
-                  closedBuilder: (context, open) {
-                    return InkWell(
-                      onTap: open,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Material(
-                          color: Color(0xffF7F9FC),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                            child: Text("See more..."),
-                          ),
-                        ),
-                      ),
-                    );
-                  }),
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(RouteService.seeMoreProject);
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Material(
+                    color: Color(0xffF7F9FC),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.orange, width: 1.4)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      child: Text("See more..."),
+                    ),
+                  ),
+                ),
+              ),
             )
           ])),
     );

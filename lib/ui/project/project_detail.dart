@@ -21,11 +21,11 @@ class ProjectDetail extends StatelessWidget {
           spacing: 10,
           children: [
             Row(spacing: 10, children: [
-              project.imageUrl != null
-                  ? Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Hero(tag: project.imageUrl!, child: Image.asset(project.imageUrl!, width: 100, height: 100)))
-                  : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
+              Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: project.imageUrl != null
+                      ? Hero(tag: project.imageUrl!, child: Image.asset(project.imageUrl!, width: 100, height: 100))
+                      : Icon(Atlas.project_presentation, size: 50, color: Colors.black54)),
               Column(
                 spacing: 10,
                 crossAxisAlignment: CrossAxisAlignment.start,
