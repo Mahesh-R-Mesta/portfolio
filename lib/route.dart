@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/model/projects.dart';
 import 'package:myportfolio/ui/home.dart';
-// import 'package:myportfolio/ui/splash_screen.dart';
+import 'package:myportfolio/ui/certificate/certificate_view.dart' deferred as certificate;
+import 'package:myportfolio/util/widget/differ_load.dart';
+
+import 'package:myportfolio/ui/project/project_detail.dart'; //deferred as project_detail;
 
 class RouteService {
   static const String INITIAL = "/home";
-  static const String LOADING = "/loading";
+  static const String certificateView = "/certificate_view";
+  static const String projectDetail = "/project_detail";
 
   static Route<dynamic>? generateRoute(RouteSettings setting) {
     switch (setting.name) {
@@ -14,20 +19,31 @@ class RouteService {
             return HomePage();
           });
         }
-      // case LOADING:
-      //   {
-      //     return PageRouteBuilder(pageBuilder: (ctx, animation1, animation2) {
-      //       return LoadingScreen();
-      //     });
-      //   }
-      // case Experience.name:
-      //   {
-      //     return PageRouteBuilder(
-      //         transitionDuration: const Duration(milliseconds: 500),
-      //         pageBuilder: (ctx, animation1, animation2) {
-      //           return Experience();
-      //         });
-      //   }
+      case certificateView:
+        {
+          final image = setting.arguments as String;
+          return PageRouteBuilder(
+              fullscreenDialog: true,
+              barrierColor: Colors.black.withAlpha(125),
+              pageBuilder: (ctx, _, __) {
+                return DifferLoad(
+                    future: certificate.loadLibrary(),
+                    builder: (context) {
+                      return certificate.CertificateView(image: image);
+                    });
+              });
+        }
+
+      case projectDetail:
+        {
+          final project = setting.arguments as Project;
+          return PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 800),
+              pageBuilder: (ctx, _, __) {
+                return ProjectDetail(project: project);
+                // return DifferLoad(future: project_detail.loadLibrary(), builder: (ctx) => project_detail.ProjectDetail(project: project));
+              });
+        }
     }
     return null;
   }

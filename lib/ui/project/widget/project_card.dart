@@ -22,7 +22,7 @@ class ProjectCard extends StatelessWidget {
               child: Opacity(
                 opacity: 0.1,
                 child: project.imageUrl != null
-                    ? Image.asset(project.imageUrl!, width: 200, height: 200)
+                    ? Hero(tag: project.imageUrl!, child: Image.asset(project.imageUrl!, width: 200, height: 200))
                     : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
               ),
             ),

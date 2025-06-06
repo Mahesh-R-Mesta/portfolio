@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class BlastAuraAnime extends StatefulWidget {
   final BlastController controller;
   final Widget child;
@@ -16,14 +14,11 @@ class BlastAuraAnime extends StatefulWidget {
 class _BlastAuraAnimeState extends State<BlastAuraAnime> with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> radiusTween;
-  late Animation<double> carSpeed;
   ui.Image? carImage;
   @override
   void initState() {
-    final width = ScreenUtil().screenWidth;
     controller = AnimationController(vsync: this, duration: Duration(seconds: 3));
     radiusTween = Tween<double>(begin: 0, end: 600).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
-    carSpeed = Tween<double>(begin: 0, end: width).animate(CurvedAnimation(parent: controller, curve: Curves.fastOutSlowIn));
 
     super.initState();
     widget.controller
@@ -47,7 +42,7 @@ class _BlastAuraAnimeState extends State<BlastAuraAnime> with SingleTickerProvid
         animation: controller,
         builder: (context, child) {
           return CustomPaint(
-            painter: WavePainter(radius: radiusTween.value, carImage: carImage, carDistance: carSpeed.value),
+            painter: WavePainter(radius: radiusTween.value),
             child: child,
           );
         },
@@ -57,9 +52,7 @@ class _BlastAuraAnimeState extends State<BlastAuraAnime> with SingleTickerProvid
 
 class WavePainter extends CustomPainter {
   final double radius;
-  final double carDistance;
-  final ui.Image? carImage;
-  WavePainter({required this.radius, required this.carImage, required this.carDistance});
+  WavePainter({required this.radius});
 
   @override
   void paint(Canvas canvas, Size size) {

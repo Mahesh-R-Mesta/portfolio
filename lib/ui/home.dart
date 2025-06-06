@@ -5,12 +5,13 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/build_with_flutter.dart';
 import 'package:myportfolio/ui/about.dart';
-import 'package:myportfolio/ui/certificate/certificates.dart';
+import 'package:myportfolio/ui/certificate/certificates.dart' deferred as certificate;
 import 'package:myportfolio/ui/experience.dart';
-import 'package:myportfolio/ui/footer.dart';
+import 'package:myportfolio/ui/footer.dart' deferred as footer;
 import 'package:myportfolio/ui/intro.dart';
-import 'package:myportfolio/ui/project/projects_page.dart';
+import 'package:myportfolio/ui/project/projects_page.dart' deferred as project;
 import 'package:myportfolio/util/constant/anime_duration.dart';
+import 'package:myportfolio/util/widget/differ_load.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,9 +29,9 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     IntroPage(key: ValueKey("intro")),
     AboutPage(key: ValueKey("about")),
     Experience(key: ValueKey("exp")),
-    Projects(key: ValueKey("project")),
-    Certificate(key: ValueKey("certificate")),
-    Footer(key: ValueKey("footer"))
+    DifferLoad(future: project.loadLibrary(), builder: (ctx) => project.Projects(key: ValueKey("project"))),
+    DifferLoad(future: certificate.loadLibrary(), builder: (ctx) => certificate.Certificate(key: ValueKey("certificate"))),
+    DifferLoad(future: footer.loadLibrary(), builder: (ctx) => footer.Footer(key: ValueKey("footer")))
   ];
 
   @override
@@ -58,7 +59,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               )),
           Positioned(top: 10, right: 80, child: BuildWithFlutter())
               .animate(delay: AnimeConfig.delayDuration)
-              .slideY(begin: -5, duration: Duration(milliseconds: 500))
+              .slideY(begin: -5, duration: Duration(seconds: 2))
           // Positioned(
           //     right: -2,
           //     top: size.height / 7,

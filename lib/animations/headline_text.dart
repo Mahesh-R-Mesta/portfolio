@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sprung/sprung.dart';
 
 class HeadlineText extends StatefulWidget {
@@ -60,7 +60,7 @@ class _HeadlineTextState extends State<HeadlineText> with SingleTickerProviderSt
           AnimatedBuilder(
               animation: controller,
               builder: (context, _) {
-                return Opacity(opacity: opacityAnime.value, child: Text(widget.serial, style: theme.bodyMedium?.copyWith(fontSize: 14.sp)));
+                return Opacity(opacity: opacityAnime.value, child: Text(widget.serial, style: theme.bodyMedium?.copyWith(fontSize: 14)));
               }),
           const SizedBox(width: 10),
           AnimatedBuilder(
@@ -70,7 +70,7 @@ class _HeadlineTextState extends State<HeadlineText> with SingleTickerProviderSt
                   opacity: opacityAnime.value,
                   child: Transform.scale(
                     scale: 1 + (opacityAnime.value * 0.05),
-                    child: Text(widget.title, style: theme.titleLarge?.copyWith(fontSize: 20.sp)),
+                    child: Text(widget.title, style: theme.titleLarge?.copyWith(fontSize: 20)),
                   ),
                 );
               })

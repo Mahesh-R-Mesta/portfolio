@@ -8,13 +8,12 @@ import 'package:myportfolio/util/extension/context.dart';
 
 class ProjectDetail extends StatelessWidget {
   final Project project;
-  final void Function() popCall;
-  const ProjectDetail({super.key, required this.project, required this.popCall});
+  const ProjectDetail({super.key, required this.project});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: IconButton(onPressed: popCall, icon: Icon(Icons.arrow_back))),
+      appBar: AppBar(leading: IconButton(onPressed: () => Navigator.of(context).pop(), icon: Icon(Icons.arrow_back))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
         child: Column(
@@ -23,7 +22,9 @@ class ProjectDetail extends StatelessWidget {
           children: [
             Row(spacing: 10, children: [
               project.imageUrl != null
-                  ? Padding(padding: const EdgeInsets.all(18.0), child: Image.asset(project.imageUrl!, width: 100, height: 100))
+                  ? Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Hero(tag: project.imageUrl!, child: Image.asset(project.imageUrl!, width: 100, height: 100)))
                   : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
               Column(
                 spacing: 10,

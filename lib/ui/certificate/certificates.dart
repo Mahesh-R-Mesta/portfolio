@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:myportfolio/animations/slide_animation.dart';
-import 'package:myportfolio/ui/certificate/cerificate_view.dart' deferred as certificate;
+import 'package:myportfolio/route.dart';
 import 'package:myportfolio/util/animation_helper.dart';
 import 'package:myportfolio/util/constant/image_constant.dart';
 import 'package:myportfolio/util/extension/context.dart';
-import 'package:myportfolio/util/widget/differ_load.dart';
 
 class Certificate extends StatelessWidget {
   static const String name = "/experience";
@@ -23,17 +22,8 @@ class Certificate extends StatelessWidget {
       ImageConst.pythonCert
     ];
 
-    show(BuildContext context, String image) async {
-      Navigator.of(context).push(PageRouteBuilder(
-          fullscreenDialog: true,
-          barrierColor: Colors.black.withOpacity(0.5),
-          pageBuilder: (ctx, _, __) {
-            return DifferLoad(
-                future: certificate.loadLibrary(),
-                builder: (context) {
-                  return certificate.CertificateView(image: image);
-                });
-          }));
+    show(String image) async {
+      Navigator.of(context).pushNamed(RouteService.certificateView, arguments: image);
     }
 
     final controller = GetIt.I.get<ScrollController>();
@@ -64,13 +54,13 @@ class Certificate extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: context.isPortrait ? 1 : 3, childAspectRatio: 1.41337),
               itemBuilder: (ctx, index) {
                 return InkWell(
-                  onTap: () => show(context, images[index]),
+                  onTap: () => show(images[index]),
                   child: Hero(
                     tag: images[index],
                     child: AnimatedBuilder(
                       animation: controller,
                       builder: (context, child) {
-                        final value = AnimationHelper.scrollPortion(controller, context.device(1981, 3200) + (index * context.device(80, 40)), 300);
+                        final value = AnimationHelper.scrollPortion(controller, context.device(1981, 3200) + (index * context.device(40, 70)), 300);
                         return FadeTransition(opacity: AlwaysStoppedAnimation(value), child: Transform.scale(scale: value, child: child));
                       },
                       child: Card(

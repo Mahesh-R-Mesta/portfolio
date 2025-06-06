@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myportfolio/animations/balst.dart';
@@ -35,7 +35,7 @@ class IntroPage extends StatelessWidget {
               // SizedBox(width: 60.w),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 60.w),
+                  padding: EdgeInsets.only(left: context.device(60, 30)),
                   child: Column(
                     spacing: 10,
                     mainAxisSize: MainAxisSize.min,
@@ -78,10 +78,20 @@ class IntroPage extends StatelessWidget {
                       //     .slideX(duration: AnimeConfig.mediumDuration),
                       const SizedBox(height: 30),
                       Row(
-                        spacing: 26,
+                        spacing: context.isPortrait ? 30 : 28,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: context.isPortrait ? MainAxisAlignment.center : MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
+                          Tooltip(
+                            message: "Obtained 5 ⭐ stars in problem solving",
+                            child: svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
+                          ),
+                          Tooltip(
+                            message: "Read my published articles",
+                            child: svgIcon(ImageConst.medium, 25, () => openLink(MyLinks.medium)),
+                          ),
+                          Tooltip(message: "Personal github", child: svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub))),
+                          // Tooltip(message: "Only 72 problem solved..", child: svgIcon(ImageConst.leetcode, 25, () => openLink(MyLinks.leetCode))),
                           Tooltip(
                             message: MyLinks.email,
                             child: svgIcon(ImageConst.gmail, 20, () {
@@ -94,16 +104,6 @@ class IntroPage extends StatelessWidget {
                             }),
                           ),
                           Tooltip(message: "Connect with me", child: svgIcon(ImageConst.linkedIn, 20, () => openLink(MyLinks.linkedRank))),
-                          Tooltip(
-                            message: "Obtained 5 ⭐ stars in problem solving",
-                            child: svgIcon(ImageConst.hackerRank, 25, () => openLink(MyLinks.hackerRank)),
-                          ),
-                          Tooltip(
-                            message: "Read my published articles",
-                            child: svgIcon(ImageConst.medium, 25, () => openLink(MyLinks.medium)),
-                          ),
-                          Tooltip(message: "Personal github", child: svgIcon(ImageConst.github, 25, () => openLink(MyLinks.gitHub))),
-                          // Tooltip(message: "Only 72 problem solved..", child: svgIcon(ImageConst.leetcode, 25, () => openLink(MyLinks.leetCode))),
                           Tooltip(
                               message: "Call me",
                               child: svgIcon(
