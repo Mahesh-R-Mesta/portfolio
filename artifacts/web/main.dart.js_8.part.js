@@ -129,8 +129,8 @@ t===$&&A.a()
 s=0
 for(;s<10;++s)u.push(l.$1(t[s]))
 t=p.$1(50)
-u.push(A.Na(A.jX(A.XJ(C.cz,new A.c8(D.Gb,A.iR("assets/svg/flutter.svg",q,q),q),50),o,new A.b6(0,20,0,0),"Flutter",C.yA),t))
-t=A.iJ(A.b([A.cb("MY TECH SOLAR SYSTEM",A.bX(q,q,q,q,q,q,q,q,"Orbitron",q,q,15,q,q,C.mo,q,q,!0,q,q,q,q,q,q,q,q),q),new B.ue(m.x,new B.ak7(),q,y.d)],v),C.V,C.E,C.O,0)
+u.push(A.Na(A.jX(A.XJ(C.cz,new A.c8(D.Gb,A.iQ("assets/svg/flutter.svg",q,q),q),50),o,new A.b6(0,20,0,0),"Flutter",C.yA),t))
+t=A.iI(A.b([A.cb("MY TECH SOLAR SYSTEM",A.bX(q,q,q,q,q,q,q,q,"Orbitron",q,q,15,q,q,C.mo,q,q,!0,q,q,q,q,q,q,q,q),q),new B.ue(m.x,new B.ak7(),q,y.d)],v),C.U,C.E,C.O,0)
 r=C.b.t(A.b([C.a9,C.ae],y.z),A.eg())
 r=r?"(Tap to See)":"(Hover to see)"
 u.push(A.tk(q,A.eZ(A.b([t,A.cb("My daily work revolve around these... "+r,A.bX(q,q,D.m_,q,q,q,q,q,q,q,q,10,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q)],v),C.ad,C.E,C.O,0),q,q,10,q,10,q))
@@ -156,7 +156,7 @@ s===$&&A.a()
 x=d.a
 w=x[2]
 v=x[5]
-return A.eX(s,new B.aka(this.b,t,this.c,d),A.jX(A.XJ(C.cz,new A.c8(C.dv,A.iR(x[1],u,u),u),v),t,new A.b6(0,0,0,15),w,C.yA))},
+return A.eX(s,new B.aka(this.b,t,this.c,d),A.jX(A.XJ(C.cz,new A.c8(C.dv,A.iQ(x[1],u,u),u),v),t,new A.b6(0,0,0,15),w,C.yA))},
 $S:535}
 B.aka.prototype={
 $2(d,e){var x,w,v,u,t,s,r=this
@@ -216,4 +216,4 @@ return{b:x("l<hK<jY>>"),l:x("l<+anime,asset,name,orbitRadius,phase,radius(aZ<w>?
 D.FU=new A.aL(1e7)
 D.Gb=new A.b6(15,20,20,20)})()};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_8",e:"endPart",h:b})})($__dart_deferred_initializers__,"+cSatpgeCp8yVCrr5WPdHWppVB4=");
+a.eventLog.push({p:"main.dart.js_8",e:"endPart",h:b})})($__dart_deferred_initializers__,"qYdnCbqDFI7O/GemV5MKOiMQ79E=");
