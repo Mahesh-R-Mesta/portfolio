@@ -50,8 +50,8 @@ class AboutPage extends StatelessWidget {
                 ),
                 CustomSlideFadeAnimation(
                   controller: controller,
-                  position: 80,
-                  range: 390,
+                  position: 150,
+                  range: 400,
                   translate: 800,
                   direction: AxisDirection.right,
                   fadeCurve: AnimationHelper.square,
@@ -68,12 +68,12 @@ class AboutPage extends StatelessWidget {
                             text: "Mediation",
                           ),
                           IconExpress(
-                            icon: Atlas.book,
+                            icon: Atlas.heart_book_thin,
                             text: "Reading Book",
                           ),
                           IconExpress(
-                            icon: Atlas.gamepad_bold,
-                            text: "Playing game",
+                            icon: Atlas.music_note,
+                            text: "Listening Music",
                           )
                         ],
                       )

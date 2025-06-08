@@ -42,7 +42,7 @@ class ProjectDetail extends StatelessWidget {
                     children: [
                       ConstrainedBox(
                           constraints: BoxConstraints(maxWidth: context.isPortrait ? context.screenWidth * 0.5 : double.infinity),
-                          child: Material(child: Text(project.name, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600)))),
+                          child: Text(project.name, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600))),
                       if (project.isPersonal == true)
                         Material(
                           color: Colors.blue,

@@ -8,7 +8,8 @@ mixin StringConst {
   - A Constant Learner and Reader""";
 
   static const String about =
-      "Experienced Flutter developer with 4+ years of expertise in building dynamic and feature-rich applications. Eager to continuously upskill, I’ve successfully resolved complex implementation challenges by learning and applying native programming languages within Flutter";
+      "Experienced Flutter developer with 4+ years of expertise in building cross-platform apps for mobile, web, and desktop. Successfully published apps and implemented key features across platforms. Strong problem-solving skills with experience resolving complex technical challenges. Integrated native functionalities using Kotlin and Swift via platform channels. Hands-on experience with Android native development using Kotlin and Jetpack Compose. Passionate about continuous learning and adapting to new technologies. Actively exploring AI/ML integration in app development. Eager to work on innovative and impactful projects.";
+  // "Experienced Flutter developer with 4+ years of expertise in building dynamic and feature-rich applications. Eager to continuously upskill, I’ve successfully resolved complex implementation challenges by learning and applying native programming languages within Flutter";
 
   static const CompanyInfo codeMatrix = (
     role: "Mobile App Developer",
