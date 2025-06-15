@@ -20,7 +20,7 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = GetIt.I.get<ScrollController>();
     return SizedBox(
-      height: context.screenHeight,
+      height: context.screenHeight * context.device(1, 1.15),
       width: context.screenWidth,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),

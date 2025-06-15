@@ -44,7 +44,7 @@ class Experience extends StatelessWidget {
                       range: 230,
                       translate: 300,
                       direction: AxisDirection.up,
-                      fadeCurve: AnimationHelper.exponent,
+                      // fadeCurve: AnimationHelper.exponent,
                       child: ExperienceCard(company: experience[index]));
                 }),
               ]),
