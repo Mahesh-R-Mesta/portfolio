@@ -44,8 +44,8 @@ class IntroPage extends StatelessWidget {
                     children: [
                       Text(StringConst.title, style: Theme.of(context).textTheme.titleLarge!)
                           .animate(delay: AnimeConfig.delayDuration)
-                          .fade(duration: AnimeConfig.mediumDuration, begin: 0, end: 1)
-                          .slideY(begin: -0.5, end: 0, duration: AnimeConfig.mediumDuration),
+                          .fade(duration: AnimeConfig.mediumDuration, begin: 0, end: 1),
+                      // .slideY(begin: -0.5, end: 0, duration: AnimeConfig.mediumDuration),
                       const SizedBox(height: 10),
                       Text(StringConst.inShortAbout, style: Theme.of(context).textTheme.titleMedium!)
                           .animate(delay: AnimeConfig.delayDuration * 2)

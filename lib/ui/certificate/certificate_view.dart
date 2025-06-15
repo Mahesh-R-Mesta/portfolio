@@ -33,16 +33,20 @@ class CertificateView extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.topRight,
-          child: confetti.ConfettiWidget(
-            emissionFrequency: 0.1,
-            blastDirection: 3 * (pi / 4),
-            maxBlastForce: 40,
-            confettiController: confetti.ConfettiController(duration: const Duration(seconds: 5))..play(),
-            blastDirectionality: confetti.BlastDirectionality.directional, // don't specify a direction, blast randomly
-            shouldLoop: true, // start again as soon as the animation is finished
-            colors: const [Colors.green, Colors.blue, Colors.pink, Colors.orange, Colors.purple], // manually specify the colors to be used
-            // createParticlePath: drawStar, // define a custom shape/path.
-          ),
+          child: DifferLoad(
+              future: confetti.loadLibrary(),
+              builder: (context) {
+                return confetti.ConfettiWidget(
+                  emissionFrequency: 0.1,
+                  blastDirection: 3 * (pi / 4),
+                  maxBlastForce: 40,
+                  confettiController: confetti.ConfettiController(duration: const Duration(seconds: 5))..play(),
+                  blastDirectionality: confetti.BlastDirectionality.directional, // don't specify a direction, blast randomly
+                  shouldLoop: true, // start again as soon as the animation is finished
+                  colors: const [Colors.green, Colors.blue, Colors.pink, Colors.orange, Colors.purple], // manually specify the colors to be used
+                  // createParticlePath: drawStar, // define a custom shape/path.
+                );
+              }),
         ),
         Positioned(
           top: 20,
