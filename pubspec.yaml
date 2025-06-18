@@ -53,6 +53,7 @@ dependencies:
   bulleted_list: ^0.0.1+0.1a
   confetti: ^0.8.0
   animations: ^2.0.11
+  file_saver: ^0.2.14
 
 dev_dependencies:
   flutter_test:

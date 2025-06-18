@@ -50,7 +50,7 @@ class AboutPage extends StatelessWidget {
                 ),
                 CustomSlideFadeAnimation(
                   controller: controller,
-                  position: 150,
+                  position: context.device(180, 200),
                   range: 400,
                   translate: 800,
                   direction: AxisDirection.right,
@@ -84,7 +84,7 @@ class AboutPage extends StatelessWidget {
             ),
             CustomSlideFadeAnimation(
                 controller: controller,
-                position: context.device(30, 350),
+                position: context.device(30, 390),
                 range: 450,
                 translate: 500,
                 fadeCurve: AnimationHelper.square,

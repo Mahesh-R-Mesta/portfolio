@@ -37,7 +37,7 @@ class Projects extends StatelessWidget {
                 projects.length,
                 (index) => CustomSlideFadeAnimation(
                       controller: controller,
-                      position: context.device(1400, 2200) + (index * context.device(120, 150)),
+                      position: context.device(1400, 2600) + (index * context.device(120, 150)),
                       range: 200,
                       child: Material(
                         color: Color(0xffF7F9FC),
