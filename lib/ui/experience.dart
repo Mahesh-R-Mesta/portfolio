@@ -40,7 +40,7 @@ class Experience extends StatelessWidget {
                 ...List.generate(experience.length, (index) {
                   return CustomSlideFadeAnimation(
                       controller: controller,
-                      position: context.device(720, 1000) + (index * context.device(150, 200)),
+                      position: context.device(720, 1100) + (index * context.device(150, 200)),
                       range: 230,
                       translate: 300,
                       direction: AxisDirection.up,
