@@ -1,0 +1,12 @@
+[
+    {
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target": {
+            "namespace": "org.codematrix.community",
+            "package_name": "org.codematrix.community",
+            "sha256_cert_fingerprints": [
+                "EF:D4:6D:F7:3D:D7:2D:B2:63:6E:38:42:06:F7:BC:8B:E0:3E:E0:3C:DF:A5:59:6D:A3:31:F3:71:B7:88:8D:F8"
+            ]
+        }
+    }
+]
