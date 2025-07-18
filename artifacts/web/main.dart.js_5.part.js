@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_5",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var J,A,C,D={
-aFz(){return new D.p6(null)},
+aFw(){return new D.p6(null)},
 p6:function p6(d){this.a=d},
 a5F:function a5F(d){this.a=d},
 a5G:function a5G(d,e,f){this.a=d
@@ -24,7 +24,7 @@ D.a5F.prototype={
 $0(){return A.mr(this.a).fv()},
 $S:0}
 D.a5G.prototype={
-$0(){return A.mr(this.a).x5("/project_detail",this.b[this.c],y.a)},
+$0(){return A.mr(this.a).x4("/project_detail",this.b[this.c],y.a)},
 $S:0};(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(D.p6,A.aA)
 w(A.lW,[D.a5F,D.a5G])})()
@@ -42,4 +42,4 @@ B.IP=A.b(x([B.HL,B.HO]),A.X("l<iw>"))
 B.JK=A.b(x([C.wY]),y.g)
 B.Ob=new A.iF("Pro-Pilot CLI","A Dart CLI tool to generate boilerplate code for Flutter/React project using AI",B.J0,"",B.Jh,B.IP,!0,B.JK,null)})()};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_5",e:"endPart",h:b})})($__dart_deferred_initializers__,"neYLblzrXgR71HeGmQ80sUJPJjU=");
+a.eventLog.push({p:"main.dart.js_5",e:"endPart",h:b})})($__dart_deferred_initializers__,"SL3lZm9z++5lCB3sbmFYABviqLU=");
