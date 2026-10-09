@@ -13,7 +13,10 @@ class ProjectDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: IconButton(onPressed: () => Navigator.of(context).pop(), icon: Icon(Icons.arrow_back))),
+      appBar: AppBar(
+          leading: IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: Icon(Icons.arrow_back))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 19),
         child: Column(
@@ -26,8 +29,10 @@ class ProjectDetail extends StatelessWidget {
                   child: Hero(
                     tag: project.name,
                     child: project.imageUrl != null
-                        ? Image.asset(project.imageUrl!, width: 100, height: 100)
-                        : Icon(Atlas.project_presentation, size: 50, color: Colors.black54),
+                        ? Image.asset(project.imageUrl!,
+                            width: 100, height: 100)
+                        : Icon(Atlas.project_presentation,
+                            size: 50, color: Colors.black54),
                   )),
               Column(
                 spacing: 10,
@@ -41,20 +46,40 @@ class ProjectDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ConstrainedBox(
-                          constraints: BoxConstraints(maxWidth: context.isPortrait ? context.screenWidth * 0.5 : double.infinity),
-                          child: Text(project.name, style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600))),
+                          constraints: BoxConstraints(
+                              maxWidth: context.isPortrait
+                                  ? context.screenWidth * 0.5
+                                  : double.infinity),
+                          child: Text(project.name,
+                              style: TextStyle(
+                                  fontSize: 28, fontWeight: FontWeight.w600))),
                       if (project.isPersonal == true)
                         Material(
                           color: Colors.blue,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20)),
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
-                            child: Text("Personal", style: TextStyle(fontSize: 12, color: Colors.white)),
+                            child: Text("Personal",
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white)),
                           ),
                         ),
                     ],
                   ),
-                  Flex(spacing: 12, direction: Axis.horizontal, children: project.links.map((link) => linkButton(link)).toList())
+                  if (project.company.isNotEmpty || project.duration.isNotEmpty)
+                    Text(
+                      [project.company, project.duration]
+                          .where((value) => value.isNotEmpty)
+                          .join(" • "),
+                      style: TextStyle(fontSize: 13, color: Colors.black54),
+                    ),
+                  Flex(
+                      spacing: 12,
+                      direction: Axis.horizontal,
+                      children: project.links
+                          .map((link) => linkButton(link))
+                          .toList())
                   // Flex(
                   //     spacing: 10,
                   //     direction: Axis.horizontal,
@@ -89,15 +114,20 @@ class ProjectDetail extends StatelessWidget {
                           message: platform.name,
                           child: Material(
                             color: Colors.grey.shade50,
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
                             child: Row(
                               spacing: 5,
                               children: [
                                 CircleAvatar(
                                     backgroundColor: Colors.blue.withAlpha(50),
                                     radius: 12,
-                                    child: SvgPicture.asset(platform.image!, width: 15, height: 15)),
-                                Text(platform.name, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500)),
+                                    child: SvgPicture.asset(platform.image!,
+                                        width: 15, height: 15)),
+                                Text(platform.name,
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500)),
                                 const SizedBox(width: 5)
                               ],
                             ),
@@ -111,7 +141,12 @@ class ProjectDetail extends StatelessWidget {
               bullet: Icon(Icons.donut_small_sharp, size: 12),
             ),
             Text("Technology Used: ", style: TextStyle(fontSize: 15)),
-            Flex(spacing: 10, direction: Axis.horizontal, children: project.techUsed.map((e) => chip(e.name, e.image)).toList())
+            Wrap(
+              spacing: 10,
+              runSpacing: 4,
+              children:
+                  project.techUsed.map((e) => chip(e.name, e.image)).toList(),
+            )
           ],
         ),
       ),
@@ -124,8 +159,11 @@ class ProjectDetail extends StatelessWidget {
         padding: EdgeInsets.all(5),
         side: BorderSide(color: Colors.orange),
         elevation: 2,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide.none),
-        avatar: image != null ? SvgPicture.asset(image, width: 14, height: 14) : null,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20), side: BorderSide.none),
+        avatar: image != null
+            ? SvgPicture.asset(image, width: 14, height: 14)
+            : null,
         label: Text(name, style: TextStyle(fontSize: 12)));
   }
 
@@ -136,10 +174,12 @@ class ProjectDetail extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         spacing: 6,
         children: [
-          if (link.image != null) SvgPicture.asset(link.image!, width: 15, height: 15),
+          if (link.image != null)
+            SvgPicture.asset(link.image!, width: 15, height: 15),
           Text(
             link.name,
-            style: TextStyle(fontSize: 15, decoration: TextDecoration.underline),
+            style:
+                TextStyle(fontSize: 15, decoration: TextDecoration.underline),
           )
         ],
       ),

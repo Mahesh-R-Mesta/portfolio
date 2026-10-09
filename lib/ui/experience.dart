@@ -18,7 +18,7 @@ class Experience extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = GetIt.I.get<ScrollController>();
 
-    List<CompanyInfo> experience = [StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
+    List<CompanyInfo> experience = [StringConst.helixbeat, StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
     return SizedBox(
       height: context.screenHeight * context.device(1.2, 1.65),

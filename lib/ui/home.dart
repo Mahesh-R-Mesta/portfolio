@@ -9,6 +9,7 @@ import 'package:myportfolio/ui/certificate/certificates.dart' deferred as certif
 import 'package:myportfolio/ui/experience.dart';
 import 'package:myportfolio/ui/footer.dart' deferred as footer;
 import 'package:myportfolio/ui/intro.dart';
+import 'package:myportfolio/ui/project/personal_project_page.dart';
 import 'package:myportfolio/ui/project/projects_page.dart';
 import 'package:myportfolio/util/constant/anime_duration.dart';
 import 'package:myportfolio/util/widget/differ_load.dart';
@@ -30,6 +31,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     AboutPage(key: ValueKey("about")),
     Experience(key: ValueKey("exp")),
     Projects(key: ValueKey("project")),
+    PersonalProjectPage(key: ValueKey("personal-project")),
     DifferLoad(future: certificate.loadLibrary(), builder: (ctx) => certificate.Certificate(key: ValueKey("certificate"))),
     DifferLoad(future: footer.loadLibrary(), builder: (ctx) => footer.Footer(key: ValueKey("footer")))
   ];
@@ -60,54 +62,6 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           Positioned(top: 10, right: 80, child: BuildWithFlutter())
               .animate(delay: AnimeConfig.delayDuration)
               .slideY(begin: -5, duration: Duration(seconds: 2))
-          // Positioned(
-          //     right: -2,
-          //     top: size.height / 7,
-          //     child: widgetHider(
-          //       notifier: visibilityNotifier,
-          //       builder: (ctx, page) => SideMountedOption(
-          //         initialHeightFactor: 0.24,
-          //         fill: page == 1,
-          //         label: "About",
-          //         onTap: () => pageController.navigateTo(1),
-          //       ),
-          //     )),
-          // Positioned(
-          //     right: -2,
-          //     top: (size.height / 7) * 2,
-          //     child: widgetHider(
-          //       notifier: visibilityNotifier,
-          //       builder: (ctx, page) => SideMountedOption(
-          //         initialHeightFactor: 0.1,
-          //         fill: page == 2,
-          //         label: "Experience",
-          //         onTap: () => pageController.navigateTo(2),
-          //       ),
-          //     )),
-          // Positioned(
-          //     right: -2,
-          //     top: (size.height / 7) * 3,
-          //     child: widgetHider(
-          //       notifier: visibilityNotifier,
-          //       builder: (ctx, page) => SideMountedOption(
-          //         initialHeightFactor: 0.15,
-          //         fill: page == 3,
-          //         label: "Projects",
-          //         onTap: () => pageController.navigateTo(3),
-          //       ),
-          //     )),
-          // Positioned(
-          //     right: -2,
-          //     top: (size.height / 7) * 4,
-          //     child: widgetHider(
-          //       notifier: visibilityNotifier,
-          //       builder: (ctx, page) => SideMountedOption(
-          //         initialHeightFactor: 0.1,
-          //         fill: page == 4,
-          //         label: "Certificate",
-          //         onTap: () => pageController.navigateTo(4),
-          //       ),
-          //     )),
         ],
       ),
     );

@@ -14,7 +14,7 @@ class Projects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = GetIt.I.get<ScrollController>();
-    List<Project> projects = [Project.arise, Project.billd, Project.smriti, Project.romysDoggyFood];
+    List<Project> projects = [Project.helixdoc, Project.aykta, Project.smriti, Project.zenvoya];
     return SizedBox(
       height: context.device(1.05, 0.75) * context.screenHeight,
       child: Padding(
@@ -29,7 +29,7 @@ class Projects extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomAppBar(serialNo: "", title: "Projects"),
-                  Text("Here are my few recent projects...", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+                  Text("Selected projects from my mobile and cross-platform work...", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
                 ],
               ),
             ),

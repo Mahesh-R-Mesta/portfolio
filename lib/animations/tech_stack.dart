@@ -49,7 +49,6 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
       (asset: ImageConst.kotlin, radius: 25, orbitRadius: 160, name: "Kotlin", phase: (2 * pi) / 5, anime: secondOrbitAngle),
       (asset: ImageConst.github, radius: 25, orbitRadius: 160, name: "Git & Actions", phase: 2 * ((2 * pi) / 5), anime: secondOrbitAngle),
       (asset: ImageConst.firebase, radius: 20, orbitRadius: 100, name: "Firebase", phase: pi + (pi / 4), anime: firstOrbitAngle),
-      (asset: ImageConst.java, radius: 25, orbitRadius: 160, name: "Java", phase: 4 * ((2 * pi) / 5), anime: secondOrbitAngle),
       (asset: ImageConst.dart, radius: 20, orbitRadius: 100, name: "Dart", phase: pi + (pi * 3 / 4), anime: firstOrbitAngle),
       (asset: ImageConst.python, radius: 25, orbitRadius: 230, name: "Python", phase: pi, anime: thirdOrbitAngle),
     ];
@@ -205,7 +204,7 @@ class _TechStackAnimeState extends State<TechStackAnime> with SingleTickerProvid
                       bottom: 10,
                       left: 15,
                       child: Text(
-                        "• SATE-MANAGEMENT: BLoC, Provider, GetX",
+                        "• STATE MANAGEMENT: BLoC, Provider, GetX",
                         style: TextStyle(fontSize: 12, color: ColorConst.hintText),
                       ))
                 ]),

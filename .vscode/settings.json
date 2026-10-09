@@ -1,0 +1,12 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^git status --short && find lib -maxdepth 3 -type f -print \\| sort && printf '\\\\n--- root ---\\\\n' && ls -1$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^git --no-pager diff -- lib/ui/home\\.dart && printf '\\\\n--- string/project/UI diff status ---\\\\n' && git status --short lib/util/constant/string_constant\\.dart lib/model/projects\\.dart lib/model/company\\.dart lib/ui/intro\\.dart lib/ui/about\\.dart lib/ui/experience\\.dart lib/ui/project/projects_page\\.dart && printf '\\\\n--- pubspec ---\\\\n' && sed -n '1,180p' pubspec\\.yaml$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

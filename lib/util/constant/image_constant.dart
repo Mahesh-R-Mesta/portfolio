@@ -29,6 +29,7 @@ class ImageConst {
   static const String journalCert = "assets/image/journal.jpg";
 
   static const String arise = "assets/image/arise.png";
+  static const String snippic = "assets/image/snippic.png";
   static const String smriti = "assets/image/smriti.png";
   static const String billd = "assets/image/billd.png";
   static const String rommy = "assets/image/rommy.png";
