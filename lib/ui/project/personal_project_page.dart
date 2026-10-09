@@ -12,7 +12,7 @@ class PersonalProjectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final projects = [Project.arise, Project.snippic];
     return SizedBox(
-      height: context.screenHeight * context.device(0.8, 0.75),
+      height: context.screenHeight * context.device(0.5, 0.75),
       child: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(

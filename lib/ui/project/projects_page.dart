@@ -16,7 +16,7 @@ class Projects extends StatelessWidget {
     final controller = GetIt.I.get<ScrollController>();
     List<Project> projects = [Project.helixdoc, Project.aykta, Project.smriti, Project.zenvoya];
     return SizedBox(
-      height: context.device(1.05, 0.75) * context.screenHeight,
+      height: context.device(0.95, 0.75) * context.screenHeight,
       child: Padding(
           padding: const EdgeInsets.all(15),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 10, children: [
