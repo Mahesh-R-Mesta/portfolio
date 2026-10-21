@@ -18,7 +18,7 @@ D=a.updateHolder(c[4],D)
 A=c[15]
 D.pL.prototype={
 M(d){var x=null,w=B.b([A.PW,A.Q1,A.PV,A.PX,A.Q3,A.PZ],y.t)
-return B.ac_(B.avH(B.Kr(x,x,A.HV,x,x,new D.a8h(d),x,x,x),A.WQ),D.aJZ(new D.a8i(w),6,C.fr,new D.a8j()))}}
+return B.ac_(B.avH(B.Kr(x,x,A.HV,x,x,new D.a8h(d),x,x,x),A.WQ),D.aJZ(new D.a8i(w),6,C.fs,new D.a8j()))}}
 var z=a.updateTypes([])
 D.a5n.prototype={
 $2(d,e){var x=C.e.cg(e,2)
@@ -32,10 +32,10 @@ D.a8h.prototype={
 $0(){return B.li(this.a).f2()},
 $S:0}
 D.a8j.prototype={
-$2(d,e){return C.hq},
+$2(d,e){return C.hr},
 $S:563}
 D.a8i.prototype={
-$2(d,e){var x=null,w=this.a[e],v=B.fj(20)
+$2(d,e){var x=null,w=this.a[e],v=B.fl(20)
 return B.ih(!1,C.X,!0,B.jZ(!1,!0,new B.uw(w,x),x,!0,x,x,x,x,x,x,x,x,new D.a8g(d,w),x,x,x,x,x,x,x),C.z,C.my,0,x,x,new B.cq(v,C.lG),x,x,C.aC)},
 $S:564}
 D.a8g.prototype={
@@ -49,7 +49,7 @@ var y={A:B.a_("l<ie>"),g:B.a_("l<kj>"),t:B.a_("l<ea>"),x:B.a_("l<i>"),h:B.a_("l<
 A.HV=new B.tB(C.ns,null,null,null,null)
 A.L9=x(["Developed a mobile app to manage the end-to-end refurbishment of electronic products","Built a multi-stage workflow for receiving, quality testing, repairing, pricing, and publishing products","Implemented app tour and multi-language localization"],y.x)
 A.SY=new B.cd("App localization",null)
-A.Ly=x([C.bE,C.c1,C.hs,A.SY],y.h)
+A.Ly=x([C.bE,C.c1,C.ht,A.SY],y.h)
 A.Kd=x([C.el,C.k1],y.g)
 A.PV=new B.ea("2ndSmart","Managing the process of refurbishing electronics accessories",A.L9,"Dec 2021 - May 2022","Geeksynergy",A.Ly,C.ci,null,A.Kd,null)
 A.JO=x(["Built hotel billing and management software for Windows and Android from a single codebase","Implemented Socket.IO connections, offline support, database encryption, and POS receipt generation","Developed a web admin panel and optimized its loading time by 40%","Implemented native Windows integrations using C++ and Pascal Script"],y.x)
@@ -64,7 +64,7 @@ A.L7=x([A.xW,C.el,C.k1],y.g)
 A.PW=new B.ea("BILLD","Billing software solution for hotels and canteens",A.JO,"Jun 2022 - Jun 2026","Code Matrix",A.K9,C.ci,null,A.L7,"assets/image/billd.png")
 A.Lk=x(["Digitized paper-based organizational documentation with a structured digital workflow","Built features to create, store, retrieve, and track official records"],y.x)
 A.SU=new B.cd("Document management",null)
-A.K8=x([C.bE,C.c1,C.hs,C.ez,A.SU,C.z8],y.h)
+A.K8=x([C.bE,C.c1,C.ht,C.ez,A.SU,C.z8],y.h)
 A.PX=new B.ea("CORMS","Company Office Records Management System",A.Lk,"May 2021 - Jan 2022","Geeksynergy",A.K8,C.ci,null,C.dX,null)
 A.Kn=x(["Generates code and create files and folder inside project","Integrated Gemini API"],y.x)
 A.T1=new B.cd("Gemini",null)
@@ -83,7 +83,7 @@ A.Kq=x([A.IQ],y.A)
 A.Q1=new B.ea("Romy's Doggy Food","Online food order app for Dog & cats",A.Kl,"Jan 2023 - Oct 2023","Code Matrix",A.Ln,A.Kq,null,C.dX,"assets/image/rommy.png")
 A.LE=x(["Built a mobile app to manage and monitor solar panel installations","Implemented separate admin and field tester flows with role-based access","Added installation status tracking, test result logging, and panel performance monitoring"],y.x)
 A.T9=new B.cd("Role-based access",null)
-A.JQ=x([C.bE,C.c1,C.hs,A.T9],y.h)
+A.JQ=x([C.bE,C.c1,C.ht,A.T9],y.h)
 A.Q3=new B.ea("Arraymeter","Solar installation management and monitoring app",A.LE,"Jan 2021 - Jun 2021","AppBee Software Solutions",A.JQ,C.ci,null,C.dX,null)
 A.WQ=new B.v7("More Projects",null,null,null,null)})()};
-(a=>{a["q0svDsi6BL3cGBtwSKiKFEI5ckU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["bhSWjhGp3iv7TlxGob0eHkXpQxI="]=a.current})($__dart_deferred_initializers__);
