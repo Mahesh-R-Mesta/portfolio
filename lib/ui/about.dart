@@ -19,10 +19,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = GetIt.I.get<ScrollController>();
-    return SizedBox(
-      height: context.screenHeight * context.device(1, 1.15),
-      width: context.screenWidth,
-      child: Padding(
+    final content = Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Flex(
           direction: context.flexAxis(),
@@ -90,8 +87,19 @@ class AboutPage extends StatelessWidget {
                 fadeCurve: AnimationHelper.square,
                 child: DifferLoad(future: lottie.loadLibrary(), builder: (ctx) => lottie.Lottie.asset(LottieAnime.monkey, width: 450)))
           ],
-        ),
-      ),
+        ));
+
+    if (context.screenWidth < 600) {
+      return ConstrainedBox(
+        constraints: BoxConstraints(minHeight: context.screenHeight * 1.15),
+        child: SizedBox(width: context.screenWidth, child: content),
+      );
+    }
+
+    return SizedBox(
+      height: context.screenHeight * context.device(1, 1.15),
+      width: context.screenWidth,
+      child: content,
     );
   }
 }

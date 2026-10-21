@@ -11,9 +11,7 @@ class PersonalProjectPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projects = [Project.arise, Project.snippic];
-    return SizedBox(
-      height: context.screenHeight * context.device(0.5, 0.75),
-      child: Padding(
+    final content = Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,8 +38,13 @@ class PersonalProjectPage extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
+        ));
+
+    if (context.screenWidth < 600) return content;
+
+    return SizedBox(
+      height: context.screenHeight * context.device(0.5, 0.75),
+      child: content,
     );
   }
 }

@@ -15,9 +15,7 @@ class Projects extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = GetIt.I.get<ScrollController>();
     List<Project> projects = [Project.aykta, Project.smriti, Project.zenvoya];
-    return SizedBox(
-      height: context.device(0.95, 0.75) * context.screenHeight,
-      child: Padding(
+    final content = Padding(
           padding: const EdgeInsets.all(15),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, spacing: 10, children: [
             CustomSlideFadeAnimation(
@@ -68,7 +66,13 @@ class Projects extends StatelessWidget {
                 ),
               ),
             )
-          ])),
+          ]));
+
+    if (context.screenWidth < 600) return content;
+
+    return SizedBox(
+      height: context.screenHeight * context.device(0.95, 0.75),
+      child: content,
     );
   }
 }

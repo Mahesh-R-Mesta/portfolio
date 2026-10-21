@@ -20,6 +20,45 @@ class Experience extends StatelessWidget {
 
     List<CompanyInfo> experience = [StringConst.helixbeat, StringConst.codeMatrix, StringConst.geekSynergy, StringConst.appBee];
 
+    final experienceColumn = Column(spacing: 6, children: [
+      CustomSlideFadeAnimation(
+          controller: controller,
+          position: context.device(720, 1000),
+          range: 230,
+          translate: 300,
+          fadeCurve: AnimationHelper.square,
+          child: CustomAppBar(title: "Experience")),
+      ...List.generate(experience.length, (index) {
+        return CustomSlideFadeAnimation(
+            controller: controller,
+            position: context.device(720, 1100) + (index * context.device(150, 200)),
+            range: 230,
+            translate: 300,
+            direction: AxisDirection.up,
+            child: ExperienceCard(company: experience[index]));
+      }),
+    ]);
+    final techStack = AnimatedBuilder(
+        animation: controller,
+        builder: (context, child) {
+          final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
+          return Transform.scale(scale: value, child: child);
+        },
+        child: DifferLoad(
+          future: tech_stack.loadLibrary(),
+          builder: (ctx) => tech_stack.TechStackAnime(),
+        ));
+
+    if (context.screenWidth < 600) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [experienceColumn, techStack],
+        ),
+      );
+    }
+
     return SizedBox(
       height: context.screenHeight * context.device(1.2, 1.65),
       child: Padding(
@@ -27,43 +66,7 @@ class Experience extends StatelessWidget {
         child: Flex(
           crossAxisAlignment: CrossAxisAlignment.center,
           direction: context.flexAxis(),
-          children: [
-            Expanded(
-              child: Column(spacing: 6, children: [
-                CustomSlideFadeAnimation(
-                    controller: controller,
-                    position: context.device(720, 1000),
-                    range: 230,
-                    translate: 300,
-                    fadeCurve: AnimationHelper.square,
-                    child: CustomAppBar(title: "Experience")),
-                ...List.generate(experience.length, (index) {
-                  return CustomSlideFadeAnimation(
-                      controller: controller,
-                      position: context.device(720, 1100) + (index * context.device(150, 200)),
-                      range: 230,
-                      translate: 300,
-                      direction: AxisDirection.up,
-                      // fadeCurve: AnimationHelper.exponent,
-                      child: ExperienceCard(company: experience[index]));
-                }),
-              ]),
-            ),
-            // Flexible(
-            //     fit: isMobile() ? FlexFit.loose : FlexFit.loose,
-            //     child:
-            AnimatedBuilder(
-                animation: controller,
-                builder: (context, child) {
-                  final value = AnimationHelper.scrollPortion(controller, context.device(750, 1890), 300);
-                  return Transform.scale(scale: value, child: child); //offset: Offset(400 - value * 400, 0)
-                },
-                child: DifferLoad(
-                  future: tech_stack.loadLibrary(),
-                  builder: (ctx) => tech_stack.TechStackAnime(),
-                ))
-            // )
-          ],
+          children: [Expanded(child: experienceColumn), techStack],
         ),
       ),
     );
