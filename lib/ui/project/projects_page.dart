@@ -14,7 +14,7 @@ class Projects extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = GetIt.I.get<ScrollController>();
-    List<Project> projects = [Project.helixdoc, Project.aykta, Project.smriti, Project.zenvoya];
+    List<Project> projects = [Project.aykta, Project.smriti, Project.zenvoya];
     return SizedBox(
       height: context.device(0.95, 0.75) * context.screenHeight,
       child: Padding(

@@ -63,20 +63,20 @@ class Project {
   static const _flame = Tech(name: "Flame");
   static const _gemini = Tech(name: "Gemini");
 
-  static const helixdoc = Project(
-    name: "Helixdoc",
-    shortDescription:
-        "Community management app with an integrated AI assistant",
-    description: [
-      "Built a community platform for forums, events, digital magazines, and shared resources",
-      "Added a community wall, real-time chat, and collaborative features",
-      "Integrated an AI assistant to help members write forum posts and generate content"
-    ],
-    duration: "Jul 2026 - Present",
-    company: "Helixbeat",
-    platforms: [_iOS],
-    techUsed: [_flutter, _dart, _getX, _bloc, _devtools],
-  );
+  // static const helixdoc = Project(
+  //   name: "Helixdoc",
+  //   shortDescription:
+  //       "Community management app with an integrated AI assistant",
+  //   description: [
+  //     "Built a community platform for forums, events, digital magazines, and shared resources",
+  //     "Added a community wall, real-time chat, and collaborative features",
+  //     "Integrated an AI assistant to help members write forum posts and generate content"
+  //   ],
+  //   duration: "Jul 2026 - Present",
+  //   company: "Helixbeat",
+  //   platforms: [_iOS],
+  //   techUsed: [_flutter, _dart, _getX, _bloc, _devtools],
+  // );
 
   static const aykta = Project(
     name: "Aykta",
