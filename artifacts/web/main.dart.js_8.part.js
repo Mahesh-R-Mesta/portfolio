@@ -68,7 +68,7 @@ return w.d.$3(d,x,null)}}
 B.nv.prototype={
 am(){return new B.VS(new A.eC(!0,$.aQ()),null,null)}}
 B.VS.prototype={
-aA(){var x,w,v=this,u=null,t=A.cB(u,D.GS,u,u,v)
+aA(){var x,w,v=this,u=null,t=A.cB(u,D.GR,u,u,v)
 v.d=t
 x=y.g
 w=x.h("ao<aq.T>")
@@ -91,7 +91,7 @@ B.LT.prototype={
 aI(d,e){var x,w,v,u,t,s,r,q,p
 $.W()
 x=A.aa()
-x.r=C.mQ.gm()
+x.r=C.mP.gm()
 x.b=C.ae
 for(w=this.c,v=w.length,u=this.b,t=d.a,s=0;s<w.length;w.length===v||(0,A.q)(w),++s){r=w[s]
 q=A.ays(u,r,r)
@@ -127,13 +127,13 @@ t===$&&A.a()
 s=0
 for(;s<9;++s)u.push(l.$1(t[s]))
 t=p.$1(50)
-u.push(A.D3(A.kv(A.a_u(C.cM,new A.cl(D.H9,A.je("assets/svg/flutter.svg",q,q),q),50),o,new A.bd(0,20,0,0),"Flutter",C.zr),t))
-t=A.j5(A.b([A.ce("MY TECH SOLAR SYSTEM",A.bX(q,q,q,q,q,q,q,q,"Orbitron",q,q,15,q,q,C.nm,q,q,!0,q,q,q,q,q,q,q,q),q),new B.vl(m.x,new B.ao2(),q,y.d)],v),C.a1,C.I,C.V,0)
+u.push(A.D3(A.kv(A.a_u(C.cM,new A.cl(D.H8,A.je("assets/svg/flutter.svg",q,q),q),50),o,new A.bd(0,20,0,0),"Flutter",C.zq),t))
+t=A.j5(A.b([A.ce("MY TECH SOLAR SYSTEM",A.bX(q,q,q,q,q,q,q,q,"Orbitron",q,q,15,q,q,C.nl,q,q,!0,q,q,q,q,q,q,q,q),q),new B.vl(m.x,new B.ao2(),q,y.d)],v),C.a1,C.I,C.V,0)
 r=C.b.t(A.b([C.a2,C.a4],y.z),A.em())
 r=r?"(Tap to See)":"(Hover to see)"
-u.push(A.ur(q,A.fl(A.b([t,A.ce("My daily work revolve around these... "+r,A.bX(q,q,D.mW,q,q,q,q,q,q,q,q,10,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q)],v),C.a8,C.I,C.V,0),q,q,10,q,10,q))
-u.push(A.ur(10,A.ce("\u2022 STATE MANAGEMENT: BLoC, Provider, GetX",A.bX(q,q,D.mW,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q),q,q,15,q,q,q))
-return new A.nA(k,A.IA(j,A.jZ(!1,!0,A.oQ(A.ns(C.c6,u,C.c1),q,q,new B.LT(x,w,q),!1),q,!0,q,q,q,q,q,q,new B.ao3(m),q,new B.ao4(m,d,new B.aoa(n)),q,q,q,q,i,q,q)),q)},
+u.push(A.ur(q,A.fl(A.b([t,A.ce("My daily work revolve around these... "+r,A.bX(q,q,D.mV,q,q,q,q,q,q,q,q,10,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q)],v),C.a8,C.I,C.V,0),q,q,10,q,10,q))
+u.push(A.ur(10,A.ce("\u2022 STATE MANAGEMENT: BLoC, Provider, GetX",A.bX(q,q,D.mV,q,q,q,q,q,q,q,q,12,q,q,q,q,q,!0,q,q,q,q,q,q,q,q),q),q,q,15,q,q,q))
+return new A.nA(k,A.IA(j,A.jZ(!1,!0,A.oQ(A.ns(C.c5,u,C.c_),q,q,new B.LT(x,w,q),!1),q,!0,q,q,q,q,q,q,new B.ao3(m),q,new B.ao4(m,d,new B.aoa(n)),q,q,q,q,i,q,q)),q)},
 $S:565}
 B.ao7.prototype={
 $1(d){var x=this.a
@@ -155,7 +155,7 @@ s===$&&A.a()
 x=d.a
 w=x[2]
 v=x[5]
-return A.eY(s,new B.ao5(this.b,t,this.c,d),A.kv(A.a_u(C.cM,new A.cl(C.dO,A.je(x[1],u,u),u),v),t,new A.bd(0,0,0,15),w,C.zr))},
+return A.eY(s,new B.ao5(this.b,t,this.c,d),A.kv(A.a_u(C.cM,new A.cl(C.dO,A.je(x[1],u,u),u),v),t,new A.bd(0,0,0,15),w,C.zq))},
 $S:569}
 B.ao5.prototype={
 $2(d,e){var x,w,v,u,t,s,r=this
@@ -211,7 +211,7 @@ v(B.LT,A.t9)
 x(B.GH,A.f7)})()
 A.rd(b.typeUniverse,JSON.parse('{"vl":{"a7":[],"h":[]},"wn":{"ai":["vl<1>"]},"nv":{"a7":[],"h":[]},"VS":{"ai":["nv"]},"LT":{"ah":[]}}'))
 var y=(function rtii(){var x=A.a_
-return{b:x("l<i7<qK>>"),l:x("l<+anime,asset,name,orbitRadius,phase,radius(aT<u>?,i,i,u,u,u)>"),z:x("l<eT>"),u:x("l<h>"),r:x("l<m>"),w:x("bA<qK>"),m:x("a2<m,u>"),x:x("hy"),g:x("aE<u>"),d:x("vl<F>")}})();(function constants(){D.mW=new A.r(1,0.43137254901960786,0.43137254901960786,0.45098039215686275,C.f)
-D.GS=new A.aV(1e7)
-D.H9=new A.bd(15,20,20,20)})()};
-(a=>{a["E1KNfeDbhuPwsfKIebqY0uvkUMw="]=a.current})($__dart_deferred_initializers__);
+return{b:x("l<i7<qK>>"),l:x("l<+anime,asset,name,orbitRadius,phase,radius(aT<u>?,i,i,u,u,u)>"),z:x("l<eT>"),u:x("l<h>"),r:x("l<m>"),w:x("bA<qK>"),m:x("a2<m,u>"),x:x("hy"),g:x("aE<u>"),d:x("vl<F>")}})();(function constants(){D.mV=new A.r(1,0.43137254901960786,0.43137254901960786,0.45098039215686275,C.f)
+D.GR=new A.aV(1e7)
+D.H8=new A.bd(15,20,20,20)})()};
+(a=>{a["XeIekubck2aDPKRER72LGrjALRE="]=a.current})($__dart_deferred_initializers__);
